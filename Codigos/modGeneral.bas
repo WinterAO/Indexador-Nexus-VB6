@@ -1,6 +1,8 @@
 Attribute VB_Name = "modGeneral"
 Option Explicit
 
+Private lFrameTimer As Long
+
 Private Declare Function GetPixel Lib "gdi32" (ByVal hdc As Long, ByVal x As Long, ByVal y As Long) As Long
 Private Declare Function BitBlt Lib "gdi32" (ByVal hDestDC As Long, ByVal x As Long, ByVal y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As Long, ByVal xSrc As Long, ByVal ySrc As Long, ByVal dwRop As Long) As Long
 
@@ -21,6 +23,17 @@ Public Sub Main()
         End
 
     End If
+    
+    '##############
+    ' MOTOR GRAFICO
+    
+    'Iniciamos el Engine de DirectX 8
+    frmCargando.lblstatus.Caption = "Iniciando Motor Grafico..."
+    Call mDx8_Engine.Engine_DirectX8_Init
+    
+    'Tile Engine
+    frmCargando.lblstatus.Caption = "Cargando Tile Engine..."
+    Call InitTileEngine(frmMain.hwnd, 32, 32, 8, 8)
     
     frmCargando.lblstatus.Caption = "Cargando Graficos.ind"
     DoEvents
@@ -52,6 +65,30 @@ Public Sub Main()
     
     Unload frmCargando
     frmMain.Show
+    
+    'Inicializacion de variables globales
+    prgRun = True
+    
+    lFrameTimer = GetTickCount
+
+    Do While prgRun
+
+        'Solo dibujamos si la ventana no esta minimizada
+        If frmMain.WindowState <> vbMinimized And frmMain.Visible Then
+            Call ShowNextFrame
+            
+        End If
+        
+        'FPS Counter - mostramos las FPS
+        If GetTickCount - lFrameTimer >= 1000 Then
+            
+            lFrameTimer = GetTickCount
+        End If
+        
+        DoEvents
+    Loop
+    
+    Call CloseClient
 
 End Sub
 
@@ -196,7 +233,7 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
 
     Dim R             As Currency, B As Currency, G As Currency
 
-    Dim InvalidPixels As Long, size As Long
+    Dim InvalidPixels As Long, Size As Long
 
     Dim TempColor     As tColor
 
@@ -246,15 +283,15 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
         Next x
         
         If InvalidPixels > 0 Then
-            size = GrhData(grh_index).pixelWidth * GrhData(grh_index).pixelHeight - InvalidPixels
+            Size = GrhData(grh_index).pixelWidth * GrhData(grh_index).pixelHeight - InvalidPixels
         Else
-            size = GrhData(grh_index).pixelWidth * GrhData(grh_index).pixelHeight
+            Size = GrhData(grh_index).pixelWidth * GrhData(grh_index).pixelHeight
 
         End If
         
-        If size = 0 Then size = 1
+        If Size = 0 Then Size = 1
         
-        Grh_GetColor = RGB(CByte(R / size), CByte(G / size), CByte(B / size))
+        Grh_GetColor = RGB(CByte(R / Size), CByte(G / Size), CByte(B / Size))
         frmMinimapa.Picture2.BackColor = Grh_GetColor
 
         Dim bmpguardado As Integer
@@ -276,3 +313,33 @@ Private Function Long2RGB(ByVal Color As Long) As tColor
     Long2RGB.G = (Color And &HFF00&) \ &H100&
     Long2RGB.B = (Color And &HFF0000) \ &H10000
 End Function
+
+Public Sub CloseClient()
+    '**************************************************************
+    'Author: Juan Martin Sotuyo Dodero (Maraxus)
+    'Last Modify Date: 8/14/2007
+    'Frees all used resources, cleans up and leaves
+    '**************************************************************
+    
+    EngineRun = False
+    
+    'Stop tile engine
+    Call Engine_DirectX8_End
+
+    Set SurfaceDB = Nothing
+    
+    Call UnloadAllForms
+    
+    End
+    
+End Sub
+
+Sub UnloadAllForms()
+On Error Resume Next
+
+    Dim mifrm As Form
+    
+    For Each mifrm In Forms
+        Unload mifrm
+    Next
+End Sub

@@ -1,6 +1,71 @@
 Attribute VB_Name = "mod_TileEngine"
 Option Explicit
 
+Public Declare Function timeGetTime Lib "winmm.dll" () As Long
+
+' No matter what you do with DirectX8, you will need to start with
+' the DirectX8 object. You will need to create a new instance of
+' the object, using the New keyword, rather than just getting a
+' pointer to it, since there's nowhere to get a pointer from yet (duh!).
+
+Public DirectX As New DirectX8
+
+' The D3DX8 object contains lots of helper functions, mostly math
+' to make Direct3D alot easier to use. Notice we create a new
+' instance of the object using the New keyword.
+Public DirectD3D8 As D3DX8
+Public DirectD3D As Direct3D8
+
+' The Direct3DDevice8 represents our rendering device, which could
+' be a hardware or a software device. The great thing is we still
+' use the same object no matter what it is
+Public DirectDevice As Direct3DDevice8
+
+' The D3DDISPLAYMODE type structure that holds
+' the information about your current display adapter.
+Public DispMode  As D3DDISPLAYMODE
+    
+' The D3DPRESENT_PARAMETERS type holds a description of the way
+' in which DirectX will display it's rendering.
+Public D3DWindow As D3DPRESENT_PARAMETERS
+
+Public SurfaceDB As New clsTextureManager
+Public SpriteBatch As New clsBatch
+
+Private Viewport As D3DVIEWPORT8
+Private Projection As D3DMATRIX
+Private View As D3DMATRIX
+
+Public Engine_BaseSpeed As Single
+
+Public EngineRun As Boolean
+
+Public FPS As Long
+Public FramesPerSecCounter As Long
+Public FPSLastCheck As Long
+
+Public Normal_RGBList(3) As Long
+
+Public Const DegreeToRadian As Single = 0.01745329251994 'Pi / 180
+
+'Tamano del la vista en Tiles
+Private WindowTileWidth As Integer
+Private WindowTileHeight As Integer
+
+Public HalfWindowTileWidth As Integer
+Public HalfWindowTileHeight As Integer
+
+'Number of pixels the engine scrolls per frame. MUST divide evenly into pixels per tile
+Public ScrollPixelsPerFrameX As Integer
+Public ScrollPixelsPerFrameY As Integer
+
+Public timerElapsedTime As Single
+Public timerTicksPerFrame As Single
+
+'Tamano de los tiles en pixels
+Public TilePixelHeight As Integer
+Public TilePixelWidth As Integer
+
 'Posicion en un mapa
 Public Type Position
     x As Long
@@ -76,6 +141,10 @@ End Type
 'Sets a Grh animation to loop indefinitely.
 Private Const INFINITE_LOOPS As Integer = -1
 
+'Very percise counter 64bit system counter
+Private Declare Function QueryPerformanceFrequency Lib "kernel32" (lpFrequency As Currency) As Long
+Private Declare Function QueryPerformanceCounter Lib "kernel32" (lpPerformanceCount As Currency) As Long
+
 Public Sub InitGrh(ByRef Grh As Grh, ByVal GrhIndex As Long, Optional ByVal Started As Byte = 2)
 '*****************************************************************
 'Sets up a grh. MUST be done before rendering
@@ -103,3 +172,236 @@ Public Sub InitGrh(ByRef Grh As Grh, ByVal GrhIndex As Long, Optional ByVal Star
     Grh.FrameCounter = 1
     Grh.speed = GrhData(Grh.GrhIndex).speed
 End Sub
+
+Public Sub InitTileEngine(ByVal setDisplayFormhWnd As Long, ByVal setTilePixelHeight As Integer, ByVal setTilePixelWidth As Integer, ByVal pixelsToScrollPerFrameX As Integer, pixelsToScrollPerFrameY As Integer)
+'***************************************************
+'Author: Aaron Perkins
+'Last Modification: 08/14/07
+'Last modified by: Juan Martin Sotuyo Dodero (Maraxus)
+'Configures the engine to start running.
+'***************************************************
+
+On Error GoTo ErrorHandler:
+
+    TilePixelWidth = setTilePixelWidth
+    TilePixelHeight = setTilePixelHeight
+    
+    WindowTileHeight = Round(frmMain.MainViewPic.Height / 32, 0)
+    WindowTileWidth = Round(frmMain.MainViewPic.Width / 32, 0)
+
+    HalfWindowTileHeight = WindowTileHeight \ 2
+    HalfWindowTileWidth = WindowTileWidth \ 2
+    
+    'Set scroll pixels per frame
+    ScrollPixelsPerFrameX = pixelsToScrollPerFrameX
+    ScrollPixelsPerFrameY = pixelsToScrollPerFrameY
+
+On Error GoTo 0
+    
+    Call LoadGraphics
+
+    Exit Sub
+    
+ErrorHandler:
+
+    Call LogError(Err.Number, Err.Description, "Mod_TileEngine.InitTileEngine")
+    
+    Call CloseClient
+    
+End Sub
+
+Public Sub LoadGraphics()
+    Call SurfaceDB.Initialize(DirectD3D8, ClientSetup.byMemory)
+End Sub
+
+Sub ShowNextFrame()
+
+On Error GoTo ErrorHandler:
+
+    If EngineRun Then
+        
+        Call Engine_BeginScene
+        
+        Call Draw_Grh(CurrentGrh, 1, 1, 1, Normal_RGBList(), 0)
+
+        'Get timing info
+        timerElapsedTime = GetElapsedTime()
+        timerTicksPerFrame = timerElapsedTime * Engine_BaseSpeed
+            
+        Call Engine_EndScene(MainScreenRect, 0)
+        
+    End If
+    
+ErrorHandler:
+
+    If DirectDevice.TestCooperativeLevel = D3DERR_DEVICENOTRESET Then
+        Call mDx8_Engine.Engine_DirectX8_Init
+        Call LoadGraphics
+    End If
+  
+End Sub
+
+Public Function GetElapsedTime() As Single
+'**************************************************************
+'Author: Aaron Perkins
+'Last Modify Date: 10/07/2002
+'Gets the time that past since the last call
+'**************************************************************
+    Dim Start_Time As Currency
+    Static end_time As Currency
+    Static timer_freq As Currency
+
+    'Get the timer frequency
+    If timer_freq = 0 Then
+        Call QueryPerformanceFrequency(timer_freq)
+    End If
+    
+    'Get current time
+    Call QueryPerformanceCounter(Start_Time)
+    
+    'Calculate elapsed time
+    GetElapsedTime = (Start_Time - end_time) / timer_freq * 1000
+    
+    'Get next end time
+    Call QueryPerformanceCounter(end_time)
+End Function
+
+Public Sub GrhUninitialize(Grh As Grh)
+        '*****************************************************************
+        'Author: Aaron Perkins
+        'Last Modify Date: 1/04/2003
+        'Resets a Grh
+        '*****************************************************************
+
+        With Grh
+        
+                'Copy of parameters
+                .GrhIndex = 0
+                .Started = False
+                .Loops = 0
+        
+                'Set frame counters
+                .FrameCounter = 0
+                .speed = 0
+                
+        End With
+
+End Sub
+
+Sub Draw_GrhIndex(ByVal GrhIndex As Long, ByVal x As Integer, ByVal y As Integer, ByVal Center As Byte, ByRef Color_List() As Long, Optional ByVal angle As Single = 0, Optional ByVal Alpha As Boolean = False)
+    Dim SourceRect As RECT
+    
+    With GrhData(GrhIndex)
+        'Center Grh over X,Y pos
+        If Center Then
+            If .TileWidth <> 1 Then
+                x = x - (.pixelWidth - TilePixelWidth) \ 2
+            End If
+            
+            If .TileHeight <> 1 Then
+                y = y - Int(.TileHeight * TilePixelHeight) + TilePixelHeight
+            End If
+        End If
+        
+        'Draw
+        Call Device_Textured_Render(x, y, .pixelWidth, .pixelHeight, .sX, .sY, .FileNum, Color_List(), Alpha)
+    End With
+    
+End Sub
+
+Sub Draw_Grh(ByRef Grh As Grh, ByVal x As Integer, ByVal y As Integer, ByVal Center As Byte, ByRef Color_List() As Long, ByVal Animate As Byte, Optional ByVal Alpha As Boolean = False, Optional ByVal angle As Single = 0, Optional ByVal ScaleX As Single = 1!, Optional ByVal ScaleY As Single = 1!)
+'*****************************************************************
+'Draws a GRH transparently to a X and Y position
+'*****************************************************************
+    Dim CurrentGrhIndex As Long
+    
+    If Grh.GrhIndex = 0 Then Exit Sub
+    
+On Error GoTo Error
+    
+    If Animate Then
+        If Grh.Started = 1 Then
+            Grh.FrameCounter = Grh.FrameCounter + (timerElapsedTime * GrhData(Grh.GrhIndex).NumFrames / Grh.speed) * Movement_Speed
+
+            If Grh.FrameCounter > GrhData(Grh.GrhIndex).NumFrames Then
+                Grh.FrameCounter = (Grh.FrameCounter Mod GrhData(Grh.GrhIndex).NumFrames) + 1
+                
+                If Grh.Loops <> INFINITE_LOOPS Then
+                    If Grh.Loops > 0 Then
+                        Grh.Loops = Grh.Loops - 1
+                    Else
+                        Grh.Started = 0
+                    End If
+                End If
+            End If
+        End If
+    End If
+    
+    'Figure out what frame to draw (always 1 if not animated)
+    CurrentGrhIndex = GrhData(Grh.GrhIndex).Frames(Grh.FrameCounter)
+    
+    With GrhData(CurrentGrhIndex)
+        'Center Grh over X,Y pos
+        If Center Then
+            If .TileWidth <> 1 Then
+                x = x - (.pixelWidth * ScaleX - TilePixelWidth) \ 2
+            End If
+            
+            If .TileHeight <> 1 Then
+                y = y - Int(.TileHeight * TilePixelHeight) + TilePixelHeight
+            End If
+        End If
+
+        Call Device_Textured_Render(x, y, .pixelWidth, .pixelHeight, .sX, .sY, .FileNum, Color_List(), Alpha, angle, ScaleX, ScaleY)
+        
+    End With
+    
+Exit Sub
+
+Error:
+    If Err.Number = 9 And Grh.FrameCounter < 1 Then
+        Grh.FrameCounter = 1
+        Resume
+    Else
+        #If Desarrollo = 0 Then
+            Call LogError(Err.Number, "Error in Draw_Grh, " & Err.Description, "Draw_Grh", Erl)
+            MsgBox "Error en el Engine Grafico, Por favor contacte a los adminsitradores enviandoles el archivo Errors.Log que se encuentra el la carpeta del cliente.", vbCritical
+            Call CloseClient
+        
+        #Else
+            Debug.Print "Error en Draw_Grh en el grh" & CurrentGrhIndex & ", " & Err.Description & ", (" & Err.Number & ")"
+        #End If
+    End If
+End Sub
+
+Public Sub Device_Textured_Render(ByVal x As Single, ByVal y As Single, _
+                                  ByVal Width As Integer, ByVal Height As Integer, _
+                                  ByVal sX As Integer, ByVal sY As Integer, _
+                                  ByVal tex As Long, _
+                                  ByRef Color() As Long, _
+                                  Optional ByVal Alpha As Boolean = False, _
+                                  Optional ByVal angle As Single = 0, _
+                                  Optional ByVal ScaleX As Single = 1!, _
+                                  Optional ByVal ScaleY As Single = 1!)
+
+        Dim Texture As Direct3DTexture8
+        
+        Dim TextureWidth As Long, TextureHeight As Long
+        Set Texture = SurfaceDB.GetTexture(tex, TextureWidth, TextureHeight)
+        
+        With SpriteBatch
+
+                Call .SetTexture(Texture)
+                    
+                Call .SetAlpha(Alpha)
+                
+                If TextureWidth <> 0 And TextureHeight <> 0 Then
+                    Call .Draw(x, y, Width * ScaleX, Height * ScaleY, Color, sX / TextureWidth, sY / TextureHeight, (sX + Width) / TextureWidth, (sY + Height) / TextureHeight, angle)
+                Else
+                    Call .Draw(x, y, TextureWidth * ScaleX, TextureHeight * ScaleY, Color, , , , , angle)
+                End If
+                
+        End With
+        
+End Sub
+

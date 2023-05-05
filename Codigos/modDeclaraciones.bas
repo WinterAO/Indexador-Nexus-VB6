@@ -5,6 +5,12 @@ Public Ocupado As Boolean
 
 Public Play    As Boolean
 
+'Control
+Public prgRun As Boolean 'When true the program ends
+
+'Caminata fluida
+Public Movement_Speed        As Single
+
 'Direcciones
 Public Enum E_Heading
 
@@ -51,3 +57,5 @@ Public Declare Function getprivateprofilestring _
                                                  ByVal lpreturnedstring As String, _
                                                  ByVal nSize As Long, _
                                                  ByVal lpFileName As String) As Long
+                                                 
+Public Declare Function GetTickCount Lib "kernel32" () As Long

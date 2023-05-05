@@ -7,6 +7,16 @@ Public DirExport  As String
 
 Public DirIndex   As String
 
+Public Type tSetupMods
+
+    ' VIDEO
+    byMemory    As Integer
+    OverrideVertexProcess As Byte
+    
+End Type
+
+Public ClientSetup As tSetupMods
+
 Public Type tCabecera
 
     Desc As String * 255
@@ -87,6 +97,12 @@ Public Function CargarConfiguracion() As Boolean
     DirCliente = Lector.GetValue("RUTAS", "DirClient")
     DirExport = Lector.GetValue("RUTAS", "DirExport")
     DirIndex = Lector.GetValue("RUTAS", "DirIndex")
+    
+    With ClientSetup
+        ' VIDEO
+        .byMemory = Lector.GetValue("VIDEO", "DynamicMemory")
+        .OverrideVertexProcess = CByte(Lector.GetValue("VIDEO", "VertexProcessingOverride"))
+    End With
     
     Set Lector = Nothing
     
@@ -266,8 +282,8 @@ Public Function CargarCuerpos() As Boolean
             Call InitGrh(BodyData(i).Walk(3), MisCuerpos(i).Body(3), 0)
             Call InitGrh(BodyData(i).Walk(4), MisCuerpos(i).Body(4), 0)
                 
-            BodyData(i).HeadOffset.x = MisCuerpos(i).HeadOffsetX
-            BodyData(i).HeadOffset.y = MisCuerpos(i).HeadOffsetY
+            BodyData(i).HeadOffset.X = MisCuerpos(i).HeadOffsetX
+            BodyData(i).HeadOffset.Y = MisCuerpos(i).HeadOffsetY
 
         End If
         
@@ -414,7 +430,7 @@ Public Function CargarEscudos() As Boolean
     'Descripción: Carga el index de Escudos
     '*************************************
     
-    On Error GoTo ErrHandler:
+    On Error GoTo errhandler:
 
     Dim n          As Integer
 
@@ -465,7 +481,7 @@ Public Function CargarEscudos() As Boolean
     
     Exit Function
 
-ErrHandler:
+errhandler:
     Close #n
     'MsgBox "Error " & Err.Number & " durante la carga de Escudos.ind!"
     CargarEscudos = False
@@ -480,7 +496,7 @@ Public Function CargarAnimArmas() As Boolean
     'Fecha: ???
     'Descripción: Carga el index de Armas
     '*************************************
-    On Error GoTo ErrHandler:
+    On Error GoTo errhandler:
 
     Dim n          As Integer
 
@@ -531,7 +547,7 @@ Public Function CargarAnimArmas() As Boolean
     
     Exit Function
 
-ErrHandler:
+errhandler:
     Close #n
     'MsgBox "Error " & Err.Number & " durante la carga de Armas.ind!"
     CargarAnimArmas = False
@@ -546,7 +562,7 @@ Public Function CargarFxs() As Boolean
     'Fecha: ???
     'Descripción: Carga el index de Fxs
     '*************************************
-    On Error GoTo ErrHandler:
+    On Error GoTo errhandler:
     
     Dim n          As Integer
 
@@ -587,7 +603,7 @@ Public Function CargarFxs() As Boolean
     
     Exit Function
     
-ErrHandler:
+errhandler:
     Close #n
    'MsgBox "Error " & Err.Number & " durante la carga de FXs.ind!"
     CargarFxs = False

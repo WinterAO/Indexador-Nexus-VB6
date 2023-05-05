@@ -1,6 +1,7 @@
 Type=Exe
-Form=Codigos\frmMain.frm
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\Windows\SysWOW64\stdole2.tlb#OLE Automation
+Reference=*\G{E1211242-8E94-11D1-8808-00C04FC2C603}#1.0#0#C:\Windows\SysWow64\dx8vb.dll#DirectX 8 for Visual Basic Type Library
+Form=Codigos\frmMain.frm
 Module=modCarga; Codigos\modCarga.bas
 Module=modGeneral; Codigos\modGeneral.bas
 Module=modDeclaraciones; Codigos\modDeclaraciones.bas
@@ -12,6 +13,10 @@ Class=clsIniReader; Codigos\clsIniReader.cls
 Form=Codigos\frmMinimapa.frm
 Module=modMinimap; Codigos\modMinimap.bas
 Form=Codigos\frmCodigo.frm
+Class=clsBatch; Codigos\clsBatch.cls
+Class=clsTextureManager; Codigos\clsTextureManager.cls
+Module=modCompression; Codigos\modCompression.bas
+Module=mDx8_Engine; Codigos\mDx8_Engine.bas
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""
@@ -26,6 +31,7 @@ MinorVer=0
 RevisionVer=0
 AutoIncrementVer=0
 ServerSupportFiles=0
+CondComp="Comprimido = 0"
 CompilationType=0
 OptimizationType=0
 FavorPentiumPro(tm)=0

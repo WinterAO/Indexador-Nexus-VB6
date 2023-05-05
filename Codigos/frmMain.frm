@@ -373,6 +373,15 @@ Option Explicit
 
 Private BuscarPNG As Integer
 
+Private Sub Form_Load()
+    EngineRun = True
+End Sub
+
+Private Sub Listado_Click()
+    DoEvents
+    Call InitGrh(CurrentGrh, ReadField(1, Listado.Text, Asc(" ")))
+End Sub
+
 Private Sub mnuBuscarDuplicados_Click()
     Dim i     As Long
     Dim j     As Long
@@ -394,7 +403,7 @@ Private Sub mnuBuscarDuplicados_Click()
 
                 If Tim >= 250 Then
                     Tim = 0
-                    frmCargando.lblStatus.Caption = "Buscando duplicados " & i & " Grh"
+                    frmCargando.lblstatus.Caption = "Buscando duplicados " & i & " Grh"
                     DoEvents
 
                 End If
@@ -463,7 +472,7 @@ Private Sub mnuIndexPNG_Click()
 
             If Tim >= 150 Then
                 Tim = 0
-                frmCargando.lblStatus.Caption = "Procesando " & i & " Grh"
+                frmCargando.lblstatus.Caption = "Procesando " & i & " Grh"
                 DoEvents
 
             End If
@@ -483,7 +492,7 @@ Private Sub mnuIndexPNG_Click()
 
             If Tim >= 150 Then
                 Tim = 0
-                frmCargando.lblStatus.Caption = "Procesando " & i & " grh"
+                frmCargando.lblstatus.Caption = "Procesando " & i & " grh"
                 DoEvents
 
             End If
@@ -526,7 +535,7 @@ Private Sub mnuPNGinutiles_Click()
         'Tim = Tim + 1
         'If Tim >= 2 Then
         '    Tim = 0
-        frmCargando.lblStatus.Caption = "Buscando PNGs inutiles " & NumPNG & " PNG"
+        frmCargando.lblstatus.Caption = "Buscando PNGs inutiles " & NumPNG & " PNG"
         DoEvents
 
         'End If
@@ -615,7 +624,7 @@ Private Sub mnuBuscarErrDim_Click()
 
             If Tim >= 150 Then
                 Tim = 0
-                frmCargando.lblStatus.Caption = "Procesando " & i & " grh"
+                frmCargando.lblstatus.Caption = "Procesando " & i & " grh"
                 DoEvents
 
             End If
