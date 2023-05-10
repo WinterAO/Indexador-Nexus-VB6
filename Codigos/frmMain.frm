@@ -7,6 +7,7 @@ Begin VB.Form frmMain
    ClientLeft      =   45
    ClientTop       =   690
    ClientWidth     =   11610
+   ControlBox      =   0   'False
    BeginProperty Font 
       Name            =   "Tahoma"
       Size            =   8.25
@@ -312,9 +313,18 @@ Begin VB.Form frmMain
          Begin VB.Menu mnuIndexarFXs 
             Caption         =   "FXs.ind"
          End
+         Begin VB.Menu mnuIndexarParticulas 
+            Caption         =   "Particulas.ind"
+         End
       End
       Begin VB.Menu mnuGenerarMinimapa 
          Caption         =   "Generar Minimapa"
+      End
+      Begin VB.Menu Line1 
+         Caption         =   "-"
+      End
+      Begin VB.Menu menuCerrar 
+         Caption         =   "Cerrar"
       End
    End
    Begin VB.Menu mnuira 
@@ -380,6 +390,10 @@ End Sub
 Private Sub Listado_Click()
     DoEvents
     Call InitGrh(CurrentGrh, ReadField(1, Listado.Text, Asc(" ")))
+End Sub
+
+Private Sub menuCerrar_Click()
+    Call CloseClient
 End Sub
 
 Private Sub mnuBuscarDuplicados_Click()
@@ -924,6 +938,16 @@ Private Sub mnuIndexarFXs_Click()
     End If
 End Sub
 
+Private Sub mnuIndexarParticulas_Click()
+    DoEvents
+    
+    If IndexarParticulas Then
+        MsgBox "Particulas.ind creado..."
+    Else
+        MsgBox "Error al crear Particulas.ind..."
+    End If
+End Sub
+
 Private Sub mnuIndexarTodo_Click()
 
     Call mnuIndexarGraficos_Click
@@ -933,5 +957,6 @@ Private Sub mnuIndexarTodo_Click()
     Call mnuIndexarArmas_Click
     Call mnuIndexarEscudos_Click
     Call mnuIndexarFXs_Click
+    Call mnuIndexarParticulas_Click
     
 End Sub

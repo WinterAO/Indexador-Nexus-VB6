@@ -135,7 +135,7 @@ Public Function IndexarCuerpos() As Boolean
 
     nCuerpos = Val(Leer.GetValue("INIT", "NumBodies"))
 
-    If (NumCuerpos > 200000 Or NumCuerpos <= 0) Then
+    If (nCuerpos > 200000 Or nCuerpos <= 0) Then
         MsgBox "La valor de 'NumBodies' es invalido!", vbCritical
         Exit Function
 
@@ -446,4 +446,164 @@ ErrorHandler:
     Close handle
     IndexarEscudos = False
     
+End Function
+
+Public Function IndexarParticulas() As Boolean
+
+    On Error GoTo ErrorHandler:
+
+    Dim LoopC As Long
+    Dim i As Integer
+    Dim handle As Integer
+    Dim GrhListing As String
+    Dim TempSet As String
+    Dim ColorSet As Long
+    Dim ParticulasStream As Stream
+    Dim TotalParticulas As Integer
+    Dim Leer As New clsIniReader
+
+    Call Leer.Initialize(DirExport & "\particulas.ini")
+
+    TotalParticulas = Val(Leer.GetValue("INIT", "Total"))
+    
+    If LenB(Dir(DirIndex & "particulas.ind")) <> 0 Then Call Kill(DirIndex & "particulas.ind")
+    DoEvents
+
+    handle = FreeFile()
+    Open DirIndex & "particulas.ind" For Binary Access Write As handle
+    
+    Put handle, , MiCabecera
+    Put handle, , TotalParticulas
+    
+    'fill StreamData array with info from Particles.ini
+    For LoopC = 1 To TotalParticulas
+        With ParticulasStream
+            '.Name = Leer.GetValue(Val(LoopC), "Name")
+            .NumOfParticles = Leer.GetValue(Val(LoopC), "NumOfParticles")
+            Put handle, , ParticulasStream.NumOfParticles
+            
+            .NumGrhs = Leer.GetValue(Val(LoopC), "NumGrhs")
+            Put handle, , ParticulasStream.NumGrhs
+            
+            .id = LoopC
+            Put handle, , ParticulasStream.id
+            
+            .x1 = Leer.GetValue(Val(LoopC), "X1")
+            Put handle, , ParticulasStream.x1
+            
+            .y1 = Leer.GetValue(Val(LoopC), "Y1")
+            Put handle, , ParticulasStream.y1
+            
+            .x2 = Leer.GetValue(Val(LoopC), "X2")
+            Put handle, , ParticulasStream.x2
+            
+            .y2 = Leer.GetValue(Val(LoopC), "Y2")
+            Put handle, , ParticulasStream.y2
+            
+            .angle = Leer.GetValue(Val(LoopC), "Angle")
+            Put handle, , ParticulasStream.angle
+            
+            .vecx1 = Leer.GetValue(Val(LoopC), "VecX1")
+            Put handle, , ParticulasStream.vecx1
+            
+            .vecx2 = Leer.GetValue(Val(LoopC), "VecX2")
+            Put handle, , ParticulasStream.vecx2
+            
+            .vecy1 = Leer.GetValue(Val(LoopC), "VecY1")
+            Put handle, , ParticulasStream.vecy1
+            
+            .vecy2 = Leer.GetValue(Val(LoopC), "VecY2")
+            Put handle, , ParticulasStream.vecy2
+            
+            .life1 = Leer.GetValue(Val(LoopC), "Life1")
+            Put handle, , ParticulasStream.life1
+            
+            .life2 = Leer.GetValue(Val(LoopC), "Life2")
+            Put handle, , ParticulasStream.life2
+            
+            .friction = Leer.GetValue(Val(LoopC), "Friction")
+            Put handle, , ParticulasStream.friction
+            
+            .spin = Leer.GetValue(Val(LoopC), "Spin")
+            Put handle, , ParticulasStream.spin
+            
+            .spin_speedL = Leer.GetValue(Val(LoopC), "Spin_SpeedL")
+            Put handle, , ParticulasStream.spin_speedL
+            
+            .spin_speedH = Leer.GetValue(Val(LoopC), "Spin_SpeedH")
+            Put handle, , ParticulasStream.spin_speedH
+            
+            .alphaBlend = Leer.GetValue(Val(LoopC), "AlphaBlend")
+            Put handle, , ParticulasStream.alphaBlend
+            
+            .gravity = Leer.GetValue(Val(LoopC), "Gravity")
+            Put handle, , ParticulasStream.gravity
+            
+            .grav_strength = Leer.GetValue(Val(LoopC), "Grav_Strength")
+            Put handle, , ParticulasStream.grav_strength
+            
+            .bounce_strength = Leer.GetValue(Val(LoopC), "Bounce_Strength")
+            Put handle, , ParticulasStream.bounce_strength
+            
+            .XMove = Leer.GetValue(Val(LoopC), "XMove")
+            Put handle, , ParticulasStream.XMove
+            
+            .YMove = Leer.GetValue(Val(LoopC), "YMove")
+            Put handle, , ParticulasStream.YMove
+            
+            .move_x1 = Leer.GetValue(Val(LoopC), "move_x1")
+            Put handle, , ParticulasStream.move_x1
+            
+            .move_x2 = Leer.GetValue(Val(LoopC), "move_x2")
+            Put handle, , ParticulasStream.move_x2
+            
+            .move_y1 = Leer.GetValue(Val(LoopC), "move_y1")
+            Put handle, , ParticulasStream.move_y1
+            
+            .move_y2 = Leer.GetValue(Val(LoopC), "move_y2")
+            Put handle, , ParticulasStream.move_y2
+            
+            .speed = Val(Leer.GetValue(Val(LoopC), "Speed"))
+            Put handle, , ParticulasStream.speed
+            
+            .life_counter = Leer.GetValue(Val(LoopC), "life_counter")
+            Put handle, , ParticulasStream.life_counter
+            
+            ReDim .grh_list(1 To .NumGrhs)
+            GrhListing = Leer.GetValue(Val(LoopC), "Grh_List")
+            
+            For i = 1 To .NumGrhs
+                .grh_list(i) = ReadField(i, GrhListing, Asc(","))
+                Put handle, , ParticulasStream.grh_list(i)
+            Next i
+            
+            .grh_list(i - 1) = .grh_list(i - 1)
+            
+            For ColorSet = 1 To 4
+                TempSet = Leer.GetValue(Val(LoopC), "ColorSet" & ColorSet)
+                .colortint(ColorSet - 1).r = ReadField(1, TempSet, Asc(","))
+                .colortint(ColorSet - 1).g = ReadField(2, TempSet, Asc(","))
+                .colortint(ColorSet - 1).b = ReadField(3, TempSet, Asc(","))
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).r
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).g
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).b
+            Next ColorSet
+
+            'Put handle, , ParticulasStream
+
+        End With
+    Next LoopC
+
+    Close handle
+    
+    Set Leer = Nothing
+    IndexarParticulas = True
+    
+    Close handle
+    
+    Exit Function
+
+ErrorHandler:
+    Close handle
+    IndexarParticulas = False
 End Function

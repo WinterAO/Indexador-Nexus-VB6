@@ -177,7 +177,7 @@ End Sub
 
 Public Sub ExportarGraficos()
     Rem On Error Resume Next
-    Dim i As Integer
+    Dim i As Long
     Dim j As Integer
     Dim n As Integer
     Dim K As Integer
