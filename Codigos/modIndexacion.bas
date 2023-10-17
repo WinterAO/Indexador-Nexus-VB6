@@ -44,8 +44,7 @@ Public Function IndexarGraficos() As Boolean
     Open DirIndex & "\graficos.ind" For Binary Access Write As handle
     
     Seek handle, 1
-    
-    Put handle, , MiCabecera
+
     Put handle, , fVersion
     Put handle, , totalGrh
     
@@ -146,7 +145,6 @@ Public Function IndexarCuerpos() As Boolean
 
     Open DirIndex & "\personajes.ind" For Binary Access Write As handle
 
-    Put handle, , MiCabecera
     Put handle, , nCuerpos
     
     For i = 1 To nCuerpos
@@ -178,12 +176,11 @@ Public Function IndexarCabezas() As Boolean
     Dim handle     As Integer
     Dim i          As Long
     Dim nheads     As Integer
-    Dim MisCabezas As tIndiceCabeza
     Dim Leer       As New clsIniReader
 
     handle = FreeFile()
     
-    Call Leer.Initialize(DirExport & "\cabezas.ini")
+    Call Leer.Initialize(DirExport & "\Head.ini")
 
     If Leer.KeyExists("INIT") = False Then
         MsgBox "Formato invalido!", vbCritical
@@ -199,21 +196,20 @@ Public Function IndexarCabezas() As Boolean
 
     End If
 
-    If LenB(Dir(DirIndex & "\cabezas.ind")) <> 0 Then Call Kill(DirIndex & "\cabezas.ind")
+    If LenB(Dir(DirIndex & "\head.ind")) <> 0 Then Call Kill(DirIndex & "\head.ind")
     DoEvents
 
-    Open DirIndex & "\cabezas.ind" For Binary Access Write As handle
+    Open DirIndex & "\head.ind" For Binary Access Write As handle
 
-    Put handle, , MiCabecera
     Put handle, , nheads
     
-    For i = 1 To nheads
-        MisCabezas.Head(1) = Val(Leer.GetValue("HEAD" & i, "Head1"))
-        MisCabezas.Head(2) = Val(Leer.GetValue("HEAD" & i, "Head2"))
-        MisCabezas.Head(3) = Val(Leer.GetValue("HEAD" & i, "Head3"))
-        MisCabezas.Head(4) = Val(Leer.GetValue("HEAD" & i, "Head4"))
-        
-        Put handle, , MisCabezas
+    ReDim HeadsT(0 To nheads) As tHead
+    
+    For i = 1 To Numheads
+        HeadsT(i).Std = Val(Leer.GetValue("HEAD" & i, "Std"))
+        HeadsT(i).Texture = Val(Leer.GetValue("HEAD" & i, "FileNum"))
+        HeadsT(i).startX = Val(Leer.GetValue("HEAD" & i, "OffSetX"))
+        HeadsT(i).startY = Val(Leer.GetValue("HEAD" & i, "OffSetY"))
     Next i
 
     Close handle
@@ -234,12 +230,11 @@ Public Function IndexarCascos() As Boolean
     Dim handle    As Integer
     Dim i         As Long
     Dim nHelmets  As Integer
-    Dim MisCascos As tIndiceCabeza
     Dim Leer      As New clsIniReader
 
     handle = FreeFile()
     
-    Call Leer.Initialize(DirExport & "\cascos.ini")
+    Call Leer.Initialize(DirExport & "\Helmet.ini")
 
     If Leer.KeyExists("INIT") = False Then
         MsgBox "Formato invalido!", vbCritical
@@ -247,7 +242,7 @@ Public Function IndexarCascos() As Boolean
 
     End If
 
-    nHelmets = Val(Leer.GetValue("INIT", "NumHelmets"))
+    nHelmets = Val(Leer.GetValue("INIT", "NumCascos"))
 
     If (nHelmets > 200000 Or nHelmets <= 0) Then
         MsgBox "La valor de 'nHelmets' es invalido!", vbCritical
@@ -255,21 +250,20 @@ Public Function IndexarCascos() As Boolean
 
     End If
 
-    If LenB(Dir(DirIndex & "\cascos.ind")) <> 0 Then Call Kill(DirIndex & "\cascos.ind")
+    If LenB(Dir(DirIndex & "\helmet.ind")) <> 0 Then Call Kill(DirIndex & "\helmet.ind")
     DoEvents
 
-    Open DirIndex & "\cascos.ind" For Binary Access Write As handle
+    Open DirIndex & "\helmet.ind" For Binary Access Write As handle
 
-    Put handle, , MiCabecera
     Put handle, , nHelmets
     
-    For i = 1 To nHelmets
-        MisCascos.Head(1) = Val(Leer.GetValue("HELMET" & i, "Helmet1"))
-        MisCascos.Head(2) = Val(Leer.GetValue("HELMET" & i, "Helmet2"))
-        MisCascos.Head(3) = Val(Leer.GetValue("HELMET" & i, "Helmet3"))
-        MisCascos.Head(4) = Val(Leer.GetValue("HELMET" & i, "Helmet4"))
-        
-        Put handle, , MisCascos
+    ReDim HelmesT(0 To NumCascos) As tHead
+    
+    For i = 1 To NumCascos
+        HelmesT(i).Std = Val(Leer.GetValue("CASCO" & i, "Std"))
+        HelmesT(i).Texture = Val(Leer.GetValue("CASCO" & i, "FileNum"))
+        HelmesT(i).startX = Val(Leer.GetValue("CASCO" & i, "OffSetX"))
+        HelmesT(i).startY = Val(Leer.GetValue("CASCO" & i, "OffSetY"))
     Next i
 
     Close handle
@@ -315,7 +309,6 @@ Public Function IndexarFXs() As Boolean
     DoEvents
 
     Open DirIndex & "\fxs.ind" For Binary Access Write As handle
-    Put handle, , MiCabecera
     Put handle, , NumFX
     
     For i = 1 To NumFX
@@ -369,7 +362,6 @@ Public Function IndexarArmas() As Boolean
 
     Open DirIndex & "\armas.ind" For Binary Access Write As handle
 
-    Put handle, , MiCabecera
     Put handle, , nArmas
     
     For i = 1 To nArmas
@@ -425,7 +417,6 @@ Public Function IndexarEscudos() As Boolean
 
     Open DirIndex & "\escudos.ind" For Binary Access Write As handle
 
-    Put handle, , MiCabecera
     Put handle, , nEscudos
     
     For i = 1 To nEscudos
@@ -469,16 +460,17 @@ Public Function IndexarParticulas() As Boolean
     If LenB(Dir(DirIndex & "particulas.ind")) <> 0 Then Call Kill(DirIndex & "particulas.ind")
     DoEvents
 
-    handle = FreeFile()
-    Open DirIndex & "particulas.ind" For Binary Access Write As handle
+    handle = FreeFile
+    Open DirIndex & "particulas.ind" For Binary As handle
     
-    Put handle, , MiCabecera
     Put handle, , TotalParticulas
     
     'fill StreamData array with info from Particles.ini
     For LoopC = 1 To TotalParticulas
         With ParticulasStream
-            '.Name = Leer.GetValue(Val(LoopC), "Name")
+            '.name = Leer.GetValue(Val(LoopC), "Name")
+            'Put handle, , ParticulasStream.name
+            
             .NumOfParticles = Leer.GetValue(Val(LoopC), "NumOfParticles")
             Put handle, , ParticulasStream.NumOfParticles
             
@@ -490,7 +482,7 @@ Public Function IndexarParticulas() As Boolean
             
             .x1 = Leer.GetValue(Val(LoopC), "X1")
             Put handle, , ParticulasStream.x1
-            
+            '
             .y1 = Leer.GetValue(Val(LoopC), "Y1")
             Put handle, , ParticulasStream.y1
             
@@ -581,16 +573,16 @@ Public Function IndexarParticulas() As Boolean
             
             For ColorSet = 1 To 4
                 TempSet = Leer.GetValue(Val(LoopC), "ColorSet" & ColorSet)
-                .colortint(ColorSet - 1).r = ReadField(1, TempSet, Asc(","))
-                .colortint(ColorSet - 1).g = ReadField(2, TempSet, Asc(","))
-                .colortint(ColorSet - 1).b = ReadField(3, TempSet, Asc(","))
-                Put handle, , ParticulasStream.colortint(ColorSet - 1).r
-                Put handle, , ParticulasStream.colortint(ColorSet - 1).g
-                Put handle, , ParticulasStream.colortint(ColorSet - 1).b
+                .colortint(ColorSet - 1).R = ReadField(1, TempSet, Asc(","))
+                .colortint(ColorSet - 1).G = ReadField(2, TempSet, Asc(","))
+                .colortint(ColorSet - 1).B = ReadField(3, TempSet, Asc(","))
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).R
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).G
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).B
             Next ColorSet
 
-            'Put handle, , ParticulasStream
-
+            'Put #handle, , ParticulasStream
+    
         End With
     Next LoopC
 

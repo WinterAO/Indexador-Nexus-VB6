@@ -10,9 +10,9 @@ Private Declare Function FreeLibrary Lib "kernel32" (ByVal hLibModule As Long) A
 Private Declare Function GetProcAddress Lib "kernel32" (ByVal hModule As Long, ByVal lpProcName As String) As Long
 Private Declare Function GdiplusStartup Lib "gdiplus" (Token As Long, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As Long = 0) As Long
 Private Declare Function GdipLoadImageFromFile Lib "GdiPlus.dll" (ByVal mFilename As Long, ByRef mImage As Long) As Long
-Private Declare Function GdipDisposeImage Lib "gdiplus" (ByVal image As Long) As Long
+Private Declare Function GdipDisposeImage Lib "gdiplus" (ByVal Image As Long) As Long
 Private Declare Sub GdiplusShutdown Lib "gdiplus" (ByVal Token As Long)
-Private Declare Function GdipSaveImageToFile Lib "gdiplus" (ByVal image As Long, ByVal FileName As Long, ByRef clsidEncoder As GUID, ByRef encoderParams As Any) As Long
+Private Declare Function GdipSaveImageToFile Lib "gdiplus" (ByVal Image As Long, ByVal filename As Long, ByRef clsidEncoder As GUID, ByRef encoderParams As Any) As Long
 Private Declare Function CLSIDFromString Lib "ole32" (ByVal str As Long, id As GUID) As Long
 
 Private Type GUID
@@ -25,8 +25,8 @@ End Type
 Private Type EncoderParameter
     GUID            As GUID
     NumberOfValues  As Long
-    type            As Long
-    Value           As Long
+    Type            As Long
+    value           As Long
 End Type
 
 Private Type EncoderParameters
@@ -69,7 +69,7 @@ Public Function ConvertFileImage(ByVal SrcPath As String, ByVal DestPath As Stri
     If lPos Then
         sExt = UCase(Right(DestPath, Len(DestPath) - lPos))
     End If
-    Debug.Print sExt
+    'Debug.Print sExt
     Select Case sExt
         Case "PNG"
             CLSIDFromString StrPtr(ImageCodecPNG), tEncoder
@@ -80,8 +80,8 @@ Public Function ConvertFileImage(ByVal SrcPath As String, ByVal DestPath As Stri
             With tParams
                 .Count = 1
                 .Parameter(0).NumberOfValues = 1
-                .Parameter(0).type = EncoderParameterValueTypeLong
-                .Parameter(0).Value = VarPtr(TiffCompressionNone)
+                .Parameter(0).Type = EncoderParameterValueTypeLong
+                .Parameter(0).value = VarPtr(TiffCompressionNone)
                 CLSIDFromString StrPtr(EncoderCompression), .Parameter(0).GUID
             End With
             
@@ -101,8 +101,8 @@ Public Function ConvertFileImage(ByVal SrcPath As String, ByVal DestPath As Stri
             With tParams
                 .Count = 1
                 .Parameter(0).NumberOfValues = 1
-                .Parameter(0).type = EncoderParameterValueTypeLong
-                .Parameter(0).Value = VarPtr(JPG_Quality)
+                .Parameter(0).Type = EncoderParameterValueTypeLong
+                .Parameter(0).value = VarPtr(JPG_Quality)
                 CLSIDFromString StrPtr(EncoderQuality), .Parameter(0).GUID
             End With
 

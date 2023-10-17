@@ -159,11 +159,11 @@ Private Sub cmdComenzar_Click()
     cmdComenzar.Enabled = False
     cmdCerrar.Enabled = False
     
-    If FileExist(DirIndex & "\Minimap.bin", vbNormal) Then Kill DirIndex & "\minimap.bin"
+    If FileExist(DirIndex & "\minimap.bin", vbNormal) Then Kill DirIndex & "\minimap.bin"
     
     Shape1.Width = 0
     
-    Open DirIndex & "\MiniMap.bin" For Binary Access Write As #1
+    Open DirIndex & "\minimap.bin" For Binary Access Write As #1
     
         Seek #1, 1
         

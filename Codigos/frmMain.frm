@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin VB.Form frmMain 
    BackColor       =   &H00404040&
-   BorderStyle     =   4  'Fixed ToolWindow
-   Caption         =   "Indexador NexusAO"
-   ClientHeight    =   7065
+   BorderStyle     =   3  'Fixed Dialog
+   Caption         =   "Indexador Nexus"
+   ClientHeight    =   11865
    ClientLeft      =   45
    ClientTop       =   690
-   ClientWidth     =   11610
+   ClientWidth     =   12360
    ControlBox      =   0   'False
    BeginProperty Font 
       Name            =   "Tahoma"
@@ -17,114 +17,305 @@ Begin VB.Form frmMain
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   ForeColor       =   &H00404040&
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   471
+   ScaleHeight     =   791
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   774
-   ShowInTaskbar   =   0   'False
+   ScaleWidth      =   824
    StartUpPosition =   1  'CenterOwner
+   Begin VB.ListBox Listado 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000001&
+      ForeColor       =   &H0000FF00&
+      Height          =   10170
+      Left            =   60
+      TabIndex        =   31
+      Top             =   360
+      Width           =   2235
+   End
+   Begin VB.ListBox ListaAtaques 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000007&
+      ForeColor       =   &H0000FF00&
+      Height          =   1395
+      Left            =   9570
+      TabIndex        =   29
+      Top             =   10290
+      Width           =   2700
+   End
+   Begin VB.Frame FraAtributosDel 
+      BackColor       =   &H00404040&
+      Caption         =   "Atributos del Frame"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FF00&
+      Height          =   585
+      Left            =   120
+      TabIndex        =   16
+      Top             =   10740
+      Width           =   9405
+      Begin VB.TextBox txtFrame 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Index           =   5
+         Left            =   8370
+         TabIndex        =   28
+         Top             =   220
+         Width           =   645
+      End
+      Begin VB.TextBox txtFrame 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Index           =   4
+         Left            =   7020
+         TabIndex        =   27
+         Top             =   225
+         Width           =   645
+      End
+      Begin VB.TextBox txtFrame 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Index           =   3
+         Left            =   5400
+         TabIndex        =   26
+         Top             =   220
+         Width           =   645
+      End
+      Begin VB.TextBox txtFrame 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Index           =   2
+         Left            =   4230
+         TabIndex        =   25
+         Top             =   220
+         Width           =   645
+      End
+      Begin VB.TextBox txtFrame 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Index           =   1
+         Left            =   2820
+         TabIndex        =   24
+         Top             =   225
+         Width           =   645
+      End
+      Begin VB.TextBox txtFrame 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Index           =   0
+         Left            =   990
+         TabIndex        =   23
+         Top             =   220
+         Width           =   645
+      End
+      Begin VB.Label lblAlto 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Alto:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   7830
+         TabIndex        =   22
+         Top             =   270
+         Width           =   645
+      End
+      Begin VB.Label lblAncho 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Ancho:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   6390
+         TabIndex        =   21
+         Top             =   270
+         Width           =   645
+      End
+      Begin VB.Label lblY 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Y:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   5190
+         TabIndex        =   20
+         Top             =   270
+         Width           =   645
+      End
+      Begin VB.Label lblX 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "X:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   4020
+         TabIndex        =   19
+         Top             =   270
+         Width           =   645
+      End
+      Begin VB.Label lblNFrames 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "N. Frames:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   150
+         TabIndex        =   18
+         Top             =   240
+         Width           =   795
+      End
+      Begin VB.Label lblnGraficos 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Graficos:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   2100
+         TabIndex        =   17
+         Top             =   270
+         Width           =   645
+      End
+   End
    Begin VB.FileListBox Archivos 
-      Height          =   285
+      Appearance      =   0  'Flat
+      Height          =   225
       Left            =   4110
       Pattern         =   "*.bmp"
-      TabIndex        =   16
+      TabIndex        =   15
       Top             =   30
       Visible         =   0   'False
       Width           =   1575
    End
    Begin VB.TextBox GRHt 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
       Height          =   450
-      Left            =   30
+      Left            =   120
       Locked          =   -1  'True
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   15
-      Top             =   6540
-      Width           =   11535
+      TabIndex        =   14
+      Top             =   11340
+      Width           =   9405
    End
    Begin VB.ListBox ListaArmas 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   1815
-      Left            =   9480
-      TabIndex        =   13
-      Top             =   360
-      Width           =   2085
+      Height          =   1395
+      Left            =   9570
+      TabIndex        =   12
+      Top             =   5340
+      Width           =   2700
    End
    Begin VB.ListBox ListaFxs 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   1815
-      Left            =   9480
-      TabIndex        =   11
-      Top             =   4590
-      Width           =   2115
+      Height          =   1395
+      Left            =   9570
+      TabIndex        =   10
+      Top             =   8610
+      Width           =   2700
    End
    Begin VB.ListBox ListaEscudos 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   1815
-      Left            =   9480
-      TabIndex        =   9
-      Top             =   2460
-      Width           =   2085
+      Height          =   1395
+      Left            =   9570
+      TabIndex        =   8
+      Top             =   6960
+      Width           =   2700
    End
    Begin VB.ListBox ListaCascos 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   1815
-      Left            =   7350
-      TabIndex        =   7
-      Top             =   4590
-      Width           =   2085
+      Height          =   1395
+      Left            =   9570
+      TabIndex        =   6
+      Top             =   2070
+      Width           =   2700
    End
    Begin VB.ListBox ListaHead 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   1815
-      Left            =   7350
-      TabIndex        =   5
-      Top             =   2460
-      Width           =   2085
+      Height          =   1395
+      Left            =   9570
+      TabIndex        =   4
+      Top             =   390
+      Width           =   2700
    End
    Begin VB.PictureBox MainViewPic 
       Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H80000008&
-      Height          =   6105
-      Left            =   2130
-      ScaleHeight     =   405
+      Height          =   10335
+      Left            =   2340
+      ScaleHeight     =   687
       ScaleMode       =   3  'Pixel
-      ScaleWidth      =   345
-      TabIndex        =   4
+      ScaleWidth      =   478
+      TabIndex        =   3
       TabStop         =   0   'False
       Top             =   360
-      Width           =   5205
+      Width           =   7200
    End
    Begin VB.ListBox ListaCuerpos 
+      Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   1815
-      Left            =   7380
-      TabIndex        =   1
-      Top             =   360
-      Width           =   2085
-   End
-   Begin VB.ListBox Listado 
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   6105
-      Left            =   60
+      Height          =   1395
+      Left            =   9570
       TabIndex        =   0
-      Top             =   360
-      Width           =   2025
+      Top             =   3720
+      Width           =   2700
+   End
+   Begin VB.Label lblAtaques 
+      Alignment       =   2  'Center
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Ataques"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FF00&
+      Height          =   240
+      Left            =   10410
+      TabIndex        =   30
+      Top             =   10020
+      Width           =   675
    End
    Begin VB.Label lblArmas 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "Armas"
@@ -139,12 +330,13 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H0000FF00&
       Height          =   240
-      Left            =   10050
-      TabIndex        =   14
-      Top             =   120
+      Left            =   10320
+      TabIndex        =   13
+      Top             =   5070
       Width           =   675
    End
    Begin VB.Label lblFxS 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "Fx's"
@@ -159,12 +351,13 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H0000FF00&
       Height          =   240
-      Left            =   10110
-      TabIndex        =   12
-      Top             =   4350
+      Left            =   10410
+      TabIndex        =   11
+      Top             =   8340
       Width           =   675
    End
    Begin VB.Label lblEscudos 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "Escudos"
@@ -179,12 +372,13 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H0000FF00&
       Height          =   240
-      Left            =   10080
-      TabIndex        =   10
-      Top             =   2220
+      Left            =   10380
+      TabIndex        =   9
+      Top             =   6690
       Width           =   675
    End
    Begin VB.Label lblCascos 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "Cascos"
@@ -199,12 +393,13 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H0000FF00&
       Height          =   240
-      Left            =   8040
-      TabIndex        =   8
-      Top             =   4350
+      Left            =   10470
+      TabIndex        =   7
+      Top             =   1800
       Width           =   675
    End
    Begin VB.Label lblHead 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "Cabezas"
@@ -219,12 +414,13 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H0000FF00&
       Height          =   240
-      Left            =   7950
-      TabIndex        =   6
-      Top             =   2220
+      Left            =   10380
+      TabIndex        =   5
+      Top             =   120
       Width           =   810
    End
    Begin VB.Label lbCuerpos 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "Cuerpos"
@@ -239,9 +435,9 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H0000FF00&
       Height          =   240
-      Left            =   7950
-      TabIndex        =   3
-      Top             =   120
+      Left            =   10350
+      TabIndex        =   2
+      Top             =   3450
       Width           =   795
    End
    Begin VB.Label lblGraficos 
@@ -260,8 +456,8 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   480
-      TabIndex        =   2
-      Top             =   150
+      TabIndex        =   1
+      Top             =   120
       Width           =   780
    End
    Begin VB.Menu mnuArchivo 
@@ -286,6 +482,12 @@ Begin VB.Form frmMain
          Begin VB.Menu mnuExportarFxs 
             Caption         =   "FXs.ind"
          End
+         Begin VB.Menu cmdExportarParticulas 
+            Caption         =   "Particulas.ind"
+         End
+         Begin VB.Menu mnuExportarColores 
+            Caption         =   "Colores.ind"
+         End
       End
       Begin VB.Menu mnuIndexar 
          Caption         =   "Indexar..."
@@ -293,28 +495,31 @@ Begin VB.Form frmMain
             Caption         =   "&TODO"
          End
          Begin VB.Menu mnuIndexarGraficos 
-            Caption         =   "Graficos.ind"
+            Caption         =   "Graficos.ini"
          End
          Begin VB.Menu mnuIndexarCabezas 
-            Caption         =   "Cabezas.ind"
+            Caption         =   "Cabezas.ini"
          End
          Begin VB.Menu mnuIndexarPersonajes 
-            Caption         =   "Personajes.ind"
+            Caption         =   "Personajes.ini"
          End
          Begin VB.Menu mnuIndexarCascos 
-            Caption         =   "Cascos.ind"
+            Caption         =   "Cascos.ini"
          End
          Begin VB.Menu mnuIndexarArmas 
-            Caption         =   "Armas.ind"
+            Caption         =   "Armas.ini"
          End
          Begin VB.Menu mnuIndexarEscudos 
-            Caption         =   "Escudos.ind"
+            Caption         =   "Escudos.ini"
          End
          Begin VB.Menu mnuIndexarFXs 
-            Caption         =   "FXs.ind"
+            Caption         =   "FXs.ini"
          End
          Begin VB.Menu mnuIndexarParticulas 
-            Caption         =   "Particulas.ind"
+            Caption         =   "Particulas.ini"
+         End
+         Begin VB.Menu mnuIndexarColores 
+            Caption         =   "Colores.ini"
          End
       End
       Begin VB.Menu mnuGenerarMinimapa 
@@ -370,8 +575,17 @@ Begin VB.Form frmMain
          Caption         =   "&Buscar Grh Libres Consecutivos"
       End
       Begin VB.Menu mnuBuscarErrDim 
-         Caption         =   "Buscar Errores de Dimenciónes"
+         Caption         =   "Buscar Errores de Dimensiones"
       End
+      Begin VB.Menu mnuLine3 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuadaptador 
+         Caption         =   "&Adaptador de Grh"
+      End
+   End
+   Begin VB.Menu mnuParticleEditor 
+      Caption         =   "Editor de Particulas"
    End
 End
 Attribute VB_Name = "frmMain"
@@ -387,13 +601,83 @@ Private Sub Form_Load()
     EngineRun = True
 End Sub
 
-Private Sub Listado_Click()
+Private Sub ListaArmas_Click()
+    Dim nGrh As Long
+
+    nGrh = WeaponAnimData(ListaArmas.Text).WeaponWalk(3).GrhIndex
+    
     DoEvents
-    Call InitGrh(CurrentGrh, ReadField(1, Listado.Text, Asc(" ")))
+    Call InitGrh(CurrentGrh, nGrh)
+End Sub
+
+Private Sub ListaCascos_Click()
+    Dim nGrh As Long
+
+    nGrh = CascoAnimData(ListaCascos.Text).Head(3).GrhIndex
+    
+    DoEvents
+    Call InitGrh(CurrentGrh, nGrh)
+End Sub
+
+Private Sub ListaCuerpos_Click()
+    Dim nGrh As Long
+
+    nGrh = BodyData(ListaCuerpos.Text).Walk(3).GrhIndex
+    
+    DoEvents
+    Call InitGrh(CurrentGrh, nGrh)
+End Sub
+
+Private Sub Listado_Click()
+    Dim nGrh As Long
+
+    nGrh = ReadField(1, Listado.Text, Asc(" "))
+
+    DoEvents
+    Call InitGrh(CurrentGrh, nGrh)
+
+    txtFrame(0).Text = GrhData(nGrh).NumFrames
+    txtFrame(1).Text = GrhData(nGrh).FileNum
+    txtFrame(2).Text = GrhData(nGrh).sX
+    txtFrame(3).Text = GrhData(nGrh).sY
+    txtFrame(4).Text = GrhData(nGrh).pixelHeight
+    txtFrame(5).Text = GrhData(nGrh).pixelWidth
+    
+End Sub
+
+Private Sub ListaEscudos_Click()
+    Dim nGrh As Long
+
+    nGrh = ShieldAnimData(ListaEscudos.Text).ShieldWalk(3).GrhIndex
+    
+    DoEvents
+    Call InitGrh(CurrentGrh, nGrh)
+End Sub
+
+Private Sub ListaFxs_Click()
+    Dim nGrh As Long
+
+    nGrh = FxData(ListaFxs.Text).Animacion
+    
+    DoEvents
+    Call InitGrh(CurrentGrh, nGrh)
+End Sub
+
+Private Sub ListaHead_Click()
+    Dim nGrh As Long
+
+    nGrh = HeadData(ListaHead.Text).Head(3).GrhIndex
+    
+    DoEvents
+    Call InitGrh(CurrentGrh, nGrh)
 End Sub
 
 Private Sub menuCerrar_Click()
     Call CloseClient
+End Sub
+
+Private Sub mnuadaptador_Click()
+    frmAdaptador.Show , frmMain
 End Sub
 
 Private Sub mnuBuscarDuplicados_Click()
@@ -525,6 +809,10 @@ Private Sub mnuIndexPNG_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuParticleEditor_Click()
+    frmParticleEditor.Show , frmMain
 End Sub
 
 Private Sub mnuPNGinutiles_Click()
@@ -732,15 +1020,18 @@ Private Sub mnuBuscarGrh_Click()
 End Sub
 
 Private Sub mnuBuscarGrhconPNG_Click()
+
     On Error Resume Next
 
     Dim i       As Long
+
     Dim j       As Long
+
     Dim Archivo As String
 
     BuscarPNG = 0
     mnuIrASBMP.Enabled = False
-    Archivo = InputBox("Ingrese el numero de PNG:")
+    Archivo = InputBox("Ingrese el numero de grafico:")
 
     If IsNumeric(Archivo) = False Then Exit Sub
     If LenB(Archivo) > 0 And (Archivo > 0) Then
@@ -759,16 +1050,18 @@ Private Sub mnuBuscarGrhconPNG_Click()
 
                     End If
 
-                Next
+                Next j
 
             End If
 
-        Next
+        Next i
+                
         MsgBox "No se encontro el PNG."
     Else
         MsgBox "Nombre de PNG invalido."
 
     End If
+
 End Sub
 
 Private Sub mnuIrABMP_Click()
@@ -854,12 +1147,17 @@ Private Sub mnuExportarGraficos_Click()
     Call ExportarGraficos
 End Sub
 
+Private Sub cmdExportarParticulas_Click()
+    Call ExportarParticulas
+End Sub
+
 Private Sub mnuExportarTodo_Click()
     Call ExportarGraficos
     Call ExportarFxs
     Call ExportarCuerpos
     Call ExportarCascos
     Call ExportarCabezas
+    Call ExportarParticulas
 End Sub
 
 Private Sub mnuGenerarMinimapa_Click()
@@ -960,3 +1258,4 @@ Private Sub mnuIndexarTodo_Click()
     Call mnuIndexarParticulas_Click
     
 End Sub
+

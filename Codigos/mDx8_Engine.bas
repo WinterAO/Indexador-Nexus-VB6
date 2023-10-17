@@ -210,7 +210,7 @@ Public Sub Engine_DirectX8_Aditional_Init()
     Engine_BaseSpeed = 0.018
     
     With MainScreenRect
-        .bottom = frmMain.MainViewPic.ScaleHeight
+        .Bottom = frmMain.MainViewPic.ScaleHeight
         .Right = frmMain.MainViewPic.ScaleWidth
     End With
     

@@ -51,14 +51,14 @@ Public Sub ExportarCabezas()
 
     Next
 
-    frmMain.GRHt.Text = "Guardando...Cabezas.ini"
+    frmMain.GRHt.Text = "Guardando...Head.ini"
     DoEvents
 
-    Open (DirExport & "\Cabezas.ini") For Binary Access Write As #1
+    Open (DirExport & "\Head.ini") For Binary Access Write As #1
     Put #1, , Datos
     Close #1
 
-    frmMain.GRHt.Text = "Exportado...Cabezas.ini"
+    frmMain.GRHt.Text = "Exportado...Head.ini"
 End Sub
 
 Public Sub ExportarCascos()
@@ -75,7 +75,7 @@ Public Sub ExportarCascos()
     DoEvents
     Call DIR_INDEXADOR
 
-    Datos = "[INIT]" & vbCrLf & "NumHelmets=" & NumCascos & vbCrLf & vbCrLf
+    Datos = "[INIT]" & vbCrLf & "NumCascos=" & NumCascos & vbCrLf & vbCrLf
 
     For i = 1 To NumCascos
 
@@ -91,15 +91,15 @@ Public Sub ExportarCascos()
 
     Next
 
-    frmMain.GRHt.Text = "Guardando...Cascos.ini"
+    frmMain.GRHt.Text = "Guardando...Helmet.ini"
     DoEvents
 
-    Open (DirExport & "\Cascos.ini") For Binary Access Write As #1
+    Open (DirExport & "\Helmet.ini") For Binary Access Write As #1
     Put #1, , Datos
     Close #1
 
     DoEvents
-    frmMain.GRHt.Text = "Exportado...Cascos.ini"
+    frmMain.GRHt.Text = "Exportado...Helmet.ini"
 End Sub
 
 Public Sub ExportarCuerpos()
@@ -243,4 +243,85 @@ Public Sub ExportarGraficos()
     Close #n
     frmMain.GRHt.Text = "Exportado...Graficos.ini"
     Ocupado = False
+End Sub
+
+Public Sub ExportarParticulas()
+
+    On Error Resume Next
+
+    Dim i     As Integer
+
+    Dim j     As Integer
+
+    Dim n     As Integer
+
+    Dim K     As Integer
+
+    Dim Datos As String
+
+    frmMain.GRHt.Text = "Exportando... Particulas"
+    DoEvents
+    Call DIR_INDEXADOR
+
+    Datos = "[INIT]" & vbCrLf & "Total=" & TotalStreams & vbCrLf & vbCrLf
+
+    For i = 1 To TotalStreams
+
+        With StreamData(i)
+        
+            Datos = Datos & "[" & i & "]" & vbCrLf
+            Datos = Datos & "Name=" & .name & vbCrLf
+            Datos = Datos & "NumOfParticles=" & .NumOfParticles & vbCrLf
+            Datos = Datos & "X1=" & .x1 & vbCrLf
+            Datos = Datos & "Y1=" & .y2 & vbCrLf
+            Datos = Datos & "X2=" & .x2 & vbCrLf
+            Datos = Datos & "Y2=" & .y2 & vbCrLf
+            Datos = Datos & "Angle=" & .angle & vbCrLf
+            Datos = Datos & "VecX1=" & .vecx1 & vbCrLf
+            Datos = Datos & "VecX2=" & .vecx2 & vbCrLf
+            Datos = Datos & "VecY1=" & .vecy1 & vbCrLf
+            Datos = Datos & "VecY2=" & .vecy2 & vbCrLf
+            Datos = Datos & "Life1=" & .life1 & vbCrLf
+            Datos = Datos & "Life2=" & .life2 & vbCrLf
+            Datos = Datos & "Friction=" & .friction & vbCrLf
+            Datos = Datos & "Spin=" & .spin & vbCrLf
+            Datos = Datos & "Spin_SpeedL=" & .spin_speedL & vbCrLf
+            Datos = Datos & "Spin_SpeedH=" & .spin_speedH & vbCrLf
+            Datos = Datos & "Grav_Strength=" & .grav_strength & vbCrLf
+            Datos = Datos & "Bounce_Strength=" & .bounce_strength & vbCrLf
+            Datos = Datos & "AlphaBlend=" & .alphaBlend & vbCrLf
+            Datos = Datos & "Gravity=" & .gravity & vbCrLf
+            Datos = Datos & "XMove=" & .XMove & vbCrLf
+            Datos = Datos & "YMove=" & .YMove & vbCrLf
+            Datos = Datos & "move_x1=" & .move_x1 & vbCrLf
+            Datos = Datos & "move_x2=" & .move_x2 & vbCrLf
+            Datos = Datos & "move_y1=" & .move_y1 & vbCrLf
+            Datos = Datos & "move_y2=" & .move_y2 & vbCrLf
+            Datos = Datos & "life_counter=" & .life_counter & vbCrLf
+            Datos = Datos & "Speed=" & .speed & vbCrLf
+            Datos = Datos & "NumGrhs=" & .NumGrhs & vbCrLf
+            For j = 1 To .NumGrhs
+                Datos = Datos & "GrhList=" & .grh_list(j) & ","
+            Next j
+            Datos = Datos & vbCrLf
+            
+            For j = 1 To 4
+                Datos = Datos & "ColorSet1=" & .colortint(j).R & .colortint(j).G & "," & .colortint(j).B & vbCrLf & vbCrLf
+            Next j
+            
+        End With
+
+    Next
+
+    frmMain.GRHt.Text = "Guardando...Particulas.ini"
+    DoEvents
+
+    Open (DirExport & "\particulas.ini") For Binary Access Write As #1
+    Put #1, , Datos
+    Close #1
+
+    DoEvents
+
+    frmMain.GRHt.Text = "Exportado...Particulas.ini"
+
 End Sub

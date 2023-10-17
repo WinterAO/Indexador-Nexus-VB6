@@ -12,29 +12,24 @@ Public Type tSetupMods
     ' VIDEO
     byMemory    As Integer
     OverrideVertexProcess As Byte
+    LimiteFPS As Boolean
     
 End Type
 
 Public ClientSetup As tSetupMods
 
-Public Type tCabecera
-
-    Desc As String * 255
-    CRC As Long
-    MagicWord As Long
-
-End Type
-
-Public MiCabecera As tCabecera
-
 Private Lector    As clsIniReader
 
 'Lista de cabezas
-Public Type tIndiceCabeza
-
-    Head(1 To 4) As Long
-
+Public Type tHead
+    Std As Byte
+    Texture As Integer
+    startX As Integer
+    startY As Integer
 End Type
+
+Public heads() As tHead
+Public Cascos() As tHead
 
 Public Type tIndiceCuerpo
 
@@ -74,57 +69,10 @@ Public grhCount        As Long
 Public fileVersion     As Long
 
 Public Type RGB
-    r As Long
-    g As Long
-    b As Long
+    R As Long
+    G As Long
+    B As Long
 End Type
-
-Public Type Stream
-    'name As String
-    NumOfParticles As Long
-    NumGrhs As Long
-    id As Long
-    x1 As Long
-    y1 As Long
-    x2 As Long
-    y2 As Long
-    angle As Long
-    vecx1 As Long
-    vecx2 As Long
-    vecy1 As Long
-    vecy2 As Long
-    life1 As Long
-    life2 As Long
-    friction As Long
-    spin As Byte
-    spin_speedL As Single
-    spin_speedH As Single
-    alphaBlend As Byte
-    gravity As Byte
-    grav_strength As Long
-    bounce_strength As Long
-    XMove As Byte
-    YMove As Byte
-    move_x1 As Long
-    move_x2 As Long
-    move_y1 As Long
-    move_y2 As Long
-    speed As Single
-    life_counter As Long
-    grh_list() As Long
-    colortint(0 To 3) As RGB
-End Type
-
-Public Sub IniciarCabecera()
-
-    With MiCabecera
-        .Desc = "NexusAO mod Argentum Online by Noland Studios."
-        .CRC = Rnd * 245
-        .MagicWord = Rnd * 92
-
-    End With
-    
-End Sub
 
 Public Function CargarConfiguracion() As Boolean
 
@@ -144,6 +92,7 @@ Public Function CargarConfiguracion() As Boolean
         ' VIDEO
         .byMemory = Lector.GetValue("VIDEO", "DynamicMemory")
         .OverrideVertexProcess = CByte(Lector.GetValue("VIDEO", "VertexProcessingOverride"))
+        .LimiteFPS = CByte(Lector.GetValue("VIDEO", "LimitarFPS"))
     End With
     
     Set Lector = Nothing
@@ -168,11 +117,9 @@ Public Function LoadGrhData() As Boolean
 
     Dim handle     As Integer
 
-    Dim LaCabecera As tCabecera
-
     frmMain.Listado.Clear
     
-    If Not FileExist(DirCliente & "\Scripts\graficos.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Init\graficos.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Graficos.ind."
         LoadGrhData = False
         Exit Function
@@ -180,9 +127,7 @@ Public Function LoadGrhData() As Boolean
     
     'Open files
     handle = FreeFile()
-    Open DirCliente & "\Scripts\Graficos.ind" For Binary Access Read As handle
-
-    Get handle, , LaCabecera
+    Open DirCliente & "\Init\Graficos.ind" For Binary Access Read As handle
     
     Get handle, , fileVersion
         
@@ -198,7 +143,7 @@ Public Function LoadGrhData() As Boolean
         With GrhData(Grh)
 
             If Grh <> 0 Then
-                .Active = True
+                .active = True
                 'Get number of frames
                 Get handle, , .NumFrames
 
@@ -289,23 +234,18 @@ Public Function CargarCuerpos() As Boolean
 
     Dim i            As Long
 
-    Dim LaCabecera   As tCabecera
-
     Dim MisCuerpos() As tIndiceCuerpo
 
     frmMain.ListaCuerpos.Clear
     
-    If Not FileExist(DirCliente & "\Scripts\personajes.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Init\personajes.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Personajes.ind."
         CargarCuerpos = False
         Exit Function
     End If
 
     n = FreeFile()
-    Open DirCliente & "\Scripts\Personajes.ind" For Binary Access Read As #n
-
-    'cabecera
-    Get #n, , LaCabecera
+    Open DirCliente & "\Init\Personajes.ind" For Binary Access Read As #n
 
     'num de cabezas
     Get #n, , NumCuerpos
@@ -324,8 +264,8 @@ Public Function CargarCuerpos() As Boolean
             Call InitGrh(BodyData(i).Walk(3), MisCuerpos(i).Body(3), 0)
             Call InitGrh(BodyData(i).Walk(4), MisCuerpos(i).Body(4), 0)
                 
-            BodyData(i).HeadOffset.X = MisCuerpos(i).HeadOffsetX
-            BodyData(i).HeadOffset.Y = MisCuerpos(i).HeadOffsetY
+            BodyData(i).HeadOffset.x = MisCuerpos(i).HeadOffsetX
+            BodyData(i).HeadOffset.y = MisCuerpos(i).HeadOffsetY
 
         End If
         
@@ -353,44 +293,31 @@ Public Function CargarCabezas() As Boolean
 
     Dim i            As Integer
 
-    Dim LaCabecera   As tCabecera
-
-    Dim MisCabezas() As tIndiceCabeza
-
     frmMain.ListaHead.Clear
     
-    If Not FileExist(DirCliente & "\Scripts\cabezas.ind", vbArchive) Then
-        MsgBox "No se ha encontrado el archivo Cabezas.ind."
+    If Not FileExist(DirCliente & "\Init\head.ind", vbArchive) Then
+        MsgBox "No se ha encontrado el archivo head.ind."
         CargarCabezas = False
         Exit Function
     End If
 
     n = FreeFile
-    Open DirCliente & "\Scripts\cabezas.ind" For Binary Access Read As #n
-
-    'cabecera
-    Get #n, , LaCabecera
+    Open DirCliente & "\Init\head.ind" For Binary Access Read As #n
 
     'num de cabezas
     Get #n, , Numheads
 
     'Resize array
-    ReDim HeadData(1 To Numheads) As HeadData
-    ReDim MisCabezas(1 To Numheads) As tIndiceCabeza
-
-    For i = 1 To Numheads
-        Get #n, , MisCabezas(i)
-        
-        If MisCabezas(i).Head(1) Then
-            InitGrh HeadData(i).Head(1), MisCabezas(i).Head(1), 0
-            InitGrh HeadData(i).Head(2), MisCabezas(i).Head(2), 0
-            InitGrh HeadData(i).Head(3), MisCabezas(i).Head(3), 0
-            InitGrh HeadData(i).Head(4), MisCabezas(i).Head(4), 0
+    ReDim heads(0 To Numheads) As tHead
+            
+        For i = 1 To Numheads
+            Get #n, , heads(i).Std
+            Get #n, , heads(i).Texture
+            Get #n, , heads(i).startX
+            Get #n, , heads(i).startY
             
             frmMain.ListaHead.AddItem i
-        End If
-        
-    Next i
+        Next i
 
     Close #n
 
@@ -413,44 +340,32 @@ Public Function CargarCascos() As Boolean
 
     Dim i          As Integer
 
-    Dim LaCabecera As tCabecera
-
     frmMain.ListaCascos.Clear
 
-    If Not FileExist(DirCliente & "\Scripts\cascos.ind", vbArchive) Then
-        MsgBox "No se ha encontrado el archivo Cascos.ind."
+    If Not FileExist(DirCliente & "\Init\helmet.ind", vbArchive) Then
+        MsgBox "No se ha encontrado el archivo helmet.ind."
         CargarCascos = False
         Exit Function
     End If
 
     n = FreeFile
-    Open DirCliente & "\Scripts\cascos.ind" For Binary Access Read As #n
-
-    'cabecera
-    Get #n, , LaCabecera
+    Open DirCliente & "\Init\helmet.ind" For Binary Access Read As #n
 
     'num de cascos
     Get #n, , NumCascos
 
     'Resize array
-    ReDim CascoAnimData(1 To NumCascos) As HeadData
-    ReDim MisCabezas(1 To NumCascos) As tIndiceCabeza
-
+    ReDim Cascos(0 To NumCascos) As tHead
+    
     For i = 1 To NumCascos
-
-        Get #n, , MisCabezas(i)
-        
-        If MisCabezas(i).Head(1) Then
-            InitGrh CascoAnimData(i).Head(1), MisCabezas(i).Head(1), 0
-            InitGrh CascoAnimData(i).Head(2), MisCabezas(i).Head(2), 0
-            InitGrh CascoAnimData(i).Head(3), MisCabezas(i).Head(3), 0
-            InitGrh CascoAnimData(i).Head(4), MisCabezas(i).Head(4), 0
+        Get #n, , Cascos(i).Std
+        Get #n, , Cascos(i).Texture
+        Get #n, , Cascos(i).startX
+        Get #n, , Cascos(i).startY
             
-            frmMain.ListaCascos.AddItem i
-        End If
-        
+        frmMain.ListaCascos.AddItem i
     Next i
-
+         
     Close #n
 
     CargarCascos = True
@@ -477,22 +392,17 @@ Public Function CargarEscudos() As Boolean
     Dim n          As Integer
 
     Dim i          As Long
-
-    Dim LaCabecera As tCabecera
     
     frmMain.ListaEscudos.Clear
 
-    If Not FileExist(DirCliente & "\Scripts\escudos.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Init\escudos.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Escudos.ind."
         CargarEscudos = False
         Exit Function
     End If
 
     n = FreeFile
-    Open DirCliente & "\Scripts\escudos.ind" For Binary Access Read As #n
-        
-    'cabecera
-    Get #n, , LaCabecera
+    Open DirCliente & "\Init\escudos.ind" For Binary Access Read As #n
 
     'num de escudos
     Get #n, , NumEscudosAnims
@@ -543,22 +453,17 @@ Public Function CargarAnimArmas() As Boolean
     Dim n          As Integer
 
     Dim i          As Long
-
-    Dim LaCabecera As tCabecera
     
     frmMain.ListaArmas.Clear
     
-    If Not FileExist(DirCliente & "\Scripts\armas.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Init\armas.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Armas.ind."
         CargarAnimArmas = False
         Exit Function
     End If
     
     n = FreeFile
-    Open DirCliente & "\Scripts\Armas.ind" For Binary Access Read As #n
-        
-    'cabecera
-    Get #n, , MiCabecera
+    Open DirCliente & "\Init\Armas.ind" For Binary Access Read As #n
     
     'num de armas
     Get #n, , NumWeaponAnims
@@ -609,22 +514,17 @@ Public Function CargarFxs() As Boolean
     Dim n          As Integer
 
     Dim i          As Long
-
-    Dim LaCabecera As tCabecera
     
     frmMain.ListaFxs.Clear
     
-    If Not FileExist(DirCliente & "\Scripts\fxs.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Init\fxs.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo FXs.ind."
         CargarFxs = False
         Exit Function
     End If
     
     n = FreeFile
-    Open DirCliente & "\Scripts\FXs.ind" For Binary Access Read As #n
-        
-    'cabecera
-    Get #n, , LaCabecera
+    Open DirCliente & "\Init\FXs.ind" For Binary Access Read As #n
 
     'num de cabezas
     Get #n, , NumFxs
@@ -652,3 +552,89 @@ errhandler:
     Resume
     
 End Function
+
+Sub CargarParticulas()
+    '*************************************
+    'Autor: ????
+    'Fecha: ????
+    'Descripción: Cargar el archivo de particulas en memoria
+    '*************************************
+
+    Dim StreamFile As String
+
+    Dim LoopC      As Long
+
+    Dim i          As Long
+
+    Dim GrhListing As String
+
+    Dim TempSet    As String
+
+    Dim ColorSet   As Long
+    
+    If Not FileExist(DirExport & "\Particulas.ini", vbArchive) Then
+        MsgBox ("No se ha encontrado el archivo Particulas.ini en el directorio: " & DirExport)
+        Exit Sub
+    End If
+    
+    StreamFile = DirExport & "\Particulas.ini"
+    TotalStreams = Val(GetVar(StreamFile, "INIT", "Total"))
+    
+    If TotalStreams < 1 Then Exit Sub
+    
+    'resize StreamData array
+    ReDim StreamData(1 To TotalStreams) As Stream
+
+    'fill StreamData array with info from particle.ini
+    For LoopC = 1 To TotalStreams
+        StreamData(LoopC).name = GetVar(StreamFile, Val(LoopC), "Name")
+        StreamData(LoopC).NumOfParticles = GetVar(StreamFile, Val(LoopC), "NumOfParticles")
+        StreamData(LoopC).x1 = GetVar(StreamFile, Val(LoopC), "X1")
+        StreamData(LoopC).y1 = GetVar(StreamFile, Val(LoopC), "Y1")
+        StreamData(LoopC).x2 = GetVar(StreamFile, Val(LoopC), "X2")
+        StreamData(LoopC).y2 = GetVar(StreamFile, Val(LoopC), "Y2")
+        StreamData(LoopC).angle = GetVar(StreamFile, Val(LoopC), "Angle")
+        StreamData(LoopC).vecx1 = GetVar(StreamFile, Val(LoopC), "VecX1")
+        StreamData(LoopC).vecx2 = GetVar(StreamFile, Val(LoopC), "VecX2")
+        StreamData(LoopC).vecy1 = GetVar(StreamFile, Val(LoopC), "VecY1")
+        StreamData(LoopC).vecy2 = GetVar(StreamFile, Val(LoopC), "VecY2")
+        StreamData(LoopC).life1 = GetVar(StreamFile, Val(LoopC), "Life1")
+        StreamData(LoopC).life2 = GetVar(StreamFile, Val(LoopC), "Life2")
+        StreamData(LoopC).friction = GetVar(StreamFile, Val(LoopC), "Friction")
+        StreamData(LoopC).spin = GetVar(StreamFile, Val(LoopC), "Spin")
+        StreamData(LoopC).spin_speedL = GetVar(StreamFile, Val(LoopC), "Spin_SpeedL")
+        StreamData(LoopC).spin_speedH = GetVar(StreamFile, Val(LoopC), "Spin_SpeedH")
+        StreamData(LoopC).alphaBlend = GetVar(StreamFile, Val(LoopC), "AlphaBlend")
+        StreamData(LoopC).gravity = GetVar(StreamFile, Val(LoopC), "Gravity")
+        StreamData(LoopC).grav_strength = GetVar(StreamFile, Val(LoopC), "Grav_Strength")
+        StreamData(LoopC).bounce_strength = GetVar(StreamFile, Val(LoopC), "Bounce_Strength")
+        StreamData(LoopC).XMove = GetVar(StreamFile, Val(LoopC), "XMove")
+        StreamData(LoopC).YMove = GetVar(StreamFile, Val(LoopC), "YMove")
+        StreamData(LoopC).move_x1 = GetVar(StreamFile, Val(LoopC), "move_x1")
+        StreamData(LoopC).move_x2 = GetVar(StreamFile, Val(LoopC), "move_x2")
+        StreamData(LoopC).move_y1 = GetVar(StreamFile, Val(LoopC), "move_y1")
+        StreamData(LoopC).move_y2 = GetVar(StreamFile, Val(LoopC), "move_y2")
+        StreamData(LoopC).life_counter = GetVar(StreamFile, Val(LoopC), "life_counter")
+        StreamData(LoopC).speed = Val(GetVar(StreamFile, Val(LoopC), "Speed"))
+        StreamData(LoopC).NumGrhs = GetVar(StreamFile, Val(LoopC), "NumGrhs")
+        
+        ReDim StreamData(LoopC).grh_list(1 To StreamData(LoopC).NumGrhs) As Long
+        GrhListing = GetVar(StreamFile, Val(LoopC), "Grh_List")
+        
+        For i = 1 To StreamData(LoopC).NumGrhs
+            StreamData(LoopC).grh_list(i) = CLng(ReadField(str(i), GrhListing, 44))
+        Next i
+        
+        'StreamData(loopc).grh_list(i - 1) = StreamData(loopc).grh_list(i - 1)
+        
+        For ColorSet = 1 To 4
+            TempSet = GetVar(StreamFile, Val(LoopC), "ColorSet" & ColorSet)
+            StreamData(LoopC).colortint(ColorSet - 1).R = ReadField(1, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).G = ReadField(2, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).B = ReadField(3, TempSet, 44)
+        Next ColorSet
+
+        frmParticleEditor.ListParticulas.AddItem LoopC & " - " & StreamData(LoopC).name
+    Next LoopC
+
+End Sub

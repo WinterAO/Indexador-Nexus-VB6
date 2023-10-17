@@ -1,0 +1,10 @@
+Línea 66: la clase Indexador.lvButtons_H del control cmdAdaptar no era una clase de control cargada.
+Línea 72: el nombre de la propiedad _ExtentX de cmdAdaptar no es válido.
+Línea 73: el nombre de la propiedad _ExtentY de cmdAdaptar no es válido.
+Línea 74: el nombre de la propiedad Caption de cmdAdaptar no es válido.
+Línea 75: el nombre de la propiedad CapAlign de cmdAdaptar no es válido.
+Línea 76: el nombre de la propiedad BackStyle de cmdAdaptar no es válido.
+Línea 86: el nombre de la propiedad cGradient de cmdAdaptar no es válido.
+Línea 87: el nombre de la propiedad Mode de cmdAdaptar no es válido.
+Línea 88: el nombre de la propiedad Value de cmdAdaptar no es válido.
+Línea 89: el nombre de la propiedad cBack de cmdAdaptar no es válido.

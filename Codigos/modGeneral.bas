@@ -3,20 +3,18 @@ Option Explicit
 
 Private lFrameTimer As Long
 
-Private Declare Function GetPixel Lib "gdi32" (ByVal hdc As Long, ByVal x As Long, ByVal y As Long) As Long
+Private Declare Function GetPixel Lib "gdi32" (ByVal hDC As Long, ByVal x As Long, ByVal y As Long) As Long
 Private Declare Function BitBlt Lib "gdi32" (ByVal hDestDC As Long, ByVal x As Long, ByVal y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As Long, ByVal xSrc As Long, ByVal ySrc As Long, ByVal dwRop As Long) As Long
 
-Private Declare Function SelectObject Lib "gdi32" (ByVal hdc As Long, ByVal hObject As Long) As Long
-Private Declare Function CreateCompatibleDC Lib "gdi32" (ByVal hdc As Long) As Long
-Private Declare Function DeleteDC Lib "gdi32" (ByVal hdc As Long) As Long
+Private Declare Function SelectObject Lib "gdi32" (ByVal hDC As Long, ByVal hObject As Long) As Long
+Private Declare Function CreateCompatibleDC Lib "gdi32" (ByVal hDC As Long) As Long
+Private Declare Function DeleteDC Lib "gdi32" (ByVal hDC As Long) As Long
 Private Declare Function DeleteObject Lib "gdi32" (ByVal hObject As Long) As Long
 
 Public Sub Main()
 
     frmCargando.Show
     DoEvents
-    
-    Call IniciarCabecera
 
     If Not CargarConfiguracion Then
         MsgBox "No se ha podido cargar la configuración del Indexador, revisa Config.ini."
@@ -43,7 +41,7 @@ Public Sub Main()
     DoEvents
     Call CargarCuerpos
 
-    frmCargando.lblstatus.Caption = "Cargando Cabezas.ind"
+    frmCargando.lblstatus.Caption = "Cargando head.ind"
     DoEvents
     Call CargarCabezas
 
@@ -63,6 +61,12 @@ Public Sub Main()
     DoEvents
     Call CargarFxs
     
+    frmCargando.lblstatus.Caption = "Cargando Particulas.ind"
+    DoEvents
+    Call CargarParticulas
+    
+    ReDim MapData(XMinMapSize To XMaxMapSize, YMinMapSize To YMaxMapSize) As MapBlock
+    
     Unload frmCargando
     frmMain.Show
     
@@ -74,16 +78,12 @@ Public Sub Main()
     Do While prgRun
 
         'Solo dibujamos si la ventana no esta minimizada
-        If frmMain.WindowState <> vbMinimized And frmMain.Visible Then
+        If frmMain.WindowState <> vbMinimized And frmMain.Visible Then _
             Call ShowNextFrame
-            
-        End If
         
         'FPS Counter - mostramos las FPS
-        If GetTickCount - lFrameTimer >= 1000 Then
-            
+        If GetTickCount - lFrameTimer >= 1000 Then _
             lFrameTimer = GetTickCount
-        End If
         
         DoEvents
     Loop
@@ -122,11 +122,11 @@ FileExist_Err:
     
 End Function
 
-Sub WriteVar(ByVal file As String, ByVal Main As String, ByVal Var As String, ByVal Value As String)
+Sub WriteVar(ByVal file As String, ByVal Main As String, ByVal Var As String, ByVal value As String)
 '*****************************************************************
 'Writes a var to a text file
 '*****************************************************************
-    writeprivateprofilestring Main, Var, Value, file
+    writeprivateprofilestring Main, Var, value, file
     
 End Sub
 
@@ -182,7 +182,7 @@ Public Function ReadField(Pos As Integer, Text As String, SepASCII As Integer) A
 
     Dim i         As Integer
 
-    Dim LastPos   As Integer
+    Dim lastPos   As Integer
 
     Dim CurChar   As String * 1
 
@@ -191,7 +191,7 @@ Public Function ReadField(Pos As Integer, Text As String, SepASCII As Integer) A
     Dim Seperator As String
 
     Seperator = Chr(SepASCII)
-    LastPos = 0
+    lastPos = 0
     FieldNum = 0
 
     For i = 1 To Len(Text)
@@ -201,12 +201,12 @@ Public Function ReadField(Pos As Integer, Text As String, SepASCII As Integer) A
             FieldNum = FieldNum + 1
 
             If FieldNum = Pos Then
-                ReadField = mid(Text, LastPos + 1, (InStr(LastPos + 1, Text, Seperator, vbTextCompare) - 1) - (LastPos))
+                ReadField = mid(Text, lastPos + 1, (InStr(lastPos + 1, Text, Seperator, vbTextCompare) - 1) - (lastPos))
                 Exit Function
 
             End If
 
-            LastPos = i
+            lastPos = i
 
         End If
 
@@ -215,7 +215,7 @@ Public Function ReadField(Pos As Integer, Text As String, SepASCII As Integer) A
     FieldNum = FieldNum + 1
 
     If FieldNum = Pos Then
-        ReadField = mid(Text, LastPos + 1)
+        ReadField = mid(Text, lastPos + 1)
 
     End If
 
@@ -248,7 +248,7 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
         Call ConvertFileImage(DirCliente & "GRAFICOS\" & GrhData(grh_index).FileNum & ".png", App.Path & "\temp\" & GrhData(grh_index).FileNum & ".jpg", 100)
         file_path = App.Path & "\temp\" & GrhData(grh_index).FileNum & ".jpg"
     Else
-        Debug.Print "existia"
+        'Debug.Print "existia"
         file_path = App.Path & "\temp\" & GrhData(grh_index).FileNum & ".jpg"
 
     End If
@@ -256,9 +256,9 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
     'Debug.Print file_path
     
     If FileExist(file_path, vbNormal) Then
-        hdcsrc = CreateCompatibleDC(frmMinimapa.Picture1.hdc)
+        hdcsrc = CreateCompatibleDC(frmMinimapa.Picture1.hDC)
         OldObj = SelectObject(hdcsrc, LoadPicture(file_path))
-        BitBlt frmMinimapa.Picture1.hdc, 0, 0, GrhData(grh_index).pixelWidth, GrhData(grh_index).pixelHeight, hdcsrc, GrhData(grh_index).sX, GrhData(grh_index).sY, vbSrcCopy
+        BitBlt frmMinimapa.Picture1.hDC, 0, 0, GrhData(grh_index).pixelWidth, GrhData(grh_index).pixelHeight, hdcsrc, GrhData(grh_index).sX, GrhData(grh_index).sY, vbSrcCopy
         DeleteObject SelectObject(hdcsrc, OldObj)
         DeleteDC hdcsrc
         
@@ -266,7 +266,7 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
                
         For x = 1 To GrhData(grh_index).pixelWidth
             For y = 1 To GrhData(grh_index).pixelHeight
-                tempGetPixel = GetPixel(frmMinimapa.Picture1.hdc, x, y)
+                tempGetPixel = GetPixel(frmMinimapa.Picture1.hDC, x, y)
 
                 If tempGetPixel = vbBlack Then
                     InvalidPixels = InvalidPixels + 1
@@ -296,10 +296,10 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
 
         Dim bmpguardado As Integer
 
-        Debug.Print GrhData(grh_index).FileNum
+        'Debug.Print GrhData(grh_index).FileNum
 
         If GrhData(grh_index + 1).FileNum <> GrhData(grh_index).FileNum Then
-            Debug.Print GrhData(grh_index).FileNum
+            'Debug.Print GrhData(grh_index).FileNum
             Kill App.Path & "\temp\" & GrhData(grh_index).FileNum & ".jpg"
 
         End If
@@ -327,6 +327,7 @@ Public Sub CloseClient()
     Call Engine_DirectX8_End
 
     Set SurfaceDB = Nothing
+    Erase MapData
     
     Call UnloadAllForms
     
@@ -343,3 +344,11 @@ On Error Resume Next
         Unload mifrm
     Next
 End Sub
+
+Public Function RandomNumber(ByVal LowerBound As Long, ByVal UpperBound As Long) As Long
+    'Initialize randomizer
+    Randomize Timer
+    
+    'Generate random number
+    RandomNumber = (UpperBound - LowerBound) * Rnd + LowerBound
+End Function

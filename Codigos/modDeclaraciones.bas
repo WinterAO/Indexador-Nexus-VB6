@@ -1,6 +1,12 @@
 Attribute VB_Name = "modDeclaraciones"
 Option Explicit
 
+Public ParticleIndex As Integer
+
+Public DataChanged As Boolean
+
+Public ReferenciaPJ As Boolean
+
 Public Ocupado As Boolean
 
 Public Play    As Boolean
@@ -59,3 +65,5 @@ Public Declare Function getprivateprofilestring _
                                                  ByVal lpFileName As String) As Long
                                                  
 Public Declare Function GetTickCount Lib "kernel32" () As Long
+
+Public Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
