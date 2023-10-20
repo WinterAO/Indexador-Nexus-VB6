@@ -26,15 +26,45 @@ Begin VB.Form frmMain
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   824
    StartUpPosition =   1  'CenterOwner
-   Begin VB.ListBox Listado 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000001&
-      ForeColor       =   &H0000FF00&
-      Height          =   10170
-      Left            =   60
-      TabIndex        =   3
-      Top             =   360
-      Width           =   2235
+   Begin Indexador_Nexus.LynxGrid LynxGrh 
+      Height          =   10245
+      Left            =   90
+      TabIndex        =   31
+      Top             =   420
+      Width           =   2205
+      _ExtentX        =   3889
+      _ExtentY        =   18071
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      BeginProperty FontHeader {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      BackColorSel    =   12937777
+      ForeColorSel    =   16777215
+      CustomColorFrom =   16572875
+      CustomColorTo   =   14722429
+      GridColor       =   16367254
+      FocusRectColor  =   9895934
+      Appearance      =   0
+      ColumnHeaderSmall=   0   'False
+      TotalsLineShow  =   0   'False
+      FocusRowHighlightKeepTextForecolor=   0   'False
+      ShowRowNumbers  =   0   'False
+      ShowRowNumbersVary=   0   'False
+      HotHeaderTracking=   0   'False
    End
    Begin VB.ListBox ListaAtaques 
       Appearance      =   0  'Flat
@@ -42,7 +72,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   30
+      TabIndex        =   29
       Top             =   10290
       Width           =   2700
    End
@@ -61,7 +91,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   585
       Left            =   120
-      TabIndex        =   17
+      TabIndex        =   16
       Top             =   10740
       Width           =   9405
       Begin VB.TextBox txtFrame 
@@ -71,7 +101,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   5
          Left            =   8370
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   220
          Width           =   645
       End
@@ -82,7 +112,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   4
          Left            =   7020
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   225
          Width           =   645
       End
@@ -93,7 +123,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   3
          Left            =   5400
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   220
          Width           =   645
       End
@@ -104,7 +134,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   2
          Left            =   4230
-         TabIndex        =   21
+         TabIndex        =   20
          Top             =   220
          Width           =   645
       End
@@ -115,7 +145,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   1
          Left            =   2820
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   225
          Width           =   645
       End
@@ -126,7 +156,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   0
          Left            =   990
-         TabIndex        =   19
+         TabIndex        =   18
          Top             =   220
          Width           =   645
       End
@@ -137,7 +167,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   7830
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   270
          Width           =   645
       End
@@ -148,7 +178,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   6390
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   270
          Width           =   645
       End
@@ -158,7 +188,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   5190
-         TabIndex        =   24
+         TabIndex        =   23
          Top             =   270
          Width           =   645
       End
@@ -169,7 +199,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   4020
-         TabIndex        =   22
+         TabIndex        =   21
          Top             =   270
          Width           =   645
       End
@@ -180,7 +210,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   150
-         TabIndex        =   18
+         TabIndex        =   17
          Top             =   240
          Width           =   795
       End
@@ -191,7 +221,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   2100
-         TabIndex        =   20
+         TabIndex        =   19
          Top             =   270
          Width           =   645
       End
@@ -215,7 +245,7 @@ Begin VB.Form frmMain
       Locked          =   -1  'True
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   31
+      TabIndex        =   30
       Top             =   11340
       Width           =   9405
    End
@@ -225,7 +255,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   5340
       Width           =   2700
    End
@@ -235,7 +265,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   15
+      TabIndex        =   14
       Top             =   8610
       Width           =   2700
    End
@@ -245,7 +275,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   13
+      TabIndex        =   12
       Top             =   6960
       Width           =   2700
    End
@@ -255,7 +285,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   2070
       Width           =   2700
    End
@@ -265,7 +295,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   390
       Width           =   2700
    End
@@ -278,7 +308,7 @@ Begin VB.Form frmMain
       ScaleHeight     =   687
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   478
-      TabIndex        =   4
+      TabIndex        =   3
       TabStop         =   0   'False
       Top             =   360
       Width           =   7200
@@ -289,7 +319,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   3720
       Width           =   2700
    End
@@ -310,7 +340,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10410
-      TabIndex        =   16
+      TabIndex        =   15
       Top             =   10020
       Width           =   675
    End
@@ -331,7 +361,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10320
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   5070
       Width           =   675
    End
@@ -352,7 +382,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10410
-      TabIndex        =   14
+      TabIndex        =   13
       Top             =   8340
       Width           =   675
    End
@@ -373,7 +403,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10380
-      TabIndex        =   12
+      TabIndex        =   11
       Top             =   6690
       Width           =   675
    End
@@ -394,7 +424,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10470
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   1800
       Width           =   675
    End
@@ -436,7 +466,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10350
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   3450
       Width           =   795
    End
@@ -640,10 +670,10 @@ Private Sub ListaCuerpos_Click()
     Call InitGrh(CurrentGrh, nGrh)
 End Sub
 
-Private Sub Listado_Click()
+Private Sub LynxGrh_Click()
     Dim nGrh As Long
 
-    nGrh = ReadField(1, Listado.Text, Asc(" "))
+    nGrh = LynxGrh.CellText(, 0)
 
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)
@@ -992,128 +1022,128 @@ End Sub
 
 Private Sub mnuBuscarGrh_Click()
 
-    On Error Resume Next
-
-    Dim i       As Long
-    Dim j       As Long
-    Dim Archivo As String
-
-    Archivo = InputBox("Ingrese el numero de GRH:")
-
-    If IsNumeric(Archivo) = False Then Exit Sub
-    If LenB(Archivo) > 0 And (Archivo < grhCount) And (Archivo > 0) Then
-
-        For i = 1 To grhCount
-
-            If GrhData(i).NumFrames >= 1 And i = Archivo Then
-                DoEvents
-
-                For j = 0 To 39000
-
-                    If ReadField(1, Listado.List(j), Asc(" ")) = Archivo Then
-                        MsgBox "GRH encontrado."
-                        Listado.ListIndex = j
-                        Exit Sub
-
-                    End If
-
-                Next
-
-            End If
-
-        Next
-        MsgBox "No se encontro el GRH."
-    Else
-        MsgBox "Nombre de GRH invalido."
-
-    End If
+'    On Error Resume Next
+'
+'    Dim i       As Long
+'    Dim j       As Long
+'    Dim Archivo As String
+'
+'    Archivo = InputBox("Ingrese el numero de GRH:")
+'
+'    If IsNumeric(Archivo) = False Then Exit Sub
+'    If LenB(Archivo) > 0 And (Archivo < grhCount) And (Archivo > 0) Then
+'
+'        For i = 1 To grhCount
+'
+'            If GrhData(i).NumFrames >= 1 And i = Archivo Then
+'                DoEvents
+'
+'                For j = 0 To 39000
+'
+'                    If ReadField(1, Listado.List(j), Asc(" ")) = Archivo Then
+'                        MsgBox "GRH encontrado."
+'                        Listado.ListIndex = j
+'                        Exit Sub
+'
+'                    End If
+'
+'                Next
+'
+'            End If
+'
+'        Next
+'        MsgBox "No se encontro el GRH."
+'    Else
+'        MsgBox "Nombre de GRH invalido."
+'
+'    End If
 
 End Sub
 
 Private Sub mnuBuscarGrhconPNG_Click()
 
-    On Error Resume Next
-
-    Dim i       As Long
-
-    Dim j       As Long
-
-    Dim Archivo As String
-
-    BuscarPNG = 0
-    mnuIrASBMP.Enabled = False
-    Archivo = InputBox("Ingrese el numero de grafico:")
-
-    If IsNumeric(Archivo) = False Then Exit Sub
-    If LenB(Archivo) > 0 And (Archivo > 0) Then
-
-        For i = 1 To grhCount
-
-            If GrhData(i).FileNum = Archivo Then
-
-                For j = 0 To Listado.ListCount - 1
-
-                    If ReadField(1, Listado.List(j), Asc(" ")) = i Then
-                        BuscarPNG = Archivo
-                        mnuIrASBMP.Enabled = True
-                        Listado.ListIndex = j
-                        Exit Sub
-
-                    End If
-
-                Next j
-
-            End If
-
-        Next i
-                
-        MsgBox "No se encontro el PNG."
-    Else
-        MsgBox "Nombre de PNG invalido."
-
-    End If
+'    On Error Resume Next
+'
+'    Dim i       As Long
+'
+'    Dim j       As Long
+'
+'    Dim Archivo As String
+'
+'    BuscarPNG = 0
+'    mnuIrASBMP.Enabled = False
+'    Archivo = InputBox("Ingrese el numero de grafico:")
+'
+'    If IsNumeric(Archivo) = False Then Exit Sub
+'    If LenB(Archivo) > 0 And (Archivo > 0) Then
+'
+'        For i = 1 To grhCount
+'
+'            If GrhData(i).FileNum = Archivo Then
+'
+'                For j = 0 To Listado.ListCount - 1
+'
+'                    If ReadField(1, Listado.List(j), Asc(" ")) = i Then
+'                        BuscarPNG = Archivo
+'                        mnuIrASBMP.Enabled = True
+'                        Listado.ListIndex = j
+'                        Exit Sub
+'
+'                    End If
+'
+'                Next j
+'
+'            End If
+'
+'        Next i
+'
+'        MsgBox "No se encontro el PNG."
+'    Else
+'        MsgBox "Nombre de PNG invalido."
+'
+'    End If
 
 End Sub
 
 Private Sub mnuIrABMP_Click()
 
-    On Error Resume Next
-
-    Dim i       As Long
-    Dim j       As Long
-    Dim Archivo As String
-
-    BuscarPNG = 0
-    mnuIrASBMP.Enabled = False
-    Archivo = InputBox("Ingrese el numero de PNG:")
-
-    If IsNumeric(Archivo) = False Then Exit Sub
-    If LenB(Archivo) > 0 And (Archivo > 0) Then
-
-        For i = 1 To grhCount
-
-            If GrhData(i).FileNum = Archivo Then
-
-                For j = 0 To Listado.ListCount - 1
-
-                    If ReadField(1, Listado.List(j), Asc(" ")) = i Then
-                        BuscarPNG = Archivo
-                        mnuIrASBMP.Enabled = True
-                        Listado.ListIndex = j
-                        Exit Sub
-
-                    End If
-
-                Next
-
-            End If
-
-        Next
-        MsgBox "No se encontro el PNG."
-    Else
-        MsgBox "Nombre de PNG invalido."
-
-    End If
+'    On Error Resume Next
+'
+'    Dim i       As Long
+'    Dim j       As Long
+'    Dim Archivo As String
+'
+'    BuscarPNG = 0
+'    mnuIrASBMP.Enabled = False
+'    Archivo = InputBox("Ingrese el numero de PNG:")
+'
+'    If IsNumeric(Archivo) = False Then Exit Sub
+'    If LenB(Archivo) > 0 And (Archivo > 0) Then
+'
+'        For i = 1 To grhCount
+'
+'            If GrhData(i).FileNum = Archivo Then
+'
+'                For j = 0 To Listado.ListCount - 1
+'
+'                    If ReadField(1, Listado.List(j), Asc(" ")) = i Then
+'                        BuscarPNG = Archivo
+'                        mnuIrASBMP.Enabled = True
+'                        Listado.ListIndex = j
+'                        Exit Sub
+'
+'                    End If
+'
+'                Next
+'
+'            End If
+'
+'        Next
+'        MsgBox "No se encontro el PNG."
+'    Else
+'        MsgBox "Nombre de PNG invalido."
+'
+'    End If
 
 End Sub
 

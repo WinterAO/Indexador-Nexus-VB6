@@ -59,7 +59,7 @@ Public Type tIndiceEscudos
 
 End Type
 
-Public Numheads        As Integer
+Public NumHeads        As Integer
 Public NumCuerpos      As Integer
 Public NumCascos       As Integer
 Public NumEscudosAnims As Integer
@@ -110,14 +110,11 @@ End Function
 Public Function LoadGrhData() As Boolean
 
     On Error GoTo ErrorHandler
-
-    Dim Grh        As Long
-
-    Dim Frame      As Long
-
-    Dim handle     As Integer
-
-    frmMain.Listado.Clear
+    
+    Dim K As Long
+    Dim Grh As Long
+    Dim Frame As Long
+    Dim handle As Integer
     
     If Not FileExist(DirCliente & "\Init\graficos.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Graficos.ind."
@@ -129,6 +126,16 @@ Public Function LoadGrhData() As Boolean
     handle = FreeFile()
     Open DirCliente & "\Init\Graficos.ind" For Binary Access Read As handle
     
+    With frmMain
+        
+        .LynxGrh.Clear
+        .LynxGrh.Redraw = False
+        .LynxGrh.Visible = False
+        .LynxGrh.AddColumn "Grh", 0
+        .LynxGrh.AddColumn "Tipo", 0
+        
+    End With
+    
     Get handle, , fileVersion
         
     Get handle, , grhCount
@@ -139,71 +146,71 @@ Public Function LoadGrhData() As Boolean
     While Grh <> grhCount
     
         Get handle, , Grh
+        
+        frmMain.LynxGrh.AddItem Grh
+        K = frmMain.LynxGrh.Rows - 1
+        frmMain.LynxGrh.CellText(K, 1) = Grh
     
         With GrhData(Grh)
 
             If Grh <> 0 Then
-                .active = True
+               
                 'Get number of frames
                 Get handle, , .NumFrames
-
                 If .NumFrames <= 0 Then GoTo ErrorHandler
+            
+                'Minimapa
+                .active = True
             
                 ReDim .Frames(1 To .NumFrames)
             
                 If .NumFrames > 1 Then
-                    frmMain.Listado.AddItem Grh & " (ANIMACION)"
+
+                    frmMain.LynxGrh.CellText(K, 1) = "ANIMACION"
 
                     For Frame = 1 To .NumFrames
                         Get handle, , .Frames(Frame)
-
                         If .Frames(Frame) <= 0 Or .Frames(Frame) > grhCount Then GoTo ErrorHandler
                     Next Frame
                 
                     Get handle, , .speed
-
                     If .speed <= 0 Then GoTo ErrorHandler
                     
                     .pixelHeight = GrhData(.Frames(1)).pixelHeight
-
                     If .pixelHeight <= 0 Then GoTo ErrorHandler
                     
                     .pixelWidth = GrhData(.Frames(1)).pixelWidth
-
                     If .pixelWidth <= 0 Then GoTo ErrorHandler
-
-                    ' .TileWidth = GrhData(.Frames(1)).TileWidth
-                    'If .TileWidth <= 0 Then GoTo ErrorHandler
-
-                    ' .TileHeight = GrhData(.Frames(1)).TileHeight
-                    'If .TileHeight <= 0 Then GoTo ErrorHandler
+                    
+                    .TileWidth = GrhData(.Frames(1)).TileWidth
+                    If .TileWidth <= 0 Then GoTo ErrorHandler
+                    
+                    .TileHeight = GrhData(.Frames(1)).TileHeight
+                    If .TileHeight <= 0 Then GoTo ErrorHandler
                 
                 Else
+                
+                    frmMain.LynxGrh.CellText(K, 1) = ""
+                    
                     'Read in normal GRH data
-                    frmMain.Listado.AddItem Grh
                     Get handle, , .FileNum
-
                     If .FileNum <= 0 Then GoTo ErrorHandler
                     
                     Get handle, , .pixelWidth
-
                     If .pixelWidth <= 0 Then GoTo ErrorHandler
                     
                     Get handle, , .pixelHeight
-
                     If .pixelHeight <= 0 Then GoTo ErrorHandler
                     
                     Get handle, , GrhData(Grh).sX
-
                     If .sX < 0 Then GoTo ErrorHandler
                     
                     Get handle, , .sY
-
                     If .sY < 0 Then GoTo ErrorHandler
                 
                     'Compute width and height
-                    '.TileWidth = .pixelWidth / TilePixelHeight
-                    '.TileHeight = .pixelHeight / TilePixelWidth
+                    .TileWidth = .pixelWidth / 32
+                    .TileHeight = .pixelHeight / 32
                 
                     .Frames(1) = Grh
 
@@ -217,12 +224,22 @@ Public Function LoadGrhData() As Boolean
     
     Close handle
     
+    frmMain.LynxGrh.Visible = True
+    frmMain.LynxGrh.Redraw = True
+    frmMain.LynxGrh.ColForceFit
+    
+    DoEvents
+    
     LoadGrhData = True
     Exit Function
 
 ErrorHandler:
     Close handle
     MsgBox "Error " & Err.Number & " durante la carga de Graficos.ind! La carga se ha detenido en GRH: " & Grh
+    
+    frmMain.LynxGrh.Visible = True
+    frmMain.LynxGrh.Redraw = True
+    frmMain.LynxGrh.ColForceFit
 
 End Function
 
@@ -305,12 +322,12 @@ Public Function CargarCabezas() As Boolean
     Open DirCliente & "\Init\head.ind" For Binary Access Read As #n
 
     'num de cabezas
-    Get #n, , Numheads
+    Get #n, , NumHeads
 
     'Resize array
-    ReDim heads(0 To Numheads) As tHead
+    ReDim heads(0 To NumHeads) As tHead
             
-        For i = 1 To Numheads
+        For i = 1 To NumHeads
             Get #n, , heads(i).Std
             Get #n, , heads(i).Texture
             Get #n, , heads(i).startX
