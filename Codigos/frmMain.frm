@@ -29,7 +29,7 @@ Begin VB.Form frmMain
    Begin Indexador_Nexus.LynxGrid LynxGrh 
       Height          =   10245
       Left            =   90
-      TabIndex        =   31
+      TabIndex        =   4
       Top             =   420
       Width           =   2205
       _ExtentX        =   3889
@@ -72,7 +72,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   29
+      TabIndex        =   30
       Top             =   10290
       Width           =   2700
    End
@@ -91,7 +91,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   585
       Left            =   120
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   10740
       Width           =   9405
       Begin VB.TextBox txtFrame 
@@ -101,7 +101,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   5
          Left            =   8370
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   220
          Width           =   645
       End
@@ -112,7 +112,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   4
          Left            =   7020
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   225
          Width           =   645
       End
@@ -123,7 +123,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   3
          Left            =   5400
-         TabIndex        =   22
+         TabIndex        =   23
          Top             =   220
          Width           =   645
       End
@@ -134,7 +134,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   2
          Left            =   4230
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   220
          Width           =   645
       End
@@ -145,7 +145,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   1
          Left            =   2820
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   225
          Width           =   645
       End
@@ -156,7 +156,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   0
          Left            =   990
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   220
          Width           =   645
       End
@@ -167,7 +167,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   7830
-         TabIndex        =   28
+         TabIndex        =   29
          Top             =   270
          Width           =   645
       End
@@ -178,7 +178,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   6390
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   270
          Width           =   645
       End
@@ -188,7 +188,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   5190
-         TabIndex        =   23
+         TabIndex        =   24
          Top             =   270
          Width           =   645
       End
@@ -199,7 +199,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   4020
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   270
          Width           =   645
       End
@@ -210,7 +210,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   150
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   240
          Width           =   795
       End
@@ -221,7 +221,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   2100
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   270
          Width           =   645
       End
@@ -245,7 +245,7 @@ Begin VB.Form frmMain
       Locked          =   -1  'True
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   30
+      TabIndex        =   31
       Top             =   11340
       Width           =   9405
    End
@@ -255,7 +255,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   10
+      TabIndex        =   11
       Top             =   5340
       Width           =   2700
    End
@@ -265,7 +265,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   14
+      TabIndex        =   15
       Top             =   8610
       Width           =   2700
    End
@@ -275,7 +275,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   6960
       Width           =   2700
    End
@@ -285,7 +285,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   6
+      TabIndex        =   7
       Top             =   2070
       Width           =   2700
    End
@@ -295,7 +295,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   390
       Width           =   2700
    End
@@ -308,7 +308,7 @@ Begin VB.Form frmMain
       ScaleHeight     =   687
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   478
-      TabIndex        =   3
+      TabIndex        =   5
       TabStop         =   0   'False
       Top             =   360
       Width           =   7200
@@ -319,7 +319,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   8
+      TabIndex        =   9
       Top             =   3720
       Width           =   2700
    End
@@ -340,7 +340,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10410
-      TabIndex        =   15
+      TabIndex        =   16
       Top             =   10020
       Width           =   675
    End
@@ -361,7 +361,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10320
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   5070
       Width           =   675
    End
@@ -382,7 +382,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10410
-      TabIndex        =   13
+      TabIndex        =   14
       Top             =   8340
       Width           =   675
    End
@@ -403,7 +403,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10380
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   6690
       Width           =   675
    End
@@ -424,7 +424,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10470
-      TabIndex        =   5
+      TabIndex        =   6
       Top             =   1800
       Width           =   675
    End
@@ -466,7 +466,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10350
-      TabIndex        =   7
+      TabIndex        =   8
       Top             =   3450
       Width           =   795
    End
@@ -590,12 +590,14 @@ Begin VB.Form frmMain
       Caption         =   "&Edición"
       Begin VB.Menu mnuBuscarGrh 
          Caption         =   "&Buscar Grh"
+         Enabled         =   0   'False
       End
       Begin VB.Menu mnuLine1 
          Caption         =   "-"
       End
       Begin VB.Menu mnuBuscarGrhconPNG 
          Caption         =   "&Buscar Grh con PNG"
+         Enabled         =   0   'False
       End
       Begin VB.Menu mnuIrASBMP 
          Caption         =   "&Buscar Siguiente PNG"

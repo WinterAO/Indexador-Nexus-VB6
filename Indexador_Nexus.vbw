@@ -1,8 +1,8 @@
-frmMain = 52, 52, 1873, 910, , 26, 26, 1323, 662, C
+frmMain = 52, 52, 1873, 910, C, 26, 26, 1323, 662, C
 modCarga = 156, 156, 1977, 1014, Z
 modGeneral = 104, 104, 1925, 962, 
 modDeclaraciones = 104, 104, 1925, 962, C
-mod_TileEngine = 156, 156, 1977, 1014, C
+mod_TileEngine = 156, 156, 1977, 1014, 
 frmCargando = 0, 0, 0, 0, C, 208, 208, 2029, 1066, C
 modExportacion = 104, 104, 1925, 962, 
 modIndexacion = 234, 234, 2055, 1092, 
@@ -21,4 +21,4 @@ mDx8_Particulas = 286, 286, 2107, 1118, C
 clsByteBuffer = 0, 0, 0, 0, C
 frmParticleEditor = 130, 130, 1951, 962, C, 416, 416, 2237, 1248, C
 ModParticulas = 156, 156, 1977, 988, C
-LynxGrid = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+LynxGrid = 0, 0, 0, 0, C, 182, 182, 2003, 1014, C
