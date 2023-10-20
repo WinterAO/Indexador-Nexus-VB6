@@ -171,108 +171,89 @@ End Function
 
 Public Function IndexarCabezas() As Boolean
 
-    On Error GoTo ErrorHandler:
+On Error GoTo fallo
 
-    Dim handle     As Integer
-    Dim i          As Long
-    Dim nheads     As Integer
-    Dim Leer       As New clsIniReader
-
-    handle = FreeFile()
+    Dim i As Integer, j, K As Integer
+    Dim nF As Integer
+    Dim NumHeads As Integer
     
-    Call Leer.Initialize(DirExport & "\Head.ini")
-
-    If Leer.KeyExists("INIT") = False Then
-        MsgBox "Formato invalido!", vbCritical
-        Exit Function
-
-    End If
-
-    nheads = Val(Leer.GetValue("INIT", "NumHeads"))
-
-    If (nheads > 200000 Or nheads <= 0) Then
-        MsgBox "La valor de 'nHeads' es invalido!", vbCritical
-        Exit Function
-
-    End If
-
-    If LenB(Dir(DirIndex & "\head.ind")) <> 0 Then Call Kill(DirIndex & "\head.ind")
     DoEvents
-
-    Open DirIndex & "\head.ind" For Binary Access Write As handle
-
-    Put handle, , nheads
     
-    ReDim HeadsT(0 To nheads) As tHead
+    Dim LeerINI As New clsIniReader
+    Call LeerINI.Initialize(DirExport & "Head.ini")
     
-    For i = 1 To Numheads
-        HeadsT(i).Std = Val(Leer.GetValue("HEAD" & i, "Std"))
-        HeadsT(i).Texture = Val(Leer.GetValue("HEAD" & i, "FileNum"))
-        HeadsT(i).startX = Val(Leer.GetValue("HEAD" & i, "OffSetX"))
-        HeadsT(i).startY = Val(Leer.GetValue("HEAD" & i, "OffSetY"))
+    NumHeads = CInt(LeerINI.GetValue("INIT", "NumHeads"))
+    
+    ReDim HeadsT(0 To NumHeads) As tHead
+    
+    For i = 1 To NumHeads
+        HeadsT(i).Std = Val(LeerINI.GetValue("HEAD" & i, "Std"))
+        HeadsT(i).Texture = Val(LeerINI.GetValue("HEAD" & i, "FileNum"))
+        HeadsT(i).startX = Val(LeerINI.GetValue("HEAD" & i, "OffSetX"))
+        HeadsT(i).startY = Val(LeerINI.GetValue("HEAD" & i, "OffSetY"))
     Next i
-
-    Close handle
     
+    nF = FreeFile
+    Open DirIndex & "Head.ind" For Binary Access Write As #nF
+    
+    Put #nF, , NumHeads
+    
+    For i = 1 To NumHeads
+        Put #nF, , HeadsT(i)
+    Next
+    
+    DoEvents
+    Close #nF
     IndexarCabezas = True
+    
     Exit Function
-
-ErrorHandler:
-    Close handle
+    
+fallo:
+    MsgBox "Error en Cabezas.ini"
     IndexarCabezas = False
     
 End Function
 
 Public Function IndexarCascos() As Boolean
 
-    On Error GoTo ErrorHandler:
+ On Error GoTo fallo
 
-    Dim handle    As Integer
-    Dim i         As Long
-    Dim nHelmets  As Integer
-    Dim Leer      As New clsIniReader
-
-    handle = FreeFile()
+    Dim i As Integer, j, K As Integer
+    Dim nF As Integer
+    Dim NumCascos As Integer
     
-    Call Leer.Initialize(DirExport & "\Helmet.ini")
-
-    If Leer.KeyExists("INIT") = False Then
-        MsgBox "Formato invalido!", vbCritical
-        Exit Function
-
-    End If
-
-    nHelmets = Val(Leer.GetValue("INIT", "NumCascos"))
-
-    If (nHelmets > 200000 Or nHelmets <= 0) Then
-        MsgBox "La valor de 'nHelmets' es invalido!", vbCritical
-        Exit Function
-
-    End If
-
-    If LenB(Dir(DirIndex & "\helmet.ind")) <> 0 Then Call Kill(DirIndex & "\helmet.ind")
     DoEvents
-
-    Open DirIndex & "\helmet.ind" For Binary Access Write As handle
-
-    Put handle, , nHelmets
+    
+    Dim LeerINI As New clsIniReader
+    Call LeerINI.Initialize(DirExport & "Helmet.ini")
+    
+    NumCascos = CInt(LeerINI.GetValue("INIT", "NumCascos"))
     
     ReDim HelmesT(0 To NumCascos) As tHead
     
     For i = 1 To NumCascos
-        HelmesT(i).Std = Val(Leer.GetValue("CASCO" & i, "Std"))
-        HelmesT(i).Texture = Val(Leer.GetValue("CASCO" & i, "FileNum"))
-        HelmesT(i).startX = Val(Leer.GetValue("CASCO" & i, "OffSetX"))
-        HelmesT(i).startY = Val(Leer.GetValue("CASCO" & i, "OffSetY"))
+        HelmesT(i).Std = Val(LeerINI.GetValue("CASCO" & i, "Std"))
+        HelmesT(i).Texture = Val(LeerINI.GetValue("CASCO" & i, "FileNum"))
+        HelmesT(i).startX = Val(LeerINI.GetValue("CASCO" & i, "OffSetX"))
+        HelmesT(i).startY = Val(LeerINI.GetValue("CASCO" & i, "OffSetY"))
     Next i
-
-    Close handle
     
-    IndexarCascos = True
-    Exit Function
+    nF = FreeFile
+    Open DirIndex & "Helmet.ind" For Binary Access Write As #nF
+    
+    Put #nF, , NumCascos
+    
+    For i = 1 To NumCascos
+        Put #nF, , HelmesT(i)
+    Next
 
-ErrorHandler:
-    Close handle
+    DoEvents
+    Close #nF
+    IndexarCascos = True
+    
+    Exit Function
+fallo:
+    MsgBox "Error en Cabezas.ini"
     IndexarCascos = False
     
 End Function
@@ -598,4 +579,112 @@ Public Function IndexarParticulas() As Boolean
 ErrorHandler:
     Close handle
     IndexarParticulas = False
+End Function
+
+Public Function IndexarColores() As Boolean
+'*************************************
+'Autor: Lorwik
+'Fecha: 30/08/2020
+'Descripción: Guarda los colores en un archivo binario
+'*************************************
+
+    Dim n As Integer
+    
+    If CargarColores Then
+    
+        n = FreeFile
+        Open DirIndex & "\Colores.ind" For Binary Access Write As #n
+        
+        Put #n, , ColoresPJ
+        
+        Close #n
+        DoEvents
+        
+        IndexarColores = True
+    
+    Else
+    
+        frmMain.GRHt.Text = "Error al indexar Colores.dat. No se ha podido leer el archivo de origen."
+        IndexarColores = False
+        
+    End If
+    
+    Exit Function
+
+ErrorHandler:
+    Close #n
+    IndexarColores = False
+End Function
+
+Public Function IndexarGUI() As Boolean
+'*************************************
+'Autor: Lorwik
+'Fecha: 30/08/2020
+'Descripción: Guarda la GUI en un archivo binario
+'*************************************
+
+    On Error GoTo ErrorHandler:
+
+    Dim n               As Integer
+    Dim Leer            As New clsIniReader
+    Dim i               As Integer
+    Dim NumButtons      As Integer
+    Dim NumConnectMap   As Byte
+
+    If FileExist(DirExport & "GUI.dat", vbArchive) = True Then
+        Call Leer.Initialize(DirExport & "GUI.dat")
+        
+        n = FreeFile
+        Open DirIndex & "\GUI.ind" For Binary Access Write As #n
+            
+            NumButtons = Val(Leer.GetValue("INIT", "NumButtons"))
+            Put #n, , NumButtons
+            
+            NumConnectMap = Val(Leer.GetValue("INIT", "NumMaps"))
+            Put #n, , NumConnectMap
+            
+            'Mapas de GUI
+            For i = 1 To NumConnectMap
+                Put #n, , CInt(Leer.GetValue("MAPA" & i, "Map"))
+                Put #n, , CInt(Leer.GetValue("MAPA" & i, "X"))
+                Put #n, , CInt(Leer.GetValue("MAPA" & i, "Y"))
+            Next i
+            
+            'Posiciones de los PJ
+            For i = 1 To 10
+                Put #n, , CInt(Leer.GetValue("PJPos" & i, "X"))
+                Put #n, , CInt(Leer.GetValue("PJPos" & i, "Y"))
+            Next i
+            
+            'Posiciones de los botones
+            For i = 1 To NumButtons
+                Put #n, , CInt(Leer.GetValue("BUTTON" & i, "X"))
+                Put #n, , CInt(Leer.GetValue("BUTTON" & i, "Y"))
+                Put #n, , CInt(Leer.GetValue("BUTTON" & i, "PosX"))
+                Put #n, , CInt(Leer.GetValue("BUTTON" & i, "PosY"))
+                Put #n, , CLng(Leer.GetValue("BUTTON" & i, "GrhNormal"))
+       
+            Next i
+        
+        Close #n
+        DoEvents
+        
+        IndexarGUI = True
+        
+    Else
+    
+        frmMain.GRHt.Text = "Error al indexar GUID.dat. No se ha encontrado el archivo de origen."
+        
+        IndexarGUI = False
+    
+    End If
+    
+    Set Leer = Nothing
+     
+    Exit Function
+
+ErrorHandler:
+    Set Leer = Nothing
+    Close #n
+    IndexarGUI = False
 End Function

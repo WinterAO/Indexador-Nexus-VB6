@@ -36,6 +36,10 @@ Public Type tColor
 
 End Type
 
+'Colores
+Public Const MAXCOLORES As Byte = 56
+Public ColoresPJ(0 To MAXCOLORES) As tColor
+
 Public Const SW_NORMAL = 1
 
 Public Declare Function ShellExecute _

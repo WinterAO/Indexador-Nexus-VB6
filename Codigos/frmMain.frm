@@ -32,7 +32,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   10170
       Left            =   60
-      TabIndex        =   31
+      TabIndex        =   3
       Top             =   360
       Width           =   2235
    End
@@ -42,7 +42,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   29
+      TabIndex        =   30
       Top             =   10290
       Width           =   2700
    End
@@ -61,7 +61,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   585
       Left            =   120
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   10740
       Width           =   9405
       Begin VB.TextBox txtFrame 
@@ -71,7 +71,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   5
          Left            =   8370
-         TabIndex        =   28
+         TabIndex        =   26
          Top             =   220
          Width           =   645
       End
@@ -82,7 +82,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   4
          Left            =   7020
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   225
          Width           =   645
       End
@@ -93,7 +93,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   3
          Left            =   5400
-         TabIndex        =   26
+         TabIndex        =   23
          Top             =   220
          Width           =   645
       End
@@ -104,7 +104,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   2
          Left            =   4230
-         TabIndex        =   25
+         TabIndex        =   21
          Top             =   220
          Width           =   645
       End
@@ -115,7 +115,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   1
          Left            =   2820
-         TabIndex        =   24
+         TabIndex        =   27
          Top             =   225
          Width           =   645
       End
@@ -126,7 +126,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   0
          Left            =   990
-         TabIndex        =   23
+         TabIndex        =   19
          Top             =   220
          Width           =   645
       End
@@ -137,7 +137,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   7830
-         TabIndex        =   22
+         TabIndex        =   29
          Top             =   270
          Width           =   645
       End
@@ -148,7 +148,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   6390
-         TabIndex        =   21
+         TabIndex        =   25
          Top             =   270
          Width           =   645
       End
@@ -158,7 +158,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   5190
-         TabIndex        =   20
+         TabIndex        =   24
          Top             =   270
          Width           =   645
       End
@@ -169,7 +169,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   4020
-         TabIndex        =   19
+         TabIndex        =   22
          Top             =   270
          Width           =   645
       End
@@ -191,7 +191,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   2100
-         TabIndex        =   17
+         TabIndex        =   20
          Top             =   270
          Width           =   645
       End
@@ -201,7 +201,7 @@ Begin VB.Form frmMain
       Height          =   225
       Left            =   4110
       Pattern         =   "*.bmp"
-      TabIndex        =   15
+      TabIndex        =   0
       Top             =   30
       Visible         =   0   'False
       Width           =   1575
@@ -215,7 +215,7 @@ Begin VB.Form frmMain
       Locked          =   -1  'True
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   14
+      TabIndex        =   31
       Top             =   11340
       Width           =   9405
    End
@@ -225,7 +225,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   12
+      TabIndex        =   11
       Top             =   5340
       Width           =   2700
    End
@@ -235,7 +235,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   10
+      TabIndex        =   15
       Top             =   8610
       Width           =   2700
    End
@@ -245,7 +245,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   8
+      TabIndex        =   13
       Top             =   6960
       Width           =   2700
    End
@@ -255,7 +255,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   6
+      TabIndex        =   7
       Top             =   2070
       Width           =   2700
    End
@@ -265,7 +265,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   4
+      TabIndex        =   5
       Top             =   390
       Width           =   2700
    End
@@ -278,7 +278,7 @@ Begin VB.Form frmMain
       ScaleHeight     =   687
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   478
-      TabIndex        =   3
+      TabIndex        =   4
       TabStop         =   0   'False
       Top             =   360
       Width           =   7200
@@ -289,7 +289,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1395
       Left            =   9570
-      TabIndex        =   0
+      TabIndex        =   9
       Top             =   3720
       Width           =   2700
    End
@@ -310,7 +310,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10410
-      TabIndex        =   30
+      TabIndex        =   16
       Top             =   10020
       Width           =   675
    End
@@ -331,7 +331,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10320
-      TabIndex        =   13
+      TabIndex        =   10
       Top             =   5070
       Width           =   675
    End
@@ -352,7 +352,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10410
-      TabIndex        =   11
+      TabIndex        =   14
       Top             =   8340
       Width           =   675
    End
@@ -373,7 +373,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10380
-      TabIndex        =   9
+      TabIndex        =   12
       Top             =   6690
       Width           =   675
    End
@@ -394,7 +394,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10470
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   1800
       Width           =   675
    End
@@ -415,7 +415,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10380
-      TabIndex        =   5
+      TabIndex        =   2
       Top             =   120
       Width           =   810
    End
@@ -436,7 +436,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   240
       Left            =   10350
-      TabIndex        =   2
+      TabIndex        =   8
       Top             =   3450
       Width           =   795
    End
@@ -464,20 +464,17 @@ Begin VB.Form frmMain
       Caption         =   "&Archivo"
       Begin VB.Menu mnuExportar 
          Caption         =   "Exportar..."
-         Begin VB.Menu mnuExportarTodo 
-            Caption         =   "TODO"
-         End
          Begin VB.Menu mnuExportarGraficos 
             Caption         =   "Graficos.ind"
          End
          Begin VB.Menu mnuExportarCabezas 
-            Caption         =   "Cascos.ind"
+            Caption         =   "Head.ind"
+         End
+         Begin VB.Menu mnuExportarCascos 
+            Caption         =   "Helmet.ind"
          End
          Begin VB.Menu mnuExportarCuerpos 
             Caption         =   "Personajes.ind"
-         End
-         Begin VB.Menu mnuExportarCascos 
-            Caption         =   "Cascos.ind"
          End
          Begin VB.Menu mnuExportarFxs 
             Caption         =   "FXs.ind"
@@ -488,23 +485,29 @@ Begin VB.Form frmMain
          Begin VB.Menu mnuExportarColores 
             Caption         =   "Colores.ind"
          End
+         Begin VB.Menu mnuExportarGUI 
+            Caption         =   "GUI.ind"
+         End
+         Begin VB.Menu mnuLine5 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuExportarTodo 
+            Caption         =   "TODO"
+         End
       End
       Begin VB.Menu mnuIndexar 
          Caption         =   "Indexar..."
-         Begin VB.Menu mnuIndexarTodo 
-            Caption         =   "&TODO"
-         End
          Begin VB.Menu mnuIndexarGraficos 
             Caption         =   "Graficos.ini"
          End
          Begin VB.Menu mnuIndexarCabezas 
-            Caption         =   "Cabezas.ini"
+            Caption         =   "Head.ini"
          End
          Begin VB.Menu mnuIndexarPersonajes 
             Caption         =   "Personajes.ini"
          End
          Begin VB.Menu mnuIndexarCascos 
-            Caption         =   "Cascos.ini"
+            Caption         =   "Helmet.ini"
          End
          Begin VB.Menu mnuIndexarArmas 
             Caption         =   "Armas.ini"
@@ -520,6 +523,15 @@ Begin VB.Form frmMain
          End
          Begin VB.Menu mnuIndexarColores 
             Caption         =   "Colores.ini"
+         End
+         Begin VB.Menu mnuIndexarGUI 
+            Caption         =   "GUI.ini"
+         End
+         Begin VB.Menu mnuLine4 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuIndexarTodo 
+            Caption         =   "&TODO"
          End
       End
       Begin VB.Menu mnuGenerarMinimapa 
@@ -978,7 +990,6 @@ Private Sub mnuBuscarErrDim_Click()
 
 End Sub
 
-
 Private Sub mnuBuscarGrh_Click()
 
     On Error Resume Next
@@ -1151,6 +1162,10 @@ Private Sub cmdExportarParticulas_Click()
     Call ExportarParticulas
 End Sub
 
+Private Sub mnuExportarColores_Click()
+    Call ExportarColores
+End Sub
+
 Private Sub mnuExportarTodo_Click()
     Call ExportarGraficos
     Call ExportarFxs
@@ -1158,6 +1173,8 @@ Private Sub mnuExportarTodo_Click()
     Call ExportarCascos
     Call ExportarCabezas
     Call ExportarParticulas
+    Call ExportarColores
+    'Call ExportarGUI
 End Sub
 
 Private Sub mnuGenerarMinimapa_Click()
@@ -1168,9 +1185,9 @@ Private Sub mnuIndexarGraficos_Click()
     DoEvents
 
     If IndexarGraficos Then
-        MsgBox "Graficos.ind creado..."
+        GRHt.Text = "Graficos.ind compilado..."
     Else
-        MsgBox "Error al crear Graficos.ind..."
+        MsgBox "Error al compilar Graficos.ind..."
 
     End If
 
@@ -1178,9 +1195,9 @@ End Sub
 
 Private Sub mnuIndexarCabezas_Click()
     If IndexarCabezas Then
-        MsgBox "Head.ind creado..."
+        GRHt.Text = "Head.ind compilado..."
     Else
-        MsgBox "Error al crear Head.ind..."
+        MsgBox "Error al compilar Head.ind..."
 
     End If
 End Sub
@@ -1189,9 +1206,9 @@ Private Sub mnuIndexarPersonajes_Click()
     DoEvents
     
     If IndexarCuerpos Then
-        MsgBox "Personajes.ind creado..."
+        GRHt.Text = "Personajes.ind compilado..."
     Else
-        MsgBox "Error al crear Personajes.ind..."
+        MsgBox "Error al compilar Personajes.ind..."
     End If
     
 End Sub
@@ -1200,9 +1217,9 @@ Private Sub mnuIndexarCascos_Click()
     DoEvents
     
     If IndexarCascos Then
-        MsgBox "Helmet.ind creado..."
+        GRHt.Text = "Helmet.ind compilado..."
     Else
-        MsgBox "Error al crear Helmet.ind..."
+        MsgBox "Error al compilar Helmet.ind..."
     End If
 End Sub
 
@@ -1210,9 +1227,9 @@ Private Sub mnuIndexarArmas_Click()
     DoEvents
     
     If IndexarArmas Then
-        MsgBox "Armas.ind creado..."
+        GRHt.Text = "Armas.ind compilado..."
     Else
-        MsgBox "Error al crear Armas.ind..."
+        MsgBox "Error al compilar Armas.ind..."
     End If
 End Sub
 
@@ -1220,9 +1237,9 @@ Private Sub mnuIndexarEscudos_Click()
     DoEvents
     
     If IndexarEscudos Then
-        MsgBox "Escudos.ind creado..."
+        GRHt.Text = "Escudos.ind compilado..."
     Else
-        MsgBox "Error al crear Escudos.ind..."
+        MsgBox "Error al compilar Escudos.ind..."
     End If
 End Sub
 
@@ -1230,9 +1247,9 @@ Private Sub mnuIndexarFXs_Click()
     DoEvents
     
     If IndexarFXs Then
-        MsgBox "FXs.ind creado..."
+        GRHt.Text = "FXs.ind compilado..."
     Else
-        MsgBox "Error al crear FXs.ind..."
+        MsgBox "Error al compilar FXs.ind..."
     End If
 End Sub
 
@@ -1240,9 +1257,26 @@ Private Sub mnuIndexarParticulas_Click()
     DoEvents
     
     If IndexarParticulas Then
-        MsgBox "Particulas.ind creado..."
+        GRHt.Text = "Particulas.ind compilado..."
     Else
-        MsgBox "Error al crear Particulas.ind..."
+        MsgBox "Error al compilar Particulas.ind..."
+    End If
+End Sub
+
+Private Sub mnuIndexarColores_Click()
+
+    If IndexarColores Then
+        GRHt.Text = "Colores.ind compilado..."
+    Else
+        MsgBox "Error al compilar Colores.ind..."
+    End If
+End Sub
+
+Private Sub mnuIndexarGUI_Click()
+    If IndexarGUI Then
+        GRHt.Text = "GUI.ind compilado..."
+    Else
+        MsgBox "Error al compilar GUI.ind..."
     End If
 End Sub
 
@@ -1256,6 +1290,8 @@ Private Sub mnuIndexarTodo_Click()
     Call mnuIndexarEscudos_Click
     Call mnuIndexarFXs_Click
     Call mnuIndexarParticulas_Click
+    Call mnuIndexarColores_Click
+    Call mnuIndexarGUI_Click
     
 End Sub
 

@@ -34,22 +34,22 @@ X=637
 Y=627
 
 [MAPA1] 'Crear PJ
-Map=13
+Map=1
 X=55
 Y=10
 
 [MAPA2] 'Cuentas
-Map=52
+Map=1
 X=15
 Y=17
 
 [MAPA3]
-Map=65
+Map=1
 X=33
 Y=45
 
 [MAPA4]
-Map=97
+Map=1
 X=30
 Y=55
 

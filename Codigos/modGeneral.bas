@@ -33,37 +33,41 @@ Public Sub Main()
     frmCargando.lblstatus.Caption = "Cargando Tile Engine..."
     Call InitTileEngine(frmMain.hwnd, 32, 32, 8, 8)
     
-    frmCargando.lblstatus.Caption = "Cargando Graficos.ind"
+    frmCargando.lblstatus.Caption = "Cargando Graficos"
     DoEvents
     Call LoadGrhData
     
-    frmCargando.lblstatus.Caption = "Cargando Personajes.ind"
+    frmCargando.lblstatus.Caption = "Cargando Personajes"
     DoEvents
     Call CargarCuerpos
 
-    frmCargando.lblstatus.Caption = "Cargando head.ind"
+    frmCargando.lblstatus.Caption = "Cargando head"
     DoEvents
     Call CargarCabezas
 
-    frmCargando.lblstatus.Caption = "Cargando Helmet.ind"
+    frmCargando.lblstatus.Caption = "Cargando Helmet"
     DoEvents
     Call CargarCascos
 
-    frmCargando.lblstatus.Caption = "Cargando Escudos.ind"
+    frmCargando.lblstatus.Caption = "Cargando Escudos"
     DoEvents
     Call CargarEscudos
 
-    frmCargando.lblstatus.Caption = "Cargando Armas.ind"
+    frmCargando.lblstatus.Caption = "Cargando Armas"
     DoEvents
     Call CargarAnimArmas
 
-    frmCargando.lblstatus.Caption = "Cargando Fxs.ind"
+    frmCargando.lblstatus.Caption = "Cargando Fxs"
     DoEvents
     Call CargarFxs
     
-    frmCargando.lblstatus.Caption = "Cargando Particulas.ind"
+    frmCargando.lblstatus.Caption = "Cargando Particulas"
     DoEvents
     Call CargarParticulas
+    
+    frmCargando.lblstatus.Caption = "Cargando Colores"
+    DoEvents
+    Call CargarColores
     
     ReDim MapData(XMinMapSize To XMaxMapSize, YMinMapSize To YMaxMapSize) As MapBlock
     

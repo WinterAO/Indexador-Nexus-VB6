@@ -638,3 +638,28 @@ Sub CargarParticulas()
     Next LoopC
 
 End Sub
+
+Public Function CargarColores() As Boolean
+
+On Error GoTo errhandler:
+
+    If Not FileExist(DirExport & "colores.dat", vbNormal) Then Exit Function
+
+    Dim LeerINI As New clsIniReader
+    Call LeerINI.Initialize(DirExport & "colores.dat")
+    
+    Dim i As Long
+    
+    For i = 0 To MAXCOLORES '48, 49 y 50 reservados para atacables, ciudadano y criminal
+        ColoresPJ(i).R = LeerINI.GetValue(CStr(i), "R")
+        ColoresPJ(i).G = LeerINI.GetValue(CStr(i), "G")
+        ColoresPJ(i).B = LeerINI.GetValue(CStr(i), "B")
+    Next i
+    
+    Set LeerINI = Nothing
+    
+    CargarColores = True
+    
+errhandler:
+
+End Function

@@ -325,3 +325,41 @@ Public Sub ExportarParticulas()
     frmMain.GRHt.Text = "Exportado...Particulas.ini"
 
 End Sub
+
+Public Sub ExportarColores()
+'*************************************
+'Autor: Lorwik
+'Fecha: 05/04/2021
+'Descripción: Desindexa los Colores
+'*************************************
+On Error Resume Next
+    Dim i As Integer, j, n, K As Integer
+    Dim Datos As String
+    
+    frmMain.GRHt.Text = "Exportando..."
+    DoEvents
+    
+    If FileExist(DirExport & "Colores.dat", vbArchive) = True Then Call Kill(DirExport & "Colores.dat")
+    
+    Datos = "'Permite customizar los colores de los PJs"
+    Datos = Datos & "'todos los valores deben estar entre 0 y 255"
+    Datos = Datos & "'los rangos van de 1 a 48 (inclusive). El 0 y el 49,50 estan reservados. Mas arriba son ignorados." & vbCrLf & vbCrLf
+    
+    For i = 0 To MAXCOLORES
+        Datos = Datos & "[" & (i) & "]" & vbCrLf
+        Datos = Datos & "R=" & ColoresPJ(i).R & vbCrLf
+        Datos = Datos & "G=" & ColoresPJ(i).R & vbCrLf
+        Datos = Datos & "B=" & ColoresPJ(i).R & vbCrLf & vbCrLf
+    Next
+    
+    frmMain.GRHt.Text = "Guardando...Colores.dat"
+    DoEvents
+    
+    Open (DirExport & "Colores.dat") For Binary Access Write As #1
+    Put #1, , Datos
+    Close #1
+    
+    DoEvents
+    
+    frmMain.GRHt.Text = "Exportado...Colores.dat"
+End Sub
