@@ -646,6 +646,9 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
+      Begin VB.Menu mnuIndexMemory 
+         Caption         =   "Indexar desde Memoria"
+      End
       Begin VB.Menu mnuExportar 
          Caption         =   "Exportar..."
          Begin VB.Menu mnuExportarGraficos 
@@ -1108,6 +1111,15 @@ Private Sub mnuBuscarDuplicados_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuIndexMemory_Click()
+    If IndexarfromMemory Then
+        GRHt.Text = "Graficos.ind compilado..."
+    Else
+        MsgBox "Error al compilar Graficos.ind..."
+
+    End If
 End Sub
 
 Private Sub mnuIndexPNG_Click()

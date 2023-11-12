@@ -112,6 +112,74 @@ ErrorHandler:
 
 End Function
 
+Public Function IndexarfromMemory() As Boolean
+
+    On Error GoTo ErrorHandler:
+
+    Dim Grh    As Long
+
+    Dim handle As Integer
+
+    Dim frame  As Long
+    
+    handle = FreeFile()
+
+    If LenB(Dir(DirIndex & "\graficos.ind")) <> 0 Then Call Kill(DirIndex & "\graficos.ind")
+    DoEvents
+    
+    frmMain.GRHt.Text = "Indexando " & grhCount & " Grh's"
+    
+    Open DirIndex & "\graficos.ind" For Binary Access Write As handle
+    
+    Seek handle, 1
+
+    fileVersion = fileVersion + 1
+
+    Put handle, , fileVersion
+    Put handle, , grhCount
+    
+    For Grh = 1 To grhCount
+        
+        With GrhData(Grh)
+
+            If .NumFrames > 1 Then
+                Put handle, , Grh
+                
+                Put handle, , .NumFrames
+
+                For frame = 1 To .NumFrames
+                    Put handle, , .Frames(frame)
+                Next frame
+                
+                Put handle, , .speed
+                
+            ElseIf .NumFrames = 1 Then
+                Put handle, , Grh
+                Put handle, , .NumFrames
+                Put handle, , .FileNum
+                Put handle, , .pixelWidth
+                Put handle, , .pixelHeight
+                Put handle, , .sX
+                Put handle, , .sY
+
+            End If
+            
+        End With
+
+    Next Grh
+    
+    Close handle
+    
+    IndexarfromMemory = True
+
+    Exit Function
+    
+ErrorHandler:
+    Close handle
+    IndexarfromMemory = False
+
+End Function
+
 Public Function IndexarCuerpos() As Boolean
 
     On Error GoTo ErrorHandler:
