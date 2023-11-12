@@ -1,6 +1,8 @@
 Attribute VB_Name = "modDeclaraciones"
 Option Explicit
 
+Public isList As Boolean
+
 Public ParticleIndex As Integer
 
 Public DataChanged As Boolean
@@ -30,9 +32,9 @@ End Enum
 
 Public Type tColor
 
-    R As Long
-    G As Long
-    B As Long
+    R As Byte
+    G As Byte
+    B As Byte
 
 End Type
 

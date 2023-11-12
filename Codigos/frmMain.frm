@@ -3,10 +3,10 @@ Begin VB.Form frmMain
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Indexador Nexus"
-   ClientHeight    =   11865
+   ClientHeight    =   11625
    ClientLeft      =   45
    ClientTop       =   690
-   ClientWidth     =   12360
+   ClientWidth     =   13095
    ControlBox      =   0   'False
    BeginProperty Font 
       Name            =   "Tahoma"
@@ -22,18 +22,46 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   791
+   ScaleHeight     =   775
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   824
+   ScaleWidth      =   873
    StartUpPosition =   1  'CenterOwner
+   Begin Indexador_Nexus.lvButtons_H LvBNuevoGrh 
+      Height          =   405
+      Left            =   1020
+      TabIndex        =   34
+      Top             =   9990
+      Width           =   1275
+      _ExtentX        =   2249
+      _ExtentY        =   714
+      Caption         =   "Nuevo"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cBhover         =   -2147483633
+      LockHover       =   1
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8454016
+   End
    Begin Indexador_Nexus.LynxGrid LynxGrh 
-      Height          =   10245
+      Height          =   9105
       Left            =   90
-      TabIndex        =   4
-      Top             =   420
+      TabIndex        =   1
+      Top             =   810
       Width           =   2205
       _ExtentX        =   3889
-      _ExtentY        =   18071
+      _ExtentY        =   16060
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
          Size            =   8.25
@@ -52,12 +80,20 @@ Begin VB.Form frmMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      BackColor       =   5460819
+      BackColorBkg    =   5460819
+      BackColorEdit   =   14737632
       BackColorSel    =   12937777
-      ForeColorSel    =   16777215
-      CustomColorFrom =   16572875
-      CustomColorTo   =   14722429
-      GridColor       =   16367254
+      ForeColor       =   12632256
+      ForeColorSel    =   8438015
+      BackColorEvenRows=   3158064
+      CustomColorFrom =   4210752
+      CustomColorTo   =   8421504
+      GridColor       =   14737632
       FocusRectColor  =   9895934
+      GridLines       =   2
+      ThemeColor      =   5
+      ScrollBars      =   1
       Appearance      =   0
       ColumnHeaderSmall=   0   'False
       TotalsLineShow  =   0   'False
@@ -65,16 +101,6 @@ Begin VB.Form frmMain
       ShowRowNumbers  =   0   'False
       ShowRowNumbersVary=   0   'False
       HotHeaderTracking=   0   'False
-   End
-   Begin VB.ListBox ListaAtaques 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   30
-      Top             =   10290
-      Width           =   2700
    End
    Begin VB.Frame FraAtributosDel 
       BackColor       =   &H00404040&
@@ -89,20 +115,117 @@ Begin VB.Form frmMain
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H0000FF00&
-      Height          =   585
-      Left            =   120
-      TabIndex        =   17
-      Top             =   10740
-      Width           =   9405
+      Height          =   1935
+      Left            =   9600
+      TabIndex        =   3
+      Top             =   810
+      Width           =   3435
+      Begin VB.CommandButton cmdAlto 
+         Caption         =   "-"
+         Height          =   195
+         Index           =   1
+         Left            =   3150
+         TabIndex        =   33
+         Top             =   1320
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdAlto 
+         Caption         =   "+"
+         Height          =   195
+         Index           =   0
+         Left            =   3150
+         TabIndex        =   32
+         Top             =   1110
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdAncho 
+         Caption         =   "-"
+         Height          =   195
+         Index           =   1
+         Left            =   1650
+         TabIndex        =   31
+         Top             =   1320
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdAncho 
+         Caption         =   "+"
+         Height          =   195
+         Index           =   0
+         Left            =   1650
+         TabIndex        =   30
+         Top             =   1110
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdsY 
+         Caption         =   "-"
+         Height          =   195
+         Index           =   1
+         Left            =   3150
+         TabIndex        =   29
+         Top             =   850
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdsY 
+         Caption         =   "+"
+         Height          =   195
+         Index           =   0
+         Left            =   3150
+         TabIndex        =   28
+         Top             =   650
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdSX 
+         Caption         =   "-"
+         Height          =   195
+         Index           =   1
+         Left            =   1650
+         TabIndex        =   27
+         Top             =   850
+         Width           =   180
+      End
+      Begin VB.CommandButton cmdSX 
+         Caption         =   "+"
+         Height          =   195
+         Index           =   0
+         Left            =   1650
+         TabIndex        =   26
+         Top             =   650
+         Width           =   180
+      End
+      Begin Indexador_Nexus.lvButtons_H LvBCambiar 
+         Height          =   315
+         Left            =   90
+         TabIndex        =   25
+         Top             =   1560
+         Width           =   1065
+         _ExtentX        =   1879
+         _ExtentY        =   556
+         Caption         =   "Cambiar"
+         CapAlign        =   2
+         BackStyle       =   2
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         cGradient       =   0
+         Mode            =   0
+         Value           =   0   'False
+         cBack           =   -2147483633
+      End
       Begin VB.TextBox txtFrame 
          Appearance      =   0  'Flat
          BackColor       =   &H00404040&
          ForeColor       =   &H0000FF00&
          Height          =   285
          Index           =   5
-         Left            =   8370
-         TabIndex        =   26
-         Top             =   220
+         Left            =   2460
+         TabIndex        =   12
+         Top             =   1150
          Width           =   645
       End
       Begin VB.TextBox txtFrame 
@@ -111,9 +234,9 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Index           =   4
-         Left            =   7020
-         TabIndex        =   28
-         Top             =   225
+         Left            =   960
+         TabIndex        =   14
+         Top             =   1150
          Width           =   645
       End
       Begin VB.TextBox txtFrame 
@@ -122,9 +245,9 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Index           =   3
-         Left            =   5400
-         TabIndex        =   23
-         Top             =   220
+         Left            =   2460
+         TabIndex        =   9
+         Top             =   720
          Width           =   645
       End
       Begin VB.TextBox txtFrame 
@@ -133,9 +256,9 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Index           =   2
-         Left            =   4230
-         TabIndex        =   21
-         Top             =   220
+         Left            =   960
+         TabIndex        =   7
+         Top             =   735
          Width           =   645
       End
       Begin VB.TextBox txtFrame 
@@ -144,9 +267,9 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Index           =   1
-         Left            =   2820
-         TabIndex        =   27
-         Top             =   225
+         Left            =   2460
+         TabIndex        =   13
+         Top             =   300
          Width           =   645
       End
       Begin VB.TextBox txtFrame 
@@ -155,9 +278,9 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Index           =   0
-         Left            =   990
-         TabIndex        =   19
-         Top             =   220
+         Left            =   960
+         TabIndex        =   5
+         Top             =   300
          Width           =   645
       End
       Begin VB.Label lblAlto 
@@ -166,9 +289,9 @@ Begin VB.Form frmMain
          Caption         =   "Alto:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   7830
-         TabIndex        =   29
-         Top             =   270
+         Left            =   1920
+         TabIndex        =   15
+         Top             =   1110
          Width           =   645
       End
       Begin VB.Label lblAncho 
@@ -177,9 +300,9 @@ Begin VB.Form frmMain
          Caption         =   "Ancho:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   6390
-         TabIndex        =   25
-         Top             =   270
+         Left            =   330
+         TabIndex        =   11
+         Top             =   1140
          Width           =   645
       End
       Begin VB.Label lblY 
@@ -187,9 +310,9 @@ Begin VB.Form frmMain
          Caption         =   "Y:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   5190
-         TabIndex        =   24
-         Top             =   270
+         Left            =   2130
+         TabIndex        =   10
+         Top             =   780
          Width           =   645
       End
       Begin VB.Label lblX 
@@ -198,9 +321,9 @@ Begin VB.Form frmMain
          Caption         =   "X:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   4020
-         TabIndex        =   22
-         Top             =   270
+         Left            =   750
+         TabIndex        =   8
+         Top             =   780
          Width           =   645
       End
       Begin VB.Label lblNFrames 
@@ -209,30 +332,30 @@ Begin VB.Form frmMain
          Caption         =   "N. Frames:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   150
-         TabIndex        =   18
-         Top             =   240
+         Left            =   120
+         TabIndex        =   4
+         Top             =   360
          Width           =   795
       End
       Begin VB.Label lblnGraficos 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Graficos:"
+         Caption         =   "Grafico:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   2100
-         TabIndex        =   20
-         Top             =   270
-         Width           =   645
+         Left            =   1740
+         TabIndex        =   6
+         Top             =   390
+         Width           =   570
       End
    End
    Begin VB.FileListBox Archivos 
       Appearance      =   0  'Flat
       Height          =   225
-      Left            =   4110
+      Left            =   7740
       Pattern         =   "*.bmp"
       TabIndex        =   0
-      Top             =   30
+      Top             =   270
       Visible         =   0   'False
       Width           =   1575
    End
@@ -240,255 +363,286 @@ Begin VB.Form frmMain
       Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H0000FF00&
-      Height          =   450
-      Left            =   120
+      Height          =   1080
+      Left            =   90
       Locked          =   -1  'True
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   31
-      Top             =   11340
+      TabIndex        =   16
+      Top             =   10440
       Width           =   9405
-   End
-   Begin VB.ListBox ListaArmas 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   11
-      Top             =   5340
-      Width           =   2700
-   End
-   Begin VB.ListBox ListaFxs 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   15
-      Top             =   8610
-      Width           =   2700
-   End
-   Begin VB.ListBox ListaEscudos 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   13
-      Top             =   6960
-      Width           =   2700
-   End
-   Begin VB.ListBox ListaCascos 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   7
-      Top             =   2070
-      Width           =   2700
-   End
-   Begin VB.ListBox ListaHead 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   3
-      Top             =   390
-      Width           =   2700
    End
    Begin VB.PictureBox MainViewPic 
       Appearance      =   0  'Flat
       BackColor       =   &H80000007&
       ForeColor       =   &H80000008&
-      Height          =   10335
+      Height          =   9585
       Left            =   2340
-      ScaleHeight     =   687
+      ScaleHeight     =   637
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   478
-      TabIndex        =   5
+      TabIndex        =   2
       TabStop         =   0   'False
-      Top             =   360
+      Top             =   810
       Width           =   7200
    End
-   Begin VB.ListBox ListaCuerpos 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1395
-      Left            =   9570
-      TabIndex        =   9
-      Top             =   3720
-      Width           =   2700
-   End
-   Begin VB.Label lblAtaques 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Ataques"
-      BeginProperty Font 
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   0
+      Left            =   150
+      TabIndex        =   17
+      ToolTipText     =   "Cuerpos"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
-         Size            =   9.75
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":10CA
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   1
+      Left            =   720
+      TabIndex        =   18
+      ToolTipText     =   "Cabezas"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":1310
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   2
+      Left            =   1290
+      TabIndex        =   19
+      ToolTipText     =   "Cascos"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":16AD
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   3
+      Left            =   1860
+      TabIndex        =   20
+      ToolTipText     =   "Armas"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":19B2
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   4
+      Left            =   2430
+      TabIndex        =   21
+      ToolTipText     =   "Escudos"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":1EA1
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   5
+      Left            =   3000
+      TabIndex        =   22
+      ToolTipText     =   "Ataques"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":24E4
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   6
+      Left            =   3570
+      TabIndex        =   23
+      ToolTipText     =   "Fx's"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      Caption         =   "A"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   15.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10410
-      TabIndex        =   16
-      Top             =   10020
-      Width           =   675
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
-   Begin VB.Label lblArmas 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Armas"
-      BeginProperty Font 
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   7
+      Left            =   4140
+      TabIndex        =   24
+      ToolTipText     =   "Fx's"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
-         Size            =   9.75
+         Size            =   8.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10320
-      TabIndex        =   10
-      Top             =   5070
-      Width           =   675
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":2B74
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
-   Begin VB.Label lblFxS 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Fx's"
-      BeginProperty Font 
+   Begin Indexador_Nexus.lvButtons_H LvBBorrar 
+      Height          =   405
+      Left            =   120
+      TabIndex        =   35
+      Top             =   9990
+      Width           =   1275
+      _ExtentX        =   2249
+      _ExtentY        =   714
+      Caption         =   "Borrar"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
-         Size            =   9.75
+         Size            =   8.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10410
-      TabIndex        =   14
-      Top             =   8340
-      Width           =   675
-   End
-   Begin VB.Label lblEscudos 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Escudos"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10380
-      TabIndex        =   12
-      Top             =   6690
-      Width           =   675
-   End
-   Begin VB.Label lblCascos 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Cascos"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10470
-      TabIndex        =   6
-      Top             =   1800
-      Width           =   675
-   End
-   Begin VB.Label lblHead 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Cabezas"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10380
-      TabIndex        =   2
-      Top             =   120
-      Width           =   810
-   End
-   Begin VB.Label lbCuerpos 
-      Alignment       =   2  'Center
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Cuerpos"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   10350
-      TabIndex        =   8
-      Top             =   3450
-      Width           =   795
-   End
-   Begin VB.Label lblGraficos 
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Graficos"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   240
-      Left            =   480
-      TabIndex        =   1
-      Top             =   120
-      Width           =   780
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8421631
    End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
@@ -628,9 +782,6 @@ Begin VB.Form frmMain
          Caption         =   "&Adaptador de Grh"
       End
    End
-   Begin VB.Menu mnuParticleEditor 
-      Caption         =   "Editor de Particulas"
-   End
 End
 Attribute VB_Name = "frmMain"
 Attribute VB_GlobalNameSpace = False
@@ -639,37 +790,223 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const NO_GRH As Long = 0
 Private BuscarPNG As Integer
+
+Private Sub cmdAlto_Click(Index As Integer)
+    Select Case Index
+    
+        Case 0
+            txtFrame(5).Text = Val(txtFrame(5).Text + 1)
+        
+        Case 1
+            If Val(txtFrame(5).Text) > 1 Then _
+                txtFrame(5).Text = Val(txtFrame(5).Text - 1)
+    
+    End Select
+    
+    GrhData(CurrentGrh.GrhIndex).pixelWidth = Val(txtFrame(5).Text)
+End Sub
+
+Private Sub cmdAncho_Click(Index As Integer)
+    Select Case Index
+    
+        Case 0
+            txtFrame(4).Text = Val(txtFrame(4).Text + 1)
+        
+        Case 1
+            If Val(txtFrame(4).Text) > 1 Then _
+                txtFrame(4).Text = Val(txtFrame(4).Text - 1)
+    
+    End Select
+    
+    GrhData(CurrentGrh.GrhIndex).pixelHeight = Val(txtFrame(4).Text)
+End Sub
+
+Private Sub cmdSX_Click(Index As Integer)
+    
+    Select Case Index
+    
+        Case 0
+            txtFrame(2).Text = Val(txtFrame(2).Text + 1)
+        
+        Case 1
+            If Val(txtFrame(2).Text) > 1 Then _
+                txtFrame(2).Text = Val(txtFrame(2).Text - 1)
+    
+    End Select
+    
+    GrhData(CurrentGrh.GrhIndex).sX = Val(txtFrame(2).Text)
+    
+End Sub
+
+Private Sub cmdsY_Click(Index As Integer)
+    Select Case Index
+    
+        Case 0
+            txtFrame(3).Text = Val(txtFrame(3).Text + 1)
+        
+        Case 1
+            If Val(txtFrame(3).Text) > 1 Then _
+                txtFrame(3).Text = Val(txtFrame(3).Text - 1)
+    
+    End Select
+    
+    GrhData(CurrentGrh.GrhIndex).sY = Val(txtFrame(3).Text)
+End Sub
 
 Private Sub Form_Load()
     EngineRun = True
 End Sub
 
-Private Sub ListaArmas_Click()
-    Dim nGrh As Long
-
-    nGrh = WeaponAnimData(ListaArmas.Text).WeaponWalk(3).GrhIndex
+Private Sub LvBBorrar_Click()
     
-    DoEvents
-    Call InitGrh(CurrentGrh, nGrh)
+    If Not isList Then
+        MsgBox "Selecciona un grh de la lista de Grh general que desees borrar."
+        Exit Sub
+    End If
+
+    If CurrentGrh.GrhIndex = NO_GRH Then
+        MsgBox "No has seleccionado ningun Grh"
+        Exit Sub
+    End If
+    
+    If MsgBox("¿Seguro que quieres borrar el Grh: " & CurrentGrh.GrhIndex & "?" & vbCrLf & "Este cambio no tiene vuelta atrás.", vbOKCancel) = vbOK Then
+        'Reset it
+        With GrhData(CurrentGrh.GrhIndex)
+            .FileNum = 0
+            ReDim .Frames(0)
+            .NumFrames = 0
+            .pixelHeight = 0
+            .pixelWidth = 0
+            .speed = 0
+            .sX = 0
+            .sY = 0
+            .TileHeight = 0
+            .TileWidth = 0
+        End With
+        
+        CurrentGrh.Started = 0
+        
+'        'Remove it
+'        For i = 0 To grhlist.ListCount - 1
+'            If Val(grhlist.List(i)) = CurrentGrh Then
+'                grhlist.RemoveItem (i)
+'                Exit For
+'            End If
+'        Next i
+'
+'        'Select next grh
+'        If i < grhlist.ListCount Then
+'            grhlist.ListIndex = i
+'        Else
+'            grhlist.ListIndex = grhlist.ListCount - 1
+'        End If
+    End If
+    
 End Sub
 
-Private Sub ListaCascos_Click()
-    Dim nGrh As Long
-
-    nGrh = CascoAnimData(ListaCascos.Text).Head(3).GrhIndex
+Private Sub LvBCambiar_Click()
+'    'Prevent non numeric characters
+'    If Not IsNumeric(txtFrame(Index).Text) Then
+'        txtFrame(Index).Text = Val(txtFrame(Index).Text)
+'
+'    End If
+'
+'    'Prevent overflow
+'    If Val(txtFrame(Index).Text) > &H7FFF Then
+'        txtFrame(Index).Text = &H7FFF
+'
+'    End If
+'
+'    'Prevent negative values
+'    If CInt(txtFrame(Index).Text) < 0 Then
+'        txtFrame(Index).Text = 0
+'
+'    End If
     
-    DoEvents
-    Call InitGrh(CurrentGrh, nGrh)
+    'Update data in memory
+    If CurrentGrh.GrhIndex <> NO_GRH Then
+        With GrhData(CurrentGrh.GrhIndex)
+
+            .NumFrames = Val(txtFrame(0).Text)
+            .FileNum = Val(txtFrame(1).Text)
+            .sX = Val(txtFrame(2).Text)
+            .sY = Val(txtFrame(3).Text)
+            .pixelHeight = Val(txtFrame(4).Text)
+            .pixelWidth = Val(txtFrame(5).Text)
+            Debug.Print .NumFrames & " - " & .FileNum & " - " & .sX & " - " & .sY & " - " & .pixelHeight & " - " & .pixelWidth
+        
+        End With
+    End If
 End Sub
 
-Private Sub ListaCuerpos_Click()
-    Dim nGrh As Long
-
-    nGrh = BodyData(ListaCuerpos.Text).Walk(3).GrhIndex
+Private Sub LvBSelector_Click(Index As Integer)
+    Select Case Index
     
-    DoEvents
-    Call InitGrh(CurrentGrh, nGrh)
+        Case 0 'Cuerpos
+        
+            If frmCuerpos.Visible Then
+                frmCuerpos.Visible = False
+            Else
+                frmCuerpos.Show , frmMain
+            End If
+            
+        Case 1 'Cabezas
+        
+            If frmCabezas.Visible Then
+                frmCabezas.Visible = False
+            Else
+                frmCabezas.Show , frmMain
+            End If
+        
+        Case 2 'Cascos
+        
+            If frmCascos.Visible Then
+                frmCascos.Visible = False
+            Else
+                frmCascos.Show , frmMain
+            End If
+        
+        Case 3 'Armas
+        
+            If frmArmas.Visible Then
+                frmArmas.Visible = False
+            Else
+                frmArmas.Show , frmMain
+            End If
+            
+        Case 4 'Escudos
+        
+            If frmEscudos.Visible Then
+                frmEscudos.Visible = False
+            Else
+                frmEscudos.Show , frmMain
+            End If
+        
+        Case 5 'FX's
+            If frmFxs.Visible Then
+                frmFxs.Visible = False
+            Else
+                frmFxs.Show , frmMain
+            End If
+        
+        Case 6 'Ataques
+            If frmAtaques.Visible Then
+                frmAtaques.Visible = False
+            Else
+                frmAtaques.Show , frmMain
+            End If
+            
+        Case 7 'Particulas
+            If frmParticleEditor.Visible Then
+                frmParticleEditor.Visible = False
+            Else
+                frmParticleEditor.Show , frmMain
+            End If
+    
+    End Select
+    
 End Sub
 
 Private Sub LynxGrh_Click()
@@ -680,6 +1017,7 @@ Private Sub LynxGrh_Click()
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)
 
+    'Mostramos el grh info
     txtFrame(0).Text = GrhData(nGrh).NumFrames
     txtFrame(1).Text = GrhData(nGrh).FileNum
     txtFrame(2).Text = GrhData(nGrh).sX
@@ -687,33 +1025,9 @@ Private Sub LynxGrh_Click()
     txtFrame(4).Text = GrhData(nGrh).pixelHeight
     txtFrame(5).Text = GrhData(nGrh).pixelWidth
     
-End Sub
-
-Private Sub ListaEscudos_Click()
-    Dim nGrh As Long
-
-    nGrh = ShieldAnimData(ListaEscudos.Text).ShieldWalk(3).GrhIndex
+    isList = True
+    Particle_Group_Remove_All
     
-    DoEvents
-    Call InitGrh(CurrentGrh, nGrh)
-End Sub
-
-Private Sub ListaFxs_Click()
-    Dim nGrh As Long
-
-    nGrh = FxData(ListaFxs.Text).Animacion
-    
-    DoEvents
-    Call InitGrh(CurrentGrh, nGrh)
-End Sub
-
-Private Sub ListaHead_Click()
-    Dim nGrh As Long
-
-    nGrh = HeadData(ListaHead.Text).Head(3).GrhIndex
-    
-    DoEvents
-    Call InitGrh(CurrentGrh, nGrh)
 End Sub
 
 Private Sub menuCerrar_Click()
@@ -853,10 +1167,6 @@ Private Sub mnuIndexPNG_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
-End Sub
-
-Private Sub mnuParticleEditor_Click()
-    frmParticleEditor.Show , frmMain
 End Sub
 
 Private Sub mnuPNGinutiles_Click()
@@ -1326,4 +1636,3 @@ Private Sub mnuIndexarTodo_Click()
     Call mnuIndexarGUI_Click
     
 End Sub
-

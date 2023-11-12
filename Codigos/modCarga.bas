@@ -253,7 +253,7 @@ Public Function CargarCuerpos() As Boolean
 
     Dim MisCuerpos() As tIndiceCuerpo
 
-    frmMain.ListaCuerpos.Clear
+    frmCuerpos.ListaCuerpos.Clear
     
     If Not FileExist(DirCliente & "\Init\personajes.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Personajes.ind."
@@ -286,7 +286,7 @@ Public Function CargarCuerpos() As Boolean
 
         End If
         
-        frmMain.ListaCuerpos.AddItem i
+        frmCuerpos.ListaCuerpos.AddItem i
     Next i
 
     Close #n
@@ -310,7 +310,7 @@ Public Function CargarCabezas() As Boolean
 
     Dim i            As Integer
 
-    frmMain.ListaHead.Clear
+    frmCabezas.ListaHead.Clear
     
     If Not FileExist(DirCliente & "\Init\head.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo head.ind."
@@ -333,7 +333,7 @@ Public Function CargarCabezas() As Boolean
             Get #n, , heads(i).startX
             Get #n, , heads(i).startY
             
-            frmMain.ListaHead.AddItem i
+            frmCabezas.ListaHead.AddItem i
         Next i
 
     Close #n
@@ -357,7 +357,7 @@ Public Function CargarCascos() As Boolean
 
     Dim i          As Integer
 
-    frmMain.ListaCascos.Clear
+    frmCascos.ListaCascos.Clear
 
     If Not FileExist(DirCliente & "\Init\helmet.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo helmet.ind."
@@ -380,7 +380,7 @@ Public Function CargarCascos() As Boolean
         Get #n, , Cascos(i).startX
         Get #n, , Cascos(i).startY
             
-        frmMain.ListaCascos.AddItem i
+        frmCascos.ListaCascos.AddItem i
     Next i
          
     Close #n
@@ -410,7 +410,7 @@ Public Function CargarEscudos() As Boolean
 
     Dim i          As Long
     
-    frmMain.ListaEscudos.Clear
+    frmEscudos.ListaEscudos.Clear
 
     If Not FileExist(DirCliente & "\Init\escudos.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Escudos.ind."
@@ -438,7 +438,7 @@ Public Function CargarEscudos() As Boolean
             Call InitGrh(ShieldAnimData(i).ShieldWalk(3), Shields(i).Shield(3), 0)
             Call InitGrh(ShieldAnimData(i).ShieldWalk(4), Shields(i).Shield(4), 0)
             
-            frmMain.ListaEscudos.AddItem i
+            frmEscudos.ListaEscudos.AddItem i
             
         End If
             
@@ -471,7 +471,7 @@ Public Function CargarAnimArmas() As Boolean
 
     Dim i          As Long
     
-    frmMain.ListaArmas.Clear
+    frmArmas.ListaArmas.Clear
     
     If Not FileExist(DirCliente & "\Init\armas.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Armas.ind."
@@ -499,7 +499,7 @@ Public Function CargarAnimArmas() As Boolean
             Call InitGrh(WeaponAnimData(i).WeaponWalk(3), Weapons(i).Weapon(3), 0)
             Call InitGrh(WeaponAnimData(i).WeaponWalk(4), Weapons(i).Weapon(4), 0)
             
-            frmMain.ListaArmas.AddItem i
+            frmArmas.ListaArmas.AddItem i
 
         End If
 
@@ -532,7 +532,7 @@ Public Function CargarFxs() As Boolean
 
     Dim i          As Long
     
-    frmMain.ListaFxs.Clear
+    frmFxs.ListaFxs.Clear
     
     If Not FileExist(DirCliente & "\Init\fxs.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo FXs.ind."
@@ -552,7 +552,7 @@ Public Function CargarFxs() As Boolean
     For i = 1 To NumFxs
 
         Get #n, , FxData(i)
-        frmMain.ListaFxs.AddItem i
+        frmFxs.ListaFxs.AddItem i
         
     Next i
     

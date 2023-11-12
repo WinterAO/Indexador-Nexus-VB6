@@ -35,23 +35,23 @@ Y=627
 
 [MAPA1] 'Crear PJ
 Map=1
-X=55
-Y=10
+X=267
+Y=918
 
 [MAPA2] 'Cuentas
 Map=1
-X=15
-Y=17
+X=130
+Y=533
 
 [MAPA3]
 Map=1
-X=33
-Y=45
+X=450
+Y=461
 
 [MAPA4]
 Map=1
-X=30
-Y=55
+X=645
+Y=168
 
 [BUTTON1] 'Logo
 X=1

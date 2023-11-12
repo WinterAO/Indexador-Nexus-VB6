@@ -589,13 +589,18 @@ Public Function IndexarColores() As Boolean
 '*************************************
 
     Dim n As Integer
+    Dim i As Byte
     
     If CargarColores Then
     
         n = FreeFile
         Open DirIndex & "\Colores.ind" For Binary Access Write As #n
         
-        Put #n, , ColoresPJ
+            For i = 0 To MAXCOLORES
+                Put #n, , ColoresPJ(i).R
+                Put #n, , ColoresPJ(i).G
+                Put #n, , ColoresPJ(i).B
+            Next i
         
         Close #n
         DoEvents

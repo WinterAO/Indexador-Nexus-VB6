@@ -1229,6 +1229,9 @@ End Sub
 Private Sub ListParticulas_Click()
     Call CargarParticulasLista
 
+    CurrentGrh.GrhIndex = 0
+    CurrentGrh.Started = 0
+    isList = False
 End Sub
 
 Private Sub cmdDelete_Click()
