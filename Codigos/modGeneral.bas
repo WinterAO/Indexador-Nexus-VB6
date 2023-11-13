@@ -13,6 +13,15 @@ Private Declare Function DeleteObject Lib "gdi32" (ByVal hObject As Long) As Lon
 
 Public Sub Main()
 
+    'Ruta principal
+    IniPath = App.Path & "\"
+    
+    frmPerfil.Show
+    
+    Do While ModoElegido = False
+        DoEvents
+    Loop
+
     frmCargando.Show
     DoEvents
 
@@ -103,7 +112,7 @@ End Sub
 ' @param FileType Especifica el tipo de archivo/directorio
 ' @return   Nos devuelve verdadero o falso
 
-Public Function FileExist(ByVal file As String, ByVal FileType As VbFileAttribute) As Boolean
+Public Function FileExist(ByVal File As String, ByVal FileType As VbFileAttribute) As Boolean
     '*************************************************
     'Author: Unkwown
     'Last modified: 26/05/06
@@ -111,7 +120,7 @@ Public Function FileExist(ByVal file As String, ByVal FileType As VbFileAttribut
     
     On Error GoTo FileExist_Err
     
-    If LenB(Dir(file, FileType)) = 0 Then
+    If LenB(Dir(File, FileType)) = 0 Then
         FileExist = False
     Else
         FileExist = True
@@ -126,15 +135,15 @@ FileExist_Err:
     
 End Function
 
-Sub WriteVar(ByVal file As String, ByVal Main As String, ByVal Var As String, ByVal value As String)
+Sub WriteVar(ByVal File As String, ByVal Main As String, ByVal Var As String, ByVal value As String)
 '*****************************************************************
 'Writes a var to a text file
 '*****************************************************************
-    writeprivateprofilestring Main, Var, value, file
+    writeprivateprofilestring Main, Var, value, File
     
 End Sub
 
-Function GetVar(ByVal file As String, ByVal Main As String, ByVal Var As String) As String
+Function GetVar(ByVal File As String, ByVal Main As String, ByVal Var As String) As String
 '*****************************************************************
 'Gets a Var from a text file
 '*****************************************************************
@@ -142,7 +151,7 @@ Function GetVar(ByVal file As String, ByVal Main As String, ByVal Var As String)
     
     sSpaces = Space$(500) ' This tells the computer how long the longest string can be. If you want, you can change the number 100 to any number you wish
     
-    getprivateprofilestring Main, Var, vbNullString, sSpaces, Len(sSpaces), file
+    getprivateprofilestring Main, Var, vbNullString, sSpaces, Len(sSpaces), File
     
     GetVar = RTrim$(sSpaces)
     GetVar = Left$(GetVar, Len(GetVar) - 1)
@@ -154,23 +163,23 @@ Public Sub LogError(ByVal Numero As Long, ByVal Descripcion As String, ByVal Com
 'Author: Jopi
 'Guarda una descripcion detallada del error en Errores.log
 '**********************************************************
-    Dim file As Integer
-        file = FreeFile
+    Dim File As Integer
+        File = FreeFile
         
-    Open App.Path & "\logs\Errores.log" For Append As #file
+    Open App.Path & "\logs\Errores.log" For Append As #File
     
-        Print #file, "Error: " & Numero
-        Print #file, "Descripcion: " & Descripcion
+        Print #File, "Error: " & Numero
+        Print #File, "Descripcion: " & Descripcion
         
         If LenB(Linea) <> 0 Then
-            Print #file, "Linea: " & Linea
+            Print #File, "Linea: " & Linea
         End If
         
-        Print #file, "Componente: " & Componente
-        Print #file, "Fecha y Hora: " & Date$ & "-" & Time$
-        Print #file, vbNullString
+        Print #File, "Componente: " & Componente
+        Print #File, "Fecha y Hora: " & Date$ & "-" & Time$
+        Print #File, vbNullString
         
-    Close #file
+    Close #File
     
     Debug.Print "Error: " & Numero & vbNewLine & _
                 "Descripcion: " & Descripcion & vbNewLine & _
@@ -356,3 +365,43 @@ Public Function RandomNumber(ByVal LowerBound As Long, ByVal UpperBound As Long)
     'Generate random number
     RandomNumber = (UpperBound - LowerBound) * Rnd + LowerBound
 End Function
+
+Function Buscar_Carpeta(Optional Titulo As String, _
+                        Optional Path_Inicial As Variant) As String
+                        
+'******************************************************************
+' Funcción que abre el cuadro de dialogo y retorna la ruta
+'******************************************************************
+  
+On Local Error GoTo errFunction
+      
+    Dim objShell As Object
+    Dim objFolder As Object
+    Dim o_Carpeta As Object
+      
+    ' Nuevo objeto Shell.Application
+    Set objShell = CreateObject("Shell.Application")
+      
+    On Error Resume Next
+    'Abre el cuadro de diálogo para seleccionar
+    Set objFolder = objShell.BrowseForFolder( _
+                            0, _
+                            Titulo, _
+                            0, _
+                            Path_Inicial)
+      
+    ' Devuelve solo el nombre de carpeta
+    Set o_Carpeta = objFolder.Self
+      
+    ' Devuelve la ruta completa seleccionada en el diálogo
+    Buscar_Carpeta = o_Carpeta.Path
+  
+Exit Function
+'Error
+errFunction:
+    MsgBox Err.Description, vbCritical
+    Buscar_Carpeta = vbNullString
+    Call RegistrarError(Err.Number, Err.Description, "Buscar_Carpeta", Erl)
+  
+End Function
+

@@ -74,14 +74,54 @@ Public Type RGB
     B As Long
 End Type
 
+'Constantes
+Public IniPath As String
+
+Public Const INITDIR As String = "Init\"
+
+Public Function profilesFile() As String
+    profilesFile = IniPath & INITDIR & "profiles.ini"
+End Function
+
+Public Function profileFile(ByVal tag As String) As String
+    profileFile = IniPath & INITDIR & "profile-" & tag & ".ini"
+End Function
+
+Private Function autoCompletaPath(ByVal Path As String) As String
+'*************************************************
+'Author: ^[GS]^
+'Last modified: 22/05/06
+'Descripcion: Completa y corrije un path
+'*************************************************
+
+    Path = Replace(Path, "/", "\")
+    
+    If Left(Path, 1) = "\" Then
+        ' agrego app.path & path
+        Path = App.Path & Path
+    End If
+    If Right(Path, 1) <> "\" Then
+        ' me aseguro que el final sea con "\"
+        Path = Path & "\"
+    End If
+    autoCompletaPath = Path
+    
+End Function
+
 Public Function CargarConfiguracion() As Boolean
 
     On Local Error GoTo fileErr:
     
     Dim tStr As String
+    Dim NewPath As String
+    
+    If Not FileExist(profileFile(ProfileTag), vbArchive) Then
+        MsgBox "¡No se ha encontrado el archivo de perfil (" & profileFile(ProfileTag) & ") en la carpeta init!", vbOKOnly Or vbExclamation, App.Title
+        End
+    End If
     
     Set Lector = New clsIniReader
-    Call Lector.Initialize(App.Path & "\Config.ini")
+    Call Lector.Initialize(profileFile(ProfileTag))
     
     ' RUTAS
     DirCliente = Lector.GetValue("RUTAS", "DirClient")
@@ -90,9 +130,43 @@ Public Function CargarConfiguracion() As Boolean
     
     With ClientSetup
         ' VIDEO
-        .byMemory = Lector.GetValue("VIDEO", "DynamicMemory")
-        .OverrideVertexProcess = CByte(Lector.GetValue("VIDEO", "VertexProcessingOverride"))
-        .LimiteFPS = CByte(Lector.GetValue("VIDEO", "LimitarFPS"))
+        .byMemory = Val(Lector.GetValue("VIDEO", "DynamicMemory"))
+        .OverrideVertexProcess = Val(Lector.GetValue("VIDEO", "VertexProcessingOverride"))
+        .LimiteFPS = CBool(Lector.GetValue("VIDEO", "LimitarFPS"))
+        
+        'Client
+        DirCliente = autoCompletaPath(Lector.GetValue("RUTAS", "DirClient"))
+        
+        If FileExist(DirCliente, vbDirectory) = False Or DirCliente = "\" Then
+            MsgBox "El directorio del Cliente es incorrecto", vbCritical + vbOKOnly
+            
+            NewPath = Buscar_Carpeta("Seleccione la carpeta del cliente o donde se encuentren la carpeta de Graficos, Init, etc.", "")
+            Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirClient", NewPath)
+            DirCliente = NewPath & "\"
+        End If
+        
+        'Index
+        DirIndex = autoCompletaPath(Lector.GetValue("RUTAS", "DirIndex"))
+        
+        If FileExist(DirIndex, vbDirectory) = False Or DirIndex = "\" Then
+            MsgBox "El directorio de los Index es incorrecto", vbCritical + vbOKOnly
+            
+            NewPath = Buscar_Carpeta("Seleccione la carpeta de los index de graficos, personajes, cabezas, etc.", "")
+            Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirIndex", NewPath)
+            DirIndex = NewPath & "\"
+        End If
+        
+        'Export
+        DirExport = autoCompletaPath(Lector.GetValue("RUTAS", "DirExport"))
+        
+        If FileExist(DirExport, vbDirectory) = False Or DirExport = "\" Then
+            MsgBox "El directorio de la carpeta de Exportación es incorrecto", vbCritical + vbOKOnly
+            
+            NewPath = Buscar_Carpeta("Seleccione la carpeta de los exportados.", "")
+            Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirExport", NewPath)
+            DirExport = NewPath & "\"
+        End If
+        
     End With
     
     Set Lector = Nothing
@@ -113,7 +187,7 @@ Public Function LoadGrhData() As Boolean
     
     Dim K As Long
     Dim Grh As Long
-    Dim Frame As Long
+    Dim frame As Long
     Dim handle As Integer
     
     If Not FileExist(DirCliente & "\Init\graficos.ind", vbArchive) Then
@@ -168,10 +242,10 @@ Public Function LoadGrhData() As Boolean
 
                     frmMain.LynxGrh.CellText(K, 1) = "ANIMACION"
 
-                    For Frame = 1 To .NumFrames
-                        Get handle, , .Frames(Frame)
-                        If .Frames(Frame) <= 0 Or .Frames(Frame) > grhCount Then GoTo ErrorHandler
-                    Next Frame
+                    For frame = 1 To .NumFrames
+                        Get handle, , .Frames(frame)
+                        If .Frames(frame) <= 0 Or .Frames(frame) > grhCount Then GoTo ErrorHandler
+                    Next frame
                 
                     Get handle, , .speed
                     If .speed <= 0 Then GoTo ErrorHandler

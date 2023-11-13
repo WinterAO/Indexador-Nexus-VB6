@@ -141,6 +141,19 @@ Public ShieldAnimData() As ShieldAnimData
 Public CascoAnimData()  As HeadData
 '?????????????????????????
 
+Type SupData
+    name As String
+    Grh As Integer
+    Width As Byte
+    Height As Byte
+    Block As Boolean
+    Capa As Byte
+End Type
+
+Public MaxSup As Integer
+
+Public SupData() As SupData
+
 'Tipo de las celdas del mapa
 Public Type MapBlock
 

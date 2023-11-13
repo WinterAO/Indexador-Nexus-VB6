@@ -1,0 +1,34 @@
+Línea 45: la clase WinterMapEditor.lvButtons_H del control LvBNuevo no era una clase de control cargada.
+Línea 113: la clase WinterMapEditor.lvButtons_H del control LvBBoton no era una clase de control cargada.
+Línea 139: la clase WinterMapEditor.lvButtons_H del control LvBBoton no era una clase de control cargada.
+Línea 37: la propiedad ItemData de cmbPerfil tenía una referencia a archivo no válida.
+Línea 39: la propiedad List de cmbPerfil tenía una referencia a archivo no válida.
+Línea 52: el nombre de la propiedad _ExtentX de LvBNuevo no es válido.
+Línea 53: el nombre de la propiedad _ExtentY de LvBNuevo no es válido.
+Línea 54: el nombre de la propiedad Caption de LvBNuevo no es válido.
+Línea 55: el nombre de la propiedad CapAlign de LvBNuevo no es válido.
+Línea 56: el nombre de la propiedad BackStyle de LvBNuevo no es válido.
+Línea 66: el nombre de la propiedad cGradient de LvBNuevo no es válido.
+Línea 67: el nombre de la propiedad Mode de LvBNuevo no es válido.
+Línea 68: el nombre de la propiedad Value de LvBNuevo no es válido.
+Línea 69: el nombre de la propiedad cBack de LvBNuevo no es válido.
+Línea 93: la propiedad ItemData de cmbProcesado tenía una referencia a archivo no válida.
+Línea 95: la propiedad List de cmbProcesado tenía una referencia a archivo no válida.
+Línea 120: el nombre de la propiedad _ExtentX de LvBBoton no es válido.
+Línea 121: el nombre de la propiedad _ExtentY de LvBBoton no es válido.
+Línea 122: el nombre de la propiedad Caption de LvBBoton no es válido.
+Línea 123: el nombre de la propiedad CapAlign de LvBBoton no es válido.
+Línea 124: el nombre de la propiedad BackStyle de LvBBoton no es válido.
+Línea 134: el nombre de la propiedad cGradient de LvBBoton no es válido.
+Línea 135: el nombre de la propiedad Mode de LvBBoton no es válido.
+Línea 136: el nombre de la propiedad Value de LvBBoton no es válido.
+Línea 137: el nombre de la propiedad cBack de LvBBoton no es válido.
+Línea 146: el nombre de la propiedad _ExtentX de LvBBoton no es válido.
+Línea 147: el nombre de la propiedad _ExtentY de LvBBoton no es válido.
+Línea 148: el nombre de la propiedad Caption de LvBBoton no es válido.
+Línea 149: el nombre de la propiedad CapAlign de LvBBoton no es válido.
+Línea 150: el nombre de la propiedad BackStyle de LvBBoton no es válido.
+Línea 160: el nombre de la propiedad cGradient de LvBBoton no es válido.
+Línea 161: el nombre de la propiedad Mode de LvBBoton no es válido.
+Línea 162: el nombre de la propiedad Value de LvBBoton no es válido.
+Línea 163: el nombre de la propiedad cBack de LvBBoton no es válido.

@@ -1,6 +1,10 @@
 Attribute VB_Name = "modDeclaraciones"
 Option Explicit
 
+'Configuracion
+Public ModoElegido As Boolean
+Public ProfileTag As String ' Perfil seleccionado
+
 Public isList As Boolean
 
 Public ParticleIndex As Integer
