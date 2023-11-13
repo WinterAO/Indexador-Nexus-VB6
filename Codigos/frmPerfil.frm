@@ -303,6 +303,7 @@ Private Sub LvBNuevo_Click(Index As Integer)
     Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirClient", "")
     Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirExport", "")
     Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirIndex", "")
+    Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirIndices", "")
 
     ReDim Perfiles(1 To nPerfiles) As String
     

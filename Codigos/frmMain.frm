@@ -6,7 +6,7 @@ Begin VB.Form frmMain
    ClientHeight    =   11625
    ClientLeft      =   45
    ClientTop       =   690
-   ClientWidth     =   19560
+   ClientWidth     =   13140
    ControlBox      =   0   'False
    BeginProperty Font 
       Name            =   "Tahoma"
@@ -24,211 +24,8 @@ Begin VB.Form frmMain
    MinButton       =   0   'False
    ScaleHeight     =   775
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   1304
+   ScaleWidth      =   876
    StartUpPosition =   1  'CenterOwner
-   Begin VB.Frame FraTerreno 
-      BackColor       =   &H00404040&
-      Caption         =   "Terreno"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   2655
-      Left            =   9600
-      TabIndex        =   36
-      Top             =   2850
-      Width           =   3465
-      Begin Indexador_Nexus.lvButtons_H LvBIndexarTerreno 
-         Height          =   525
-         Left            =   2550
-         TabIndex        =   54
-         Top             =   1500
-         Width           =   825
-         _ExtentX        =   1455
-         _ExtentY        =   926
-         Caption         =   "Indexar Terreno"
-         CapAlign        =   2
-         BackStyle       =   2
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         cGradient       =   0
-         Mode            =   0
-         Value           =   0   'False
-         cBack           =   -2147483633
-      End
-      Begin VB.TextBox tITDesde 
-         Height          =   285
-         Left            =   1140
-         TabIndex        =   45
-         Text            =   "0"
-         Top             =   510
-         Width           =   855
-      End
-      Begin VB.TextBox tITbmp 
-         Height          =   285
-         Left            =   120
-         TabIndex        =   44
-         Text            =   "0"
-         Top             =   510
-         Width           =   855
-      End
-      Begin VB.TextBox tITLargo 
-         Height          =   285
-         Left            =   2640
-         TabIndex        =   43
-         Text            =   "2"
-         Top             =   1110
-         Width           =   735
-      End
-      Begin VB.TextBox tITAncho 
-         Height          =   285
-         Left            =   1800
-         TabIndex        =   42
-         Text            =   "2"
-         Top             =   1110
-         Width           =   735
-      End
-      Begin VB.TextBox tITY 
-         Height          =   285
-         Left            =   960
-         TabIndex        =   41
-         Text            =   "0"
-         Top             =   1110
-         Width           =   735
-      End
-      Begin VB.TextBox tITX 
-         Height          =   285
-         Left            =   120
-         TabIndex        =   40
-         Text            =   "0"
-         Top             =   1110
-         Width           =   615
-      End
-      Begin VB.TextBox tITNombre 
-         Height          =   285
-         Left            =   120
-         TabIndex        =   39
-         Top             =   1740
-         Width           =   2295
-      End
-      Begin VB.TextBox tITSolo 
-         Height          =   285
-         Left            =   960
-         TabIndex        =   38
-         Text            =   "0"
-         Top             =   2130
-         Width           =   855
-      End
-      Begin VB.CommandButton cmdAgregar 
-         Caption         =   "Agregar"
-         Height          =   255
-         Left            =   1920
-         TabIndex        =   37
-         Top             =   2130
-         Width           =   975
-      End
-      Begin VB.Label Label27 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Grh Inicial:"
-         ForeColor       =   &H0000FF00&
-         Height          =   195
-         Left            =   1170
-         TabIndex        =   53
-         Top             =   270
-         Width           =   765
-      End
-      Begin VB.Label Label26 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Grafico:"
-         ForeColor       =   &H0000FF00&
-         Height          =   195
-         Left            =   120
-         TabIndex        =   52
-         Top             =   270
-         Width           =   570
-      End
-      Begin VB.Label Label25 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Largo:"
-         ForeColor       =   &H0000FF00&
-         Height          =   255
-         Left            =   2640
-         TabIndex        =   51
-         Top             =   870
-         Width           =   855
-      End
-      Begin VB.Label Label24 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Ancho:"
-         ForeColor       =   &H0000FF00&
-         Height          =   255
-         Left            =   1800
-         TabIndex        =   50
-         Top             =   870
-         Width           =   735
-      End
-      Begin VB.Label Label23 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Y:"
-         ForeColor       =   &H0000FF00&
-         Height          =   255
-         Left            =   960
-         TabIndex        =   49
-         Top             =   870
-         Width           =   735
-      End
-      Begin VB.Label Label22 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "X:"
-         ForeColor       =   &H0000FF00&
-         Height          =   255
-         Left            =   120
-         TabIndex        =   48
-         Top             =   870
-         Width           =   495
-      End
-      Begin VB.Label Label21 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Nombre Terreno"
-         ForeColor       =   &H0000FF00&
-         Height          =   255
-         Left            =   120
-         TabIndex        =   47
-         Top             =   1500
-         Width           =   1455
-      End
-      Begin VB.Label Label29 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Solo el grh:"
-         ForeColor       =   &H0000FF00&
-         Height          =   255
-         Left            =   120
-         TabIndex        =   46
-         Top             =   2130
-         Width           =   855
-      End
-   End
    Begin Indexador_Nexus.lvButtons_H LvBNuevoGrh 
       Height          =   405
       Left            =   1020
@@ -847,6 +644,35 @@ Begin VB.Form frmMain
       Value           =   0   'False
       cBack           =   8421631
    End
+   Begin Indexador_Nexus.lvButtons_H LvBSelector 
+      Height          =   495
+      Index           =   8
+      Left            =   4710
+      TabIndex        =   36
+      ToolTipText     =   "Fx's"
+      Top             =   150
+      Width           =   525
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":31F6
+      ImgSize         =   32
+      cBack           =   -2147483633
+   End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
       Begin VB.Menu mnuIndexMemory 
@@ -999,22 +825,6 @@ Option Explicit
 Private Const NO_GRH As Long = 0
 Private BuscarPNG As Integer
 
-Private Sub cmdAgregar_Click()
-    MaxSup = MaxSup + 1
-    ReDim Preserve SupData(MaxSup) As SupData
-
-    With SupData(MaxSup)
-        .Grh = Val(tITSolo.Text)
-        .Block = False
-        .Capa = 0
-        .Width = 1
-        .Height = 1
-        .name = tITNombre.Text
-
-    End With
-
-End Sub
-
 Private Sub cmdAlto_Click(Index As Integer)
     Select Case Index
     
@@ -1163,134 +973,6 @@ Private Sub LvBCambiar_Click()
     End If
 End Sub
 
-Private Sub LvBIndexarTerreno_Click()
-
-    Dim W      As Integer
-
-    Dim H      As Integer
-
-    Dim x      As Integer
-
-    Dim y      As Integer
-
-    Dim iList  As Integer
-
-    Dim GI     As Integer
-
-    Dim Indice As Integer
-
-    Dim DGRH   As Integer
-
-    W = Val(tITAncho.Text)
-    H = Val(tITLargo.Text)
-
-    DGRH = Val(tITDesde.Text)
-
-    For y = 1 To H
-        For x = 1 To W
-            GI = AgregarGrh(iList, False, DGRH)
-
-            If DGRH > 0 Then DGRH = DGRH + 1
-
-            With GrhData(GI)
-                .FileNum = Val(tITbmp.Text)
-                .sX = Val(tITX.Text) * 32 * W + (x - 1) * 32
-                .sY = Val(tITY.Text) * 32 * H + (y - 1) * 32
-                .NumFrames = 1
-                ReDim .Frames(1 To 1)
-                .Frames(1) = GI
-                .pixelWidth = 32
-                .pixelHeight = 32
-                .TileWidth = 32
-                .TileHeight = 32
-
-            End With
-        
-            If x = 1 And y = 1 Then
-                Indice = GI
-
-            End If
-
-        Next x
-    Next y
-
-    MaxSup = MaxSup + 1
-    ReDim Preserve SupData(MaxSup) As SupData
-
-    With SupData(MaxSup)
-        .Grh = Indice
-        .Block = False
-        .Capa = 0
-        .Width = W
-        .Height = H
-        .name = tITNombre.Text
-
-    End With
-
-End Sub
-
-Public Function AgregarGrh(ByRef EnLista As Integer, _
-                           Optional Animacion As Boolean = False, _
-                           Optional DGRH As Integer = 0) As Integer
-
-'    Dim Index As Integer
-'
-'    Dim i     As Integer
-'
-'    If DGRH = 0 Then
-'        Index = UBound(GrhData()) + 1
-'    Else
-'        Index = DGRH
-'
-'    End If
-'
-'    'Make sure he is not overwritting anything
-'    If Index <= UBound(GrhData()) Then
-'        If GrhData(Index).NumFrames > 0 Then
-'
-'            'If MsgBox("The chosen index is currently in use. Do you want to overwrite it?", vbOKCancel) = vbCancel Then
-'            '    Exit Function
-'            'End If
-'        End If
-'
-'    Else
-'        'Resize array
-'        ReDim Preserve GrhData(1 To Index) As GrhData
-'
-'    End If
-'
-'    If GrhData(Index).NumFrames = 0 Then
-'
-'        'Search where to place the grh....
-'        For i = 0 To frmMain.LynxGrh.ItemCount - 1
-'
-'            If Val(frmMain.LynxGrh.List(i)) > Index Then
-'                Exit For
-'
-'            End If
-'
-'        Next i
-'
-'        'Add it!
-'        Call frmMain.LynxGrh.AddItem(Index & IIf(Animacion, " (ANIMACIÓN)", ""), i)
-'    Else
-'
-'        'Search for the grh index within the grhList
-'        For i = 0 To frmMain.LynxGrh.ListCount - 1
-'
-'            If Val(frmMain.LynxGrh.List(i)) = Index Then
-'                Exit For
-'
-'            End If
-'
-'        Next i
-'
-'    End If
-'
-'    AgregarGrh = Index
-
-End Function
-
 Private Sub LvBSelector_Click(Index As Integer)
     Select Case Index
     
@@ -1353,6 +1035,13 @@ Private Sub LvBSelector_Click(Index As Integer)
                 frmParticleEditor.Visible = False
             Else
                 frmParticleEditor.Show , frmMain
+            End If
+            
+        Case 8 'Indices
+            If frmIndices.Visible Then
+                frmIndices.Visible = False
+            Else
+                frmIndices.Show , frmMain
             End If
     
     End Select

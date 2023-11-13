@@ -7,6 +7,8 @@ Public DirExport  As String
 
 Public DirIndex   As String
 
+Public DirIndices As String
+
 Public Type tSetupMods
 
     ' VIDEO
@@ -127,6 +129,7 @@ Public Function CargarConfiguracion() As Boolean
     DirCliente = Lector.GetValue("RUTAS", "DirClient")
     DirExport = Lector.GetValue("RUTAS", "DirExport")
     DirIndex = Lector.GetValue("RUTAS", "DirIndex")
+    DirIndices = Lector.GetValue("RUTAS", "DirIndices")
     
     With ClientSetup
         ' VIDEO
@@ -165,6 +168,17 @@ Public Function CargarConfiguracion() As Boolean
             NewPath = Buscar_Carpeta("Seleccione la carpeta de los exportados.", "")
             Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirExport", NewPath)
             DirExport = NewPath & "\"
+        End If
+        
+        'Indices
+        DirIndices = autoCompletaPath(Lector.GetValue("RUTAS", "DirIndices"))
+        
+        If FileExist(DirIndices, vbDirectory) = False Or DirIndices = "\" Then
+            MsgBox "El directorio de la carpeta de Indicies es incorrecto", vbCritical + vbOKOnly
+            
+            NewPath = Buscar_Carpeta("Seleccione la carpeta de Indices.", "")
+            Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirIndices", NewPath)
+            DirIndices = NewPath & "\"
         End If
         
     End With
@@ -754,3 +768,69 @@ On Error GoTo errhandler:
 errhandler:
 
 End Function
+
+Public Sub CargarIndices()
+    '*************************************************
+    'Autor: Lorwik
+    'Fecha: 13/11/2023
+    'Descripcion: Carga los indices
+    '*************************************************
+
+    On Error GoTo Fallo
+
+    Dim Leer As New clsIniReader
+
+    Dim i    As Integer
+
+    Dim K    As Long
+    
+    If FileExist(DirIndices & "indices.ini", vbArchive) = False Then
+        MsgBox "Falta el archivo 'indices.ini'", vbCritical
+        End
+
+    End If
+    
+    Leer.Initialize DirIndices & "indices.ini"
+    MaxSup = Leer.GetValue("INIT", "Referencias")
+    
+    ReDim SupData(MaxSup) As SupData
+    
+    With frmIndices
+    
+        .LynxIndices.Clear
+        .LynxIndices.Redraw = False
+        .LynxIndices.Visible = False
+
+        .LynxIndices.AddColumn "Indice", 0
+        .LynxIndices.AddColumn "Grh", 0
+        .LynxIndices.AddColumn "Nombre", 3
+    
+        For i = 0 To MaxSup
+            SupData(i).name = Leer.GetValue("REFERENCIA" & i, "Nombre")
+            SupData(i).Grh = Val(Leer.GetValue("REFERENCIA" & i, "GrhIndice"))
+            SupData(i).Width = Val(Leer.GetValue("REFERENCIA" & i, "Ancho"))
+            SupData(i).Height = Val(Leer.GetValue("REFERENCIA" & i, "Alto"))
+            SupData(i).Block = IIf(Val(Leer.GetValue("REFERENCIA" & i, "Bloquear")) = 1, True, False)
+            SupData(i).Capa = Val(Leer.GetValue("REFERENCIA" & i, "Capa"))
+        
+            .LynxIndices.AddItem i
+            K = .LynxIndices.Rows - 1
+            .LynxIndices.CellText(K, 1) = SupData(i).Grh
+            .LynxIndices.CellText(K, 2) = SupData(i).name
+        Next
+    
+        .LynxIndices.Visible = True
+        .LynxIndices.Redraw = True
+        .LynxIndices.ColForceFit
+
+    End With
+    
+    DoEvents
+    
+    Set Leer = Nothing
+    
+    Exit Sub
+Fallo:
+    MsgBox "Error al intentar cargar el indice " & i & " de \indices.ini" & vbCrLf & "Err: " & Err.Number & " - " & Err.Description, vbCritical + vbOKOnly
+    
+End Sub

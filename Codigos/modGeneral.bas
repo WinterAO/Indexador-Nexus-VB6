@@ -78,6 +78,10 @@ Public Sub Main()
     DoEvents
     Call CargarColores
     
+    frmCargando.lblstatus.Caption = "Cargando Indices"
+    DoEvents
+    Call CargarIndices
+    
     ReDim MapData(XMinMapSize To XMaxMapSize, YMinMapSize To YMaxMapSize) As MapBlock
     
     Unload frmCargando

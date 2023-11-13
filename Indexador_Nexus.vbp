@@ -36,6 +36,7 @@ Form=Codigos\frmFxs.frm
 Form=Codigos\frmAtaques.frm
 Form=Codigos\frmPerfil.frm
 Module=modLogs; Codigos\modLogs.bas
+Form=Codigos\frmIndices.frm
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""
