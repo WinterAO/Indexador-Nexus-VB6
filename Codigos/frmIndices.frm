@@ -25,6 +25,16 @@ Begin VB.Form frmIndices
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   494
    ShowInTaskbar   =   0   'False
+   Begin VB.CheckBox chkAutoColocar 
+      BackColor       =   &H00404040&
+      Caption         =   "Auto colocar bloqueo"
+      ForeColor       =   &H0000FF00&
+      Height          =   285
+      Left            =   4770
+      TabIndex        =   16
+      Top             =   2340
+      Width           =   2475
+   End
    Begin VB.ComboBox cFiltro 
       BackColor       =   &H80000012&
       ForeColor       =   &H80000014&
@@ -36,9 +46,9 @@ Begin VB.Form frmIndices
    End
    Begin Indexador_Nexus.lvButtons_H LvBGuardar 
       Height          =   405
-      Left            =   4860
+      Left            =   4920
       TabIndex        =   13
-      Top             =   2340
+      Top             =   2730
       Width           =   2115
       _ExtentX        =   3731
       _ExtentY        =   714
@@ -211,6 +221,17 @@ Begin VB.Form frmIndices
       Value           =   0   'False
       cBack           =   8421631
    End
+   Begin VB.Label lblBlock 
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Block:"
+      ForeColor       =   &H0000FF00&
+      Height          =   195
+      Left            =   4290
+      TabIndex        =   15
+      Top             =   2340
+      Width           =   615
+   End
    Begin VB.Label lblCapa 
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
@@ -360,7 +381,7 @@ Private Sub LvBBorrar_Click()
         End With
         
         With LynxIndices
-            K = .row
+            K = .Row
             .CellText(K, 1) = 0
             .CellText(K, 2) = ""
             .Redraw = True
@@ -376,15 +397,39 @@ Private Sub LvBGuardar_Click()
     'Last modified: 13/11/2023
     '*************************************************
     
-    If nSup > 0 Then
+    On Error GoTo ErrorHandler
     
-        SupData(nSup).name = txtNombre.Text
-        SupData(nSup).Grh = Val(txtGrh.Text)
-        SupData(nSup).Height = Val(txtAncho.Text)
-        SupData(nSup).Width = Val(txtAlto.Text)
-        SupData(nSup).Capa = Val(txtCapa.Text)
+    Dim K As Long
     
-    End If
+    SupData(nSup).name = txtNombre.Text
+    SupData(nSup).Grh = Val(txtGrh.Text)
+    SupData(nSup).Height = Val(txtAncho.Text)
+    SupData(nSup).Width = Val(txtAlto.Text)
+    SupData(nSup).Capa = Val(txtCapa.Text)
+    SupData(nSup).Block = IIf(chkAutoColocar.value, "1", "0")
+        
+    Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Nombre", SupData(nSup).name)
+    Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "GrhIndice", SupData(nSup).Grh)
+    Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Alto", SupData(nSup).Height)
+    Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Ancho", SupData(nSup).Width)
+    Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Capa", SupData(nSup).Capa)
+    Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Block", SupData(nSup).Block)
+        
+    With LynxIndices
+        K = .Row
+        .CellText(K, 1) = SupData(nSup).Grh
+        .CellText(K, 2) = SupData(nSup).name
+        .Redraw = True
+        .ColForceFit
+
+    End With
+        
+    frmMain.GRHt = "Indice " & nSup & " - " & SupData(nSup).name & " guardado."
+    
+    Exit Sub
+    
+ErrorHandler:
+    frmMain.GRHt = "Error al guardar el indice."
 
 End Sub
 
@@ -413,6 +458,7 @@ Private Sub LynxIndices_Click()
     txtAncho.Text = SupData(nSup).Height
     txtAlto.Text = SupData(nSup).Width
     txtCapa.Text = SupData(nSup).Capa
+    chkAutoColocar.value = IIf(SupData(nSup).Block, True, False)
     
     Call InitGrh(CurrentGrh, SupData(nSup).Grh)
     isList = False

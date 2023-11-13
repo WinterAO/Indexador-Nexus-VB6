@@ -174,9 +174,9 @@ Public Function CargarConfiguracion() As Boolean
         DirIndices = autoCompletaPath(Lector.GetValue("RUTAS", "DirIndices"))
         
         If FileExist(DirIndices, vbDirectory) = False Or DirIndices = "\" Then
-            MsgBox "El directorio de la carpeta de Indicies es incorrecto", vbCritical + vbOKOnly
+            MsgBox "El directorio de la carpeta de indices es incorrecto", vbCritical + vbOKOnly
             
-            NewPath = Buscar_Carpeta("Seleccione la carpeta de Indices.", "")
+            NewPath = Buscar_Carpeta("Seleccione la carpeta de indices.", "")
             Call WriteVar(profileFile(ProfileTag), "RUTAS", "DirIndices", NewPath)
             DirIndices = NewPath & "\"
         End If
@@ -776,7 +776,7 @@ Public Sub CargarIndices()
     'Descripcion: Carga los indices
     '*************************************************
 
-    On Error GoTo Fallo
+    On Error GoTo fallo
 
     Dim Leer As New clsIniReader
 
@@ -830,7 +830,7 @@ Public Sub CargarIndices()
     Set Leer = Nothing
     
     Exit Sub
-Fallo:
+fallo:
     MsgBox "Error al intentar cargar el indice " & i & " de \indices.ini" & vbCrLf & "Err: " & Err.Number & " - " & Err.Description, vbCritical + vbOKOnly
     
 End Sub

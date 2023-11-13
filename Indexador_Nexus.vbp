@@ -47,9 +47,9 @@ Name="Indexador_Nexus"
 HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
-MinorVer=0
-RevisionVer=0
-AutoIncrementVer=0
+MinorVer=9
+RevisionVer=1
+AutoIncrementVer=1
 ServerSupportFiles=0
 CondComp="Comprimido = 0"
 CompilationType=0
