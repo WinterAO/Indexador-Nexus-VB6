@@ -328,6 +328,8 @@ Private Sub Filtrar()
     
     With LynxIndices
     
+        frmMain.GRHt.Text = "Buscando indice..."
+    
         .Clear
         .Redraw = False
         .Visible = False

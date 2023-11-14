@@ -55,13 +55,13 @@ Begin VB.Form frmMain
       cBack           =   8454016
    End
    Begin Indexador_Nexus.LynxGrid LynxGrh 
-      Height          =   9105
+      Height          =   9075
       Left            =   90
       TabIndex        =   1
       Top             =   810
       Width           =   2205
       _ExtentX        =   3889
-      _ExtentY        =   16060
+      _ExtentY        =   15266
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
          Size            =   8.25
@@ -1278,34 +1278,21 @@ End Sub
 
 Private Sub mnuBuscarGrhLibresConsecutivos_Click()
 
-    On Error Resume Next
-
-    Dim libres As Long
-    Dim i      As Long
-    Dim Conta  As Long
-
+    Dim grhMin As Long
+    Dim grhMax As Long
+    Dim libres As Integer
+    
     libres = InputBox("Grh Libres Consecutivos")
-
-    If IsNumeric(libres) = False Then Exit Sub
-
-    For i = 1 To grhCount
-
-        If GrhData(i).NumFrames = 0 Then
-            Conta = Conta + 1
-
-            If Conta = libres Then
-                MsgBox "Desde Grh" & i - (Conta - 1) & " hasta Grh" & i & " se encuentran libres."
-                Exit Sub
-
-            End If
-
-        ElseIf Conta > 0 Then
-            Conta = 0
-
-        End If
-
-    Next
-    MsgBox "No se encontraron " & libres & " GRH Libres Consecutivos"
+    
+    Call BuscarGrhLibres(libres, grhMin, grhMax)
+    
+    If grhMax > 0 Then
+        MsgBox "Desde Grh" & grhMin & " hasta Grh" & grhMax & " se encuentran libres."
+        
+    Else
+        MsgBox "No se encontraron " & libres & " GRH Libres Consecutivos"
+        
+    End If
 
 End Sub
 
