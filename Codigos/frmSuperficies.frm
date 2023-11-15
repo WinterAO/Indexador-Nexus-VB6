@@ -6,7 +6,7 @@ Begin VB.Form frmSuperficies
    ClientHeight    =   7065
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   6930
+   ClientWidth     =   6990
    BeginProperty Font 
       Name            =   "Tahoma"
       Size            =   8.25
@@ -22,9 +22,34 @@ Begin VB.Form frmSuperficies
    MinButton       =   0   'False
    ScaleHeight     =   471
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   462
+   ScaleWidth      =   466
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
+   Begin Indexador_Nexus.lvButtons_H LvBAvanzado 
+      Height          =   375
+      Left            =   4230
+      TabIndex        =   35
+      Top             =   6570
+      Width           =   2145
+      _ExtentX        =   3784
+      _ExtentY        =   661
+      Caption         =   "Avanzado"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   -2147483633
+   End
    Begin VB.OptionButton OptX 
       BackColor       =   &H00404040&
       Caption         =   "64 x 384"
@@ -377,6 +402,47 @@ Begin VB.Form frmSuperficies
       Top             =   570
       Width           =   1335
    End
+   Begin Indexador_Nexus.lvButtons_H LvBOcultarMenu 
+      Height          =   375
+      Left            =   9390
+      TabIndex        =   36
+      Top             =   6570
+      Width           =   2145
+      _ExtentX        =   3784
+      _ExtentY        =   661
+      Caption         =   "Ocultar Menu Avanzado"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   -2147483633
+   End
+   Begin VB.Line Line1 
+      BorderColor     =   &H0000FF00&
+      Index           =   1
+      X1              =   472
+      X2              =   472
+      Y1              =   24
+      Y2              =   444
+   End
+   Begin VB.Line Line1 
+      BorderColor     =   &H0000FF00&
+      Index           =   0
+      X1              =   468
+      X2              =   468
+      Y1              =   24
+      Y2              =   444
+   End
    Begin VB.Label lblLineas 
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
@@ -626,6 +692,10 @@ Private Sub Form_Load()
     Call OptX_Click(0)
 End Sub
 
+Private Sub LvBAvanzado_Click()
+    Me.Width = 13620
+End Sub
+
 Private Sub LvBIndexar_Click()
     '*************************************************
     'Autor: Lorwik
@@ -762,6 +832,10 @@ Private Sub LvBIndexar_Click()
     Call AddtoRichTextBox(frmMain.RichConsola, "Se añadieron las siguientes " & nLineas & " Grh:", 0, 255, 0)
     Call AddtoRichTextBox(frmMain.RichConsola, resultado, 0, 255, 0)
     
+End Sub
+
+Private Sub LvBOcultarMenu_Click()
+    Me.Width = 7080
 End Sub
 
 Private Sub Muestra_Click(Index As Integer)
