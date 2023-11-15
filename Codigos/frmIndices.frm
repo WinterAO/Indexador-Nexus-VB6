@@ -328,7 +328,7 @@ Private Sub Filtrar()
     
     With LynxIndices
     
-        frmMain.GRHt.Text = "Buscando indice..."
+        Call AddtoRichTextBox(frmMain.RichConsola, "Buscando indice...", 0, 162, 232)
     
         .Clear
         .Redraw = False
@@ -426,12 +426,12 @@ Private Sub LvBGuardar_Click()
 
     End With
         
-    frmMain.GRHt = "Indice " & nSup & " - " & SupData(nSup).name & " guardado."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Indice " & nSup & " - " & SupData(nSup).name, 0, 255, 0)
     
     Exit Sub
     
 ErrorHandler:
-    frmMain.GRHt = "Error al guardar el indice."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Error al guardar el indice.", 255, 0, 0)
 
 End Sub
 

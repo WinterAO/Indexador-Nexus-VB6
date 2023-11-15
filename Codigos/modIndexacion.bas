@@ -126,8 +126,8 @@ Public Function IndexarfromMemory() As Boolean
 
     If LenB(Dir(DirIndex & "\graficos.ind")) <> 0 Then Call Kill(DirIndex & "\graficos.ind")
     DoEvents
-    
-    frmMain.GRHt.Text = "Indexando " & grhCount & " Grh's"
+
+    Call AddtoRichTextBox(frmMain.RichConsola, "Indexando " & grhCount & "Grhs", 0, 162, 232)
     
     Open DirIndex & "\graficos.ind" For Binary Access Write As handle
     
@@ -677,7 +677,7 @@ Public Function IndexarColores() As Boolean
     
     Else
     
-        frmMain.GRHt.Text = "Error al indexar Colores.dat. No se ha podido leer el archivo de origen."
+        Call AddtoRichTextBox(frmMain.RichConsola, "Error al indexar Colores.dat. No se ha podido leer el archivo de origen.", 255, 0, 0)
         IndexarColores = False
         
     End If
@@ -746,7 +746,7 @@ Public Function IndexarGUI() As Boolean
         
     Else
     
-        frmMain.GRHt.Text = "Error al indexar GUID.dat. No se ha encontrado el archivo de origen."
+        Call AddtoRichTextBox(frmMain.RichConsola, "Error al indexar GUI.ini. No se ha podido leer el archivo de origen.", 255, 0, 0)
         
         IndexarGUI = False
     

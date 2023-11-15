@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "Richtx32.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
@@ -26,10 +27,50 @@ Begin VB.Form frmMain
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   876
    StartUpPosition =   1  'CenterOwner
+   Begin RichTextLib.RichTextBox RichConsola 
+      Height          =   1065
+      Left            =   120
+      TabIndex        =   37
+      Top             =   10470
+      Width           =   9405
+      _ExtentX        =   16589
+      _ExtentY        =   1879
+      _Version        =   393217
+      BackColor       =   -2147483647
+      Enabled         =   -1  'True
+      ScrollBars      =   2
+      Appearance      =   0
+      TextRTF         =   $"frmMain.frx":10CA
+   End
+   Begin Indexador_Nexus.lvButtons_H LvBAsistenteDe 
+      Height          =   555
+      Left            =   10020
+      TabIndex        =   36
+      Top             =   3000
+      Width           =   2505
+      _ExtentX        =   4419
+      _ExtentY        =   979
+      Caption         =   "Asistente de indexación para superficies"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   -2147483633
+   End
    Begin Indexador_Nexus.lvButtons_H LvBNuevoGrh 
       Height          =   405
       Left            =   1020
-      TabIndex        =   34
+      TabIndex        =   33
       Top             =   9990
       Width           =   1275
       _ExtentX        =   2249
@@ -125,7 +166,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   3150
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   1320
          Width           =   180
       End
@@ -134,7 +175,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   3150
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   1110
          Width           =   180
       End
@@ -143,7 +184,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   1650
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   1320
          Width           =   180
       End
@@ -152,7 +193,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   1650
-         TabIndex        =   30
+         TabIndex        =   29
          Top             =   1110
          Width           =   180
       End
@@ -161,7 +202,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   3150
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   850
          Width           =   180
       End
@@ -170,7 +211,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   3150
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   650
          Width           =   180
       End
@@ -179,7 +220,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   1650
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   850
          Width           =   180
       End
@@ -188,14 +229,14 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   1650
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   650
          Width           =   180
       End
       Begin Indexador_Nexus.lvButtons_H LvBCambiar 
          Height          =   315
          Left            =   90
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   1560
          Width           =   1065
          _ExtentX        =   1879
@@ -359,19 +400,6 @@ Begin VB.Form frmMain
       Visible         =   0   'False
       Width           =   1575
    End
-   Begin VB.TextBox GRHt 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H0000FF00&
-      Height          =   1080
-      Left            =   90
-      Locked          =   -1  'True
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
-      TabIndex        =   16
-      Top             =   10440
-      Width           =   9405
-   End
    Begin VB.PictureBox MainViewPic 
       Appearance      =   0  'Flat
       BackColor       =   &H80000007&
@@ -390,7 +418,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   0
       Left            =   150
-      TabIndex        =   17
+      TabIndex        =   16
       ToolTipText     =   "Cuerpos"
       Top             =   150
       Width           =   525
@@ -411,7 +439,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":10CA
+      Image           =   "frmMain.frx":1149
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -419,7 +447,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   1
       Left            =   720
-      TabIndex        =   18
+      TabIndex        =   17
       ToolTipText     =   "Cabezas"
       Top             =   150
       Width           =   525
@@ -440,7 +468,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":1310
+      Image           =   "frmMain.frx":138F
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -448,7 +476,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   2
       Left            =   1290
-      TabIndex        =   19
+      TabIndex        =   18
       ToolTipText     =   "Cascos"
       Top             =   150
       Width           =   525
@@ -469,7 +497,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":16AD
+      Image           =   "frmMain.frx":172C
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -477,7 +505,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   3
       Left            =   1860
-      TabIndex        =   20
+      TabIndex        =   19
       ToolTipText     =   "Armas"
       Top             =   150
       Width           =   525
@@ -498,7 +526,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":19B2
+      Image           =   "frmMain.frx":1A31
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -506,7 +534,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   4
       Left            =   2430
-      TabIndex        =   21
+      TabIndex        =   20
       ToolTipText     =   "Escudos"
       Top             =   150
       Width           =   525
@@ -527,7 +555,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":1EA1
+      Image           =   "frmMain.frx":1F20
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -535,7 +563,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   5
       Left            =   3000
-      TabIndex        =   22
+      TabIndex        =   21
       ToolTipText     =   "Ataques"
       Top             =   150
       Width           =   525
@@ -556,7 +584,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":24E4
+      Image           =   "frmMain.frx":2563
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -564,7 +592,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   6
       Left            =   3570
-      TabIndex        =   23
+      TabIndex        =   22
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
@@ -593,7 +621,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   7
       Left            =   4140
-      TabIndex        =   24
+      TabIndex        =   23
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
@@ -614,14 +642,14 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":2B74
+      Image           =   "frmMain.frx":2BF3
       ImgSize         =   32
       cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBBorrar 
       Height          =   405
       Left            =   120
-      TabIndex        =   35
+      TabIndex        =   34
       Top             =   9990
       Width           =   1275
       _ExtentX        =   2249
@@ -648,7 +676,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   8
       Left            =   4710
-      TabIndex        =   36
+      TabIndex        =   35
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
@@ -669,7 +697,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":31F6
+      Image           =   "frmMain.frx":3275
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -889,6 +917,10 @@ End Sub
 
 Private Sub Form_Load()
     EngineRun = True
+End Sub
+
+Private Sub LvBAsistenteDe_Click()
+    frmSuperficies.Show , frmMain
 End Sub
 
 Private Sub LvBBorrar_Click()
@@ -1151,9 +1183,9 @@ End Sub
 
 Private Sub mnuIndexMemory_Click()
     If IndexarfromMemory Then
-        GRHt.Text = "Graficos.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Graficos.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Graficos.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Graficos.ind...", 255, 0, 0)
 
     End If
 End Sub
@@ -1562,9 +1594,9 @@ Private Sub mnuIndexarGraficos_Click()
     DoEvents
 
     If IndexarGraficos Then
-        GRHt.Text = "Graficos.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Graficos.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Graficos.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Graficos.ind...", 255, 0, 0)
 
     End If
 
@@ -1572,9 +1604,9 @@ End Sub
 
 Private Sub mnuIndexarCabezas_Click()
     If IndexarCabezas Then
-        GRHt.Text = "Head.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Head.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Head.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Head.ind...", 255, 0, 0)
 
     End If
 End Sub
@@ -1583,9 +1615,9 @@ Private Sub mnuIndexarPersonajes_Click()
     DoEvents
     
     If IndexarCuerpos Then
-        GRHt.Text = "Personajes.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Personajes.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Personajes.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Personajes.ind...", 255, 0, 0)
     End If
     
 End Sub
@@ -1594,9 +1626,9 @@ Private Sub mnuIndexarCascos_Click()
     DoEvents
     
     If IndexarCascos Then
-        GRHt.Text = "Helmet.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Helmet.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Helmet.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Helmet.ind...", 255, 0, 0)
     End If
 End Sub
 
@@ -1604,9 +1636,9 @@ Private Sub mnuIndexarArmas_Click()
     DoEvents
     
     If IndexarArmas Then
-        GRHt.Text = "Armas.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Armas.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Armas.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Armas.ind...", 255, 0, 0)
     End If
 End Sub
 
@@ -1614,9 +1646,9 @@ Private Sub mnuIndexarEscudos_Click()
     DoEvents
     
     If IndexarEscudos Then
-        GRHt.Text = "Escudos.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Escudos.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Escudos.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Escudos.ind...", 255, 0, 0)
     End If
 End Sub
 
@@ -1624,9 +1656,9 @@ Private Sub mnuIndexarFXs_Click()
     DoEvents
     
     If IndexarFXs Then
-        GRHt.Text = "FXs.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "FXs.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar FXs.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar FXs.ind...", 255, 0, 0)
     End If
 End Sub
 
@@ -1634,26 +1666,26 @@ Private Sub mnuIndexarParticulas_Click()
     DoEvents
     
     If IndexarParticulas Then
-        GRHt.Text = "Particulas.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Particulas.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Particulas.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Particulas.ind...", 255, 0, 0)
     End If
 End Sub
 
 Private Sub mnuIndexarColores_Click()
 
     If IndexarColores Then
-        GRHt.Text = "Colores.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "Colores.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar Colores.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Colores.ind...", 255, 0, 0)
     End If
 End Sub
 
 Private Sub mnuIndexarGUI_Click()
     If IndexarGUI Then
-        GRHt.Text = "GUI.ind compilado..."
+        Call AddtoRichTextBox(RichConsola, "GUI.ind compilado...", 0, 255, 0)
     Else
-        MsgBox "Error al compilar GUI.ind..."
+        Call AddtoRichTextBox(RichConsola, "Error al compilar GUI.ind...", 255, 0, 0)
     End If
 End Sub
 

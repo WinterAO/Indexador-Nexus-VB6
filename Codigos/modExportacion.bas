@@ -31,13 +31,13 @@ Public Sub ExportarCabezas()
 
     Dim Datos As String
 
-    frmMain.GRHt.Text = "Exportando..."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     DoEvents
     Call DIR_INDEXADOR
 
-    Datos = "[INIT]" & vbCrLf & "NumHeads=" & Numheads & vbCrLf & vbCrLf
+    Datos = "[INIT]" & vbCrLf & "NumHeads=" & NumHeads & vbCrLf & vbCrLf
 
-    For i = 1 To Numheads
+    For i = 1 To NumHeads
 
         If HeadData(i).Head(1).GrhIndex > 0 Then
             Datos = Datos & "[HEAD" & (i) & "]" & vbCrLf
@@ -51,14 +51,14 @@ Public Sub ExportarCabezas()
 
     Next
 
-    frmMain.GRHt.Text = "Guardando...Head.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando Head.ini", 0, 162, 232)
     DoEvents
 
     Open (DirExport & "\Head.ini") For Binary Access Write As #1
     Put #1, , Datos
     Close #1
 
-    frmMain.GRHt.Text = "Exportado...Head.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Head.ini Exportado", 0, 255, 0)
 End Sub
 
 Public Sub ExportarCascos()
@@ -71,7 +71,7 @@ Public Sub ExportarCascos()
 
     Dim Datos As String
 
-    frmMain.GRHt.Text = "Exportando..."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     DoEvents
     Call DIR_INDEXADOR
 
@@ -91,7 +91,7 @@ Public Sub ExportarCascos()
 
     Next
 
-    frmMain.GRHt.Text = "Guardando...Helmet.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando Helmet.ini", 0, 162, 232)
     DoEvents
 
     Open (DirExport & "\Helmet.ini") For Binary Access Write As #1
@@ -99,7 +99,7 @@ Public Sub ExportarCascos()
     Close #1
 
     DoEvents
-    frmMain.GRHt.Text = "Exportado...Helmet.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Helmet.ini Exportado", 0, 255, 0)
 End Sub
 
 Public Sub ExportarCuerpos()
@@ -112,7 +112,7 @@ Public Sub ExportarCuerpos()
 
     Dim Datos As String
 
-    frmMain.GRHt.Text = "Exportando..."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     DoEvents
     Call DIR_INDEXADOR
 
@@ -127,14 +127,14 @@ Public Sub ExportarCuerpos()
         Datos = Datos & "HeadOffsetX=" & BodyData(i).HeadOffset.x & vbCrLf & "HeadOffsetY=" & BodyData(i).HeadOffset.y & vbCrLf & vbCrLf
     Next
 
-    frmMain.GRHt.Text = "Guardando...Cuerpos.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando Cuerpos.ini", 0, 162, 232)
     DoEvents
 
     Open (DirExport & "\Cuerpos.ini") For Binary Access Write As #1
     Put #1, , Datos
     Close #1
 
-    frmMain.GRHt.Text = "Exportado...Cuerpos.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Cuerpos.ini Exportado", 0, 255, 0)
 End Sub
 
 Public Sub ExportarFxs()
@@ -147,7 +147,7 @@ Public Sub ExportarFxs()
 
     Dim Datos As String
 
-    frmMain.GRHt.Text = "Exportando..."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     DoEvents
     Call DIR_INDEXADOR
 
@@ -163,7 +163,7 @@ Public Sub ExportarFxs()
 
     Next
 
-    frmMain.GRHt.Text = "Guardando...FXs.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando fxs.ini", 0, 162, 232)
     DoEvents
 
     Open (DirExport & "\FXs.ini") For Binary Access Write As #1
@@ -172,7 +172,7 @@ Public Sub ExportarFxs()
 
     DoEvents
 
-    frmMain.GRHt.Text = "Exportado...FXs.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "FXs.ini Exportado", 0, 255, 0)
 End Sub
 
 Public Sub ExportarGraficos()
@@ -186,7 +186,7 @@ Public Sub ExportarGraficos()
 
     Ocupado = True
     Play = False
-    frmMain.GRHt.Text = "Exportando..."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     Call DIR_INDEXADOR
     DoEvents
 
@@ -206,7 +206,7 @@ Public Sub ExportarGraficos()
         K = K + 1
 
         If K > 100 Then
-            frmMain.GRHt.Text = "Exportando..." & i & " de " & grhCount
+            Call AddtoRichTextBox(frmMain.RichConsola, "Exportando " & i & " de " & grhCount, 0, 162, 232)
             DoEvents
             K = 0
 
@@ -241,7 +241,7 @@ Public Sub ExportarGraficos()
 
     Next
     Close #n
-    frmMain.GRHt.Text = "Exportado...Graficos.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Graficos.ini Exportado", 0, 255, 0)
     Ocupado = False
 End Sub
 
@@ -259,7 +259,7 @@ Public Sub ExportarParticulas()
 
     Dim Datos As String
 
-    frmMain.GRHt.Text = "Exportando... Particulas"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     DoEvents
     Call DIR_INDEXADOR
 
@@ -313,7 +313,7 @@ Public Sub ExportarParticulas()
 
     Next
 
-    frmMain.GRHt.Text = "Guardando...Particulas.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando Particulas.ini", 0, 162, 232)
     DoEvents
 
     Open (DirExport & "\particulas.ini") For Binary Access Write As #1
@@ -322,7 +322,7 @@ Public Sub ExportarParticulas()
 
     DoEvents
 
-    frmMain.GRHt.Text = "Exportado...Particulas.ini"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Particulas.ini Exportado", 0, 255, 0)
 
 End Sub
 
@@ -336,7 +336,7 @@ On Error Resume Next
     Dim i As Integer, j, n, K As Integer
     Dim Datos As String
     
-    frmMain.GRHt.Text = "Exportando..."
+    Call AddtoRichTextBox(frmMain.RichConsola, "Exportando...", 0, 162, 232)
     DoEvents
     
     If FileExist(DirExport & "Colores.dat", vbArchive) = True Then Call Kill(DirExport & "Colores.dat")
@@ -352,7 +352,7 @@ On Error Resume Next
         Datos = Datos & "B=" & ColoresPJ(i).R & vbCrLf & vbCrLf
     Next
     
-    frmMain.GRHt.Text = "Guardando...Colores.dat"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando Colores.dat", 0, 162, 232)
     DoEvents
     
     Open (DirExport & "Colores.dat") For Binary Access Write As #1
@@ -361,5 +361,5 @@ On Error Resume Next
     
     DoEvents
     
-    frmMain.GRHt.Text = "Exportado...Colores.dat"
+    Call AddtoRichTextBox(frmMain.RichConsola, "Colores.dat Exportado", 0, 255, 0)
 End Sub
