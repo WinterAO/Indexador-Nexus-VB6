@@ -834,3 +834,51 @@ fallo:
     MsgBox "Error al intentar cargar el indice " & i & " de \indices.ini" & vbCrLf & "Err: " & Err.Number & " - " & Err.Description, vbCritical + vbOKOnly
     
 End Sub
+
+Public Sub GuardarIndices()
+    '*************************************************
+    'Autor: Lorwik
+    'Fecha: 15/11/2023
+    'Descripcion: Guarda los indices
+    '*************************************************
+
+    On Error GoTo fallo
+
+    Dim Leer As New clsIniReader
+
+    Dim i    As Integer
+    
+    Set Leer = Nothing
+    
+    If FileExist(DirIndices & "indices.ini", vbArchive) = False Then
+        MsgBox "Falta el archivo 'indices.ini'", vbCritical
+        End
+
+    End If
+    
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando indices...", 0, 255, 0)
+    
+    Leer.Initialize DirIndices & "indices.ini"
+    
+    For i = 0 To MaxSup
+        
+        Call Leer.ChangeValue("INIT" & i, "Referencias", MaxSup)
+    
+        With SupData(i)
+        
+            Call Leer.ChangeValue("REFERENCIA" & i, "Nombre", .name)
+            Call Leer.ChangeValue("REFERENCIA" & i, "GrhIndice", .Grh)
+            Call Leer.ChangeValue("REFERENCIA" & i, "Ancho", .Width)
+            Call Leer.ChangeValue("REFERENCIA" & i, "Alto", .Height)
+            Call Leer.ChangeValue("REFERENCIA" & i, "Capa", .Capa)
+            Call Leer.ChangeValue("REFERENCIA" & i, "Block", .Block)
+        
+        End With
+    Next i
+    
+    Exit Sub
+fallo:
+    MsgBox "Error al guardar el indice " & i & " de \indices.ini" & vbCrLf & "Err: " & Err.Number & " - " & Err.Description, vbCritical + vbOKOnly
+    Call AddtoRichTextBox(frmMain.RichConsola, "Error al guardar los indices...", 255, 0, 0)
+    
+End Sub

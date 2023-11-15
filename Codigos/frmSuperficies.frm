@@ -298,7 +298,7 @@ Begin VB.Form frmSuperficies
       Top             =   270
       Width           =   1380
    End
-   Begin VB.TextBox txtreferencia 
+   Begin VB.TextBox txtReferencia 
       Appearance      =   0  'Flat
       BackColor       =   &H00404040&
       ForeColor       =   &H0000FF00&
@@ -309,7 +309,7 @@ Begin VB.Form frmSuperficies
       Top             =   4620
       Width           =   3375
    End
-   Begin VB.TextBox txtreferencia 
+   Begin VB.TextBox txtReferencia 
       Appearance      =   0  'Flat
       BackColor       =   &H00404040&
       ForeColor       =   &H0000FF00&
@@ -320,7 +320,7 @@ Begin VB.Form frmSuperficies
       Top             =   3960
       Width           =   3375
    End
-   Begin VB.TextBox txtreferencia 
+   Begin VB.TextBox txtReferencia 
       Appearance      =   0  'Flat
       BackColor       =   &H00404040&
       ForeColor       =   &H0000FF00&
@@ -331,7 +331,7 @@ Begin VB.Form frmSuperficies
       Top             =   3360
       Width           =   3375
    End
-   Begin VB.TextBox txtreferencia 
+   Begin VB.TextBox txtReferencia 
       Appearance      =   0  'Flat
       BackColor       =   &H00404040&
       ForeColor       =   &H0000FF00&
@@ -344,7 +344,7 @@ Begin VB.Form frmSuperficies
    End
    Begin Indexador_Nexus.lvButtons_H LvBIndexar 
       Height          =   735
-      Left            =   210
+      Left            =   180
       TabIndex        =   4
       Top             =   1020
       Width           =   3285
@@ -617,12 +617,22 @@ Private nLineas   As Integer
 Dim nSup As Byte
 
 Private Sub Form_Load()
+    '*************************************************
+    'Autor: Lorwik
+    'Fecha: 15/11/2023
+    '*************************************************
+    
     lblGrhs.Caption = grhCount
     Call OptX_Click(0)
 End Sub
 
 Private Sub LvBIndexar_Click()
-
+    '*************************************************
+    'Autor: Lorwik
+    'Fecha: 15/11/2023
+    'Descripcion: Indexado de superficies
+    '*************************************************
+    
     Dim i          As Long
     
     Dim tX         As Byte
@@ -651,8 +661,8 @@ Private Sub LvBIndexar_Click()
 
     For i = 0 To nSup - 1
 
-        If txtreferencia(i).Visible Then
-            If txtreferencia(i).Text = vbNullString Then
+        If txtReferencia(i).Visible Then
+            If txtReferencia(i).Text = vbNullString Then
                 MsgBox "Introduce el nombre de las referencias."
                 Exit Sub
 
@@ -661,6 +671,8 @@ Private Sub LvBIndexar_Click()
         End If
 
     Next i
+    
+    Call AddtoRichTextBox(frmMain.RichConsola, "Indexando superficies...", 0, 255, 0)
     
     If OptX(6).value Then '280 x 96
     
@@ -723,24 +735,50 @@ Private Sub LvBIndexar_Click()
                         
         End With
         
+        MaxSup = MaxSup + 1
+        
+        ReDim Preserve SupData(MaxSup) As SupData
+        
+        With SupData(MaxSup)
+        
+            .name = txtReferencia(0).Text
+            .Grh = grhCount + nLineas
+            .Height = 0
+            .Width = 0
+            .Capa = 1
+            .Block = False
+        
+        End With
+        
         frmMain.LynxGrh.AddItem grhCount + nLineas
         frmMain.LynxGrh.CellText(0, 1) = grhCount + nLineas
     End If
     
     grhCount = nLineas
     
+    Call GuardarIndices
+    
     'Resultado
-    Call AddtoRichTextBox(frmMain.RichConsola, "Se añadieron las siguientes " & nLineas & " GHrhs:", 0, 255, 0)
+    Call AddtoRichTextBox(frmMain.RichConsola, "Se añadieron las siguientes " & nLineas & " Grh:", 0, 255, 0)
     Call AddtoRichTextBox(frmMain.RichConsola, resultado, 0, 255, 0)
     
 End Sub
 
 Private Sub Muestra_Click(Index As Integer)
+    '*************************************************
+    'Autor: Lorwik
+    'Fecha: 15/11/2023
+    '*************************************************
     OptX(Index).value = True
 End Sub
 
 Private Sub OptX_Click(Index As Integer)
-
+    '*************************************************
+    'Autor: Lorwik
+    'Fecha: 15/11/2023
+    'Descripcion: Selecciona un tipo de superficie
+    '*************************************************
+    
     Dim i As Byte
     
     Select Case Index
@@ -750,7 +788,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 4
 
             For i = 1 To 3
-                txtreferencia(i).Visible = True
+                txtReferencia(i).Visible = True
                 lblNombreDe(i).Visible = True
             Next i
             
@@ -762,7 +800,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 4
 
             For i = 1 To 3
-                txtreferencia(i).Visible = False
+                txtReferencia(i).Visible = False
                 lblNombreDe(i).Visible = False
             Next i
             
@@ -773,11 +811,11 @@ Private Sub OptX_Click(Index As Integer)
             nSupAncho = 4
             nSupAlto = 4
             
-            txtreferencia(3).Visible = False
+            txtReferencia(3).Visible = False
             lblNombreDe(3).Visible = False
 
             For i = 1 To 2
-                txtreferencia(i).Visible = True
+                txtReferencia(i).Visible = True
                 lblNombreDe(i).Visible = True
             Next i
             
@@ -789,7 +827,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 3
 
             For i = 1 To 3
-                txtreferencia(i).Visible = False
+                txtReferencia(i).Visible = False
                 lblNombreDe(i).Visible = False
             Next i
             
@@ -801,7 +839,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 2
 
             For i = 1 To 3
-                txtreferencia(i).Visible = False
+                txtReferencia(i).Visible = False
                 lblNombreDe(i).Visible = False
             Next i
             
@@ -813,7 +851,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 2
 
             For i = 1 To 3
-                txtreferencia(i).Visible = True
+                txtReferencia(i).Visible = True
                 lblNombreDe(i).Visible = True
             Next i
             
@@ -825,7 +863,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 1
             
             For i = 1 To 3
-                txtreferencia(i).Visible = False
+                txtReferencia(i).Visible = False
                 lblNombreDe(i).Visible = False
             Next i
             
@@ -837,7 +875,7 @@ Private Sub OptX_Click(Index As Integer)
             nSupAlto = 1
             
             For i = 1 To 3
-                txtreferencia(i).Visible = False
+                txtReferencia(i).Visible = False
                 lblNombreDe(i).Visible = False
             Next i
             
