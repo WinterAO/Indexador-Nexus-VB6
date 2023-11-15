@@ -51,7 +51,7 @@ HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
 MinorVer=9
-RevisionVer=4
+RevisionVer=7
 AutoIncrementVer=1
 ServerSupportFiles=0
 CondComp="Comprimido = 0"

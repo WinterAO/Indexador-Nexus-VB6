@@ -4,7 +4,7 @@ Begin VB.Form frmMain
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Indexador Nexus"
-   ClientHeight    =   11625
+   ClientHeight    =   11955
    ClientLeft      =   45
    ClientTop       =   690
    ClientWidth     =   13140
@@ -23,18 +23,18 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   775
+   ScaleHeight     =   797
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   876
    StartUpPosition =   1  'CenterOwner
    Begin RichTextLib.RichTextBox RichConsola 
-      Height          =   1065
+      Height          =   1425
       Left            =   120
       TabIndex        =   37
       Top             =   10470
       Width           =   9405
       _ExtentX        =   16589
-      _ExtentY        =   1879
+      _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
       Enabled         =   -1  'True

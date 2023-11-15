@@ -372,7 +372,6 @@ Begin VB.Form frmSuperficies
       BackColor       =   &H00404040&
       ForeColor       =   &H0000FF00&
       Height          =   285
-      Index           =   0
       Left            =   2010
       TabIndex        =   3
       Top             =   570
@@ -612,28 +611,242 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private nSupAncho As Byte
+Private nSupAlto  As Byte
+Private nLineas   As Integer
+Dim nSup As Byte
+
 Private Sub Form_Load()
     lblGrhs.Caption = grhCount
 End Sub
 
 Private Sub LvBIndexar_Click()
+
+    Dim i          As Long
     
-    If OptX(0).value Then
+    Dim tX         As Byte
+
+    Dim tY         As Byte
+
+    Dim XX         As Integer
+
+    Dim YY         As Integer
     
-    ElseIf OptX(1).value Then
+    Dim Ancho      As Integer
     
-    ElseIf OptX(2).value Then
+    Dim alto       As Integer
     
-    ElseIf OptX(3).value Then
+    Dim sinCalculo As Boolean
+
+    Dim count      As Integer
     
-    ElseIf OptX(4).value Then
+    Dim resultado  As String
     
-    ElseIf OptX(5).value Then
+    If Val(txtNgrafico.Text) < 1 Then
+        MsgBox "Numero de grafico invalido."
+        Exit Sub
+
+    End If
+
+    For i = 0 To nSup - 1
+
+        If txtreferencia(i).Visible Then
+            If txtreferencia(i).Text = vbNullString Then
+                MsgBox "Introduce el nombre de las referencias."
+                Exit Sub
+
+            End If
+
+        End If
+
+    Next i
     
-    ElseIf OptX(6).value Then
+    If OptX(6).value Then '280 x 96
     
-    ElseIf OptX(7).value Then
-    
+        Ancho = 280
+        alto = 96
+        resultado = "Grh" & grhCount + 1 & "=" & txtNgrafico.Text & "-0-0-" & Ancho & "-" & alto & vbCrLf
+        sinCalculo = True
+        
+    ElseIf OptX(7).value Then '64 x 384
+        Ancho = 64
+        alto = 384
+        resultado = "Grh" & grhCount + 1 & "=" & txtNgrafico.Text & "-0-0-" & Ancho & "-" & alto & vbCrLf
+        sinCalculo = True
+        
     End If
     
+    'Insertamos el resultado
+    ReDim Preserve GrhData(1 To grhCount + nLineas) As GrhData
+    
+    If Not sinCalculo Then
+
+        'Calculo de los Grh
+        For tX = 1 To nSupAncho
+            For tY = 1 To nSupAlto
+            
+                count = count + 1
+                resultado = resultado & "Grh" & grhCount + count & "=" & txtNgrafico.Text & "-" & XX & "-" & YY & "-32-32" & vbCrLf
+        
+                With GrhData(count)
+                        
+                    .FileNum = Val(txtNgrafico.Text)
+                    .NumFrames = 1
+                    .pixelWidth = Ancho
+                    .pixelHeight = alto
+                    .sX = 32
+                    .sY = 32
+                        
+                End With
+                
+                frmMain.LynxGrh.AddItem count
+                frmMain.LynxGrh.CellText(0, 1) = count
+                
+                XX = XX + 32
+            Next tY
+    
+            XX = 0
+            YY = YY + 32
+        Next tX
+
+    Else
+    
+        With GrhData(grhCount + nLineas)
+                        
+            .FileNum = Val(txtNgrafico.Text)
+            .NumFrames = 1
+            .pixelWidth = 0
+            .pixelHeight = 0
+            .sX = Ancho
+            .sY = alto
+                        
+        End With
+        
+        frmMain.LynxGrh.AddItem grhCount + nLineas
+        frmMain.LynxGrh.CellText(0, 1) = grhCount + nLineas
+    End If
+    
+    grhCount = nLineas
+    
+    'Resultado
+    Call AddtoRichTextBox(frmMain.RichConsola, "Se añadieron las siguientes " & nLineas & " GHrhs:", 0, 255, 0)
+    Call AddtoRichTextBox(frmMain.RichConsola, resultado, 0, 255, 0)
+    
+End Sub
+
+Private Sub Muestra_Click(Index As Integer)
+    OptX(Index).value = True
+End Sub
+
+Private Sub OptX_Click(Index As Integer)
+
+    Dim i As Byte
+    
+    Select Case Index
+    
+        Case 0
+            nSupAncho = 4
+            nSupAlto = 4
+
+            For i = 1 To 3
+                txtreferencia(i).Visible = True
+                lblNombreDe(i).Visible = True
+            Next i
+            
+            nLineas = 64
+            nSup = 4
+            
+        Case 1
+            nSupAncho = 4
+            nSupAlto = 4
+
+            For i = 1 To 3
+                txtreferencia(i).Visible = False
+                lblNombreDe(i).Visible = False
+            Next i
+            
+            nLineas = 16
+            nSup = 1
+            
+        Case 2
+            nSupAncho = 4
+            nSupAlto = 4
+            
+            txtreferencia(3).Visible = False
+            lblNombreDe(3).Visible = False
+
+            For i = 1 To 2
+                txtreferencia(i).Visible = True
+                lblNombreDe(i).Visible = True
+            Next i
+            
+            nLineas = 47
+            nSup = 2
+            
+        Case 3
+            nSupAncho = 3
+            nSupAlto = 3
+
+            For i = 1 To 3
+                txtreferencia(i).Visible = False
+                lblNombreDe(i).Visible = False
+            Next i
+            
+            nLineas = 9
+            nSup = 1
+            
+        Case 4
+            nSupAncho = 2
+            nSupAlto = 2
+
+            For i = 1 To 3
+                txtreferencia(i).Visible = False
+                lblNombreDe(i).Visible = False
+            Next i
+            
+            nLineas = 4
+            nSup = 1
+            
+        Case 5
+            nSupAncho = 4
+            nSupAlto = 2
+
+            For i = 1 To 3
+                txtreferencia(i).Visible = True
+                lblNombreDe(i).Visible = True
+            Next i
+            
+            nLineas = 16
+            nSup = 4
+            
+        Case 6
+            nSupAncho = 1
+            nSupAlto = 1
+            
+            For i = 1 To 3
+                txtreferencia(i).Visible = False
+                lblNombreDe(i).Visible = False
+            Next i
+            
+            nLineas = 1
+            nSup = 1
+            
+        Case 7
+            nSupAncho = 1
+            nSupAlto = 1
+            
+            For i = 1 To 3
+                txtreferencia(i).Visible = False
+                lblNombreDe(i).Visible = False
+            Next i
+            
+            nLineas = 1
+            nSup = 1
+    
+    End Select
+    
+    lblAncho.Caption = "Ancho: " & nSupAncho
+    lblAlto.Caption = "Alto: " & nSupAlto
+    lblLineas.Caption = nLineas
+
 End Sub
