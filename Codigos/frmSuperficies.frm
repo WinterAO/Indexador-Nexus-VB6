@@ -618,6 +618,7 @@ Dim nSup As Byte
 
 Private Sub Form_Load()
     lblGrhs.Caption = grhCount
+    Call OptX_Click(0)
 End Sub
 
 Private Sub LvBIndexar_Click()
