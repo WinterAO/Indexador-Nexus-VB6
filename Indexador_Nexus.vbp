@@ -11,7 +11,7 @@ Module=mod_TileEngine; Codigos\mod_TileEngine.bas
 Form=Codigos\frmCargando.frm
 Module=modExportacion; Codigos\modExportacion.bas
 Module=modIndexacion; Codigos\modIndexacion.bas
-Class=clsIniReader; Codigos\clsIniReader.cls
+Class=clsIniManager; Codigos\clsIniReader.cls
 Form=Codigos\frmMinimapa.frm
 Module=modMinimap; Codigos\modMinimap.bas
 Form=Codigos\frmCodigo.frm
@@ -51,7 +51,7 @@ HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
 MinorVer=9
-RevisionVer=8
+RevisionVer=10
 AutoIncrementVer=1
 ServerSupportFiles=0
 CondComp="Comprimido = 0"

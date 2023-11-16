@@ -20,7 +20,7 @@ End Type
 
 Public ClientSetup As tSetupMods
 
-Private Lector    As clsIniReader
+Private Lector    As clsIniManager
 
 'Lista de cabezas
 Public Type tHead
@@ -122,7 +122,7 @@ Public Function CargarConfiguracion() As Boolean
         End
     End If
     
-    Set Lector = New clsIniReader
+    Set Lector = New clsIniManager
     Call Lector.Initialize(profileFile(ProfileTag))
     
     ' RUTAS
@@ -750,7 +750,7 @@ On Error GoTo errhandler:
 
     If Not FileExist(DirExport & "colores.dat", vbNormal) Then Exit Function
 
-    Dim LeerINI As New clsIniReader
+    Dim LeerINI As New clsIniManager
     Call LeerINI.Initialize(DirExport & "colores.dat")
     
     Dim i As Long
@@ -778,7 +778,7 @@ Public Sub CargarIndices()
 
     On Error GoTo fallo
 
-    Dim Leer As New clsIniReader
+    Dim Leer As New clsIniManager
 
     Dim i    As Integer
 
@@ -844,37 +844,36 @@ Public Sub GuardarIndices()
 
     On Error GoTo fallo
 
-    Dim Leer As New clsIniReader
-
     Dim i    As Integer
     
-    Set Leer = Nothing
+    Dim Datos As String
     
-    If FileExist(DirIndices & "indices.ini", vbArchive) = False Then
-        MsgBox "Falta el archivo 'indices.ini'", vbCritical
-        End
-
-    End If
-    
-    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando indices...", 0, 255, 0)
-    
-    Leer.Initialize DirIndices & "indices.ini"
+    Datos = "[INIT]" & vbCrLf & "Referencias=" & MaxSup & vbCrLf & vbCrLf
     
     For i = 0 To MaxSup
-        
-        Call Leer.ChangeValue("INIT" & i, "Referencias", MaxSup)
-    
+
+        Datos = Datos & "[REFERENCIA" & (i) & "]" & vbCrLf
+
         With SupData(i)
         
-            Call Leer.ChangeValue("REFERENCIA" & i, "Nombre", .name)
-            Call Leer.ChangeValue("REFERENCIA" & i, "GrhIndice", .Grh)
-            Call Leer.ChangeValue("REFERENCIA" & i, "Ancho", .Width)
-            Call Leer.ChangeValue("REFERENCIA" & i, "Alto", .Height)
-            Call Leer.ChangeValue("REFERENCIA" & i, "Capa", .Capa)
-            Call Leer.ChangeValue("REFERENCIA" & i, "Block", .Block)
+            Datos = Datos & "Nombre=" & .name & vbCrLf
+            Datos = Datos & "GrhIndice=" & .Grh & vbCrLf
+            Datos = Datos & "Ancho=" & .Width & vbCrLf
+            Datos = Datos & "Alto=" & .Height & vbCrLf
+            Datos = Datos & "Capa=" & .Capa & vbCrLf
+            Datos = Datos & "Block=" & IIf(.Block, 1, 0) & vbCrLf & vbCrLf
+            
         
         End With
     Next i
+    
+    Call AddtoRichTextBox(frmMain.RichConsola, "Guardando indices...", 0, 162, 232)
+    
+    Open (DirIndices & "indices.ini") For Binary Access Write As #1
+        Put #1, , Datos
+    Close #1
+    
+    Call AddtoRichTextBox(frmMain.RichConsola, "Indices guardados", 0, 255, 0)
     
     Exit Sub
 fallo:

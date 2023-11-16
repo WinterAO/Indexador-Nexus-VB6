@@ -37,7 +37,6 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
-      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
@@ -703,9 +702,6 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
-      Begin VB.Menu mnuIndexMemory 
-         Caption         =   "Indexar desde Memoria"
-      End
       Begin VB.Menu mnuExportar 
          Caption         =   "Exportar..."
          Begin VB.Menu mnuExportarGraficos 
@@ -740,42 +736,54 @@ Begin VB.Form frmMain
          End
       End
       Begin VB.Menu mnuIndexar 
-         Caption         =   "Indexar..."
-         Begin VB.Menu mnuIndexarGraficos 
-            Caption         =   "Graficos.ini"
+         Caption         =   "Guardar desde..."
+         Begin VB.Menu mnumemoria 
+            Caption         =   "Memoria"
+            Begin VB.Menu mnuIndexMemory 
+               Caption         =   "Graficos"
+            End
+            Begin VB.Menu mnuIndexSupMem 
+               Caption         =   "Superficies"
+            End
          End
-         Begin VB.Menu mnuIndexarCabezas 
-            Caption         =   "Head.ini"
-         End
-         Begin VB.Menu mnuIndexarPersonajes 
-            Caption         =   "Personajes.ini"
-         End
-         Begin VB.Menu mnuIndexarCascos 
-            Caption         =   "Helmet.ini"
-         End
-         Begin VB.Menu mnuIndexarArmas 
-            Caption         =   "Armas.ini"
-         End
-         Begin VB.Menu mnuIndexarEscudos 
-            Caption         =   "Escudos.ini"
-         End
-         Begin VB.Menu mnuIndexarFXs 
-            Caption         =   "FXs.ini"
-         End
-         Begin VB.Menu mnuIndexarParticulas 
-            Caption         =   "Particulas.ini"
-         End
-         Begin VB.Menu mnuIndexarColores 
-            Caption         =   "Colores.ini"
-         End
-         Begin VB.Menu mnuIndexarGUI 
-            Caption         =   "GUI.ini"
-         End
-         Begin VB.Menu mnuLine4 
-            Caption         =   "-"
-         End
-         Begin VB.Menu mnuIndexarTodo 
-            Caption         =   "&TODO"
+         Begin VB.Menu mnuexportados 
+            Caption         =   "Exportados"
+            Begin VB.Menu mnuIndexarGraficos 
+               Caption         =   "Graficos.ini"
+            End
+            Begin VB.Menu mnuIndexarCabezas 
+               Caption         =   "Head.ini"
+            End
+            Begin VB.Menu mnuIndexarPersonajes 
+               Caption         =   "Personajes.ini"
+            End
+            Begin VB.Menu mnuIndexarCascos 
+               Caption         =   "Helmet.ini"
+            End
+            Begin VB.Menu mnuIndexarArmas 
+               Caption         =   "Armas.ini"
+            End
+            Begin VB.Menu mnuIndexarEscudos 
+               Caption         =   "Escudos.ini"
+            End
+            Begin VB.Menu mnuIndexarFXs 
+               Caption         =   "FXs.ini"
+            End
+            Begin VB.Menu mnuIndexarParticulas 
+               Caption         =   "Particulas.ini"
+            End
+            Begin VB.Menu mnuIndexarColores 
+               Caption         =   "Colores.ini"
+            End
+            Begin VB.Menu mnuIndexarGUI 
+               Caption         =   "GUI.ini"
+            End
+            Begin VB.Menu mnuLine4 
+               Caption         =   "-"
+            End
+            Begin VB.Menu mnuIndexarTodo 
+               Caption         =   "&TODO"
+            End
          End
       End
       Begin VB.Menu mnuGenerarMinimapa 
@@ -1247,6 +1255,10 @@ Private Sub mnuIndexPNG_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuIndexSupMem_Click()
+    Call GuardarIndices
 End Sub
 
 Private Sub mnuPNGinutiles_Click()

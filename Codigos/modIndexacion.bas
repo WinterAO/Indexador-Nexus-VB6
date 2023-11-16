@@ -9,7 +9,7 @@ Public Function IndexarGraficos() As Boolean
     Dim handle     As Integer
     Dim totalGrh   As Long
     Dim fVersion   As Long
-    Dim Leer       As New clsIniReader
+    Dim Leer       As New clsIniManager
     Dim Datos      As String
     Dim DatoR()    As String
     Dim tF         As Integer
@@ -189,7 +189,7 @@ Public Function IndexarCuerpos() As Boolean
     Dim i          As Long
     Dim nCuerpos As Integer
     Dim MisCuerpos As tIndiceCuerpo
-    Dim Leer       As New clsIniReader
+    Dim Leer       As New clsIniManager
     
     handle = FreeFile()
     Call Leer.Initialize(DirExport & "\personajes.ini")
@@ -247,7 +247,7 @@ On Error GoTo fallo
     
     DoEvents
     
-    Dim LeerINI As New clsIniReader
+    Dim LeerINI As New clsIniManager
     Call LeerINI.Initialize(DirExport & "Head.ini")
     
     NumHeads = CInt(LeerINI.GetValue("INIT", "NumHeads"))
@@ -292,7 +292,7 @@ Public Function IndexarCascos() As Boolean
     
     DoEvents
     
-    Dim LeerINI As New clsIniReader
+    Dim LeerINI As New clsIniManager
     Call LeerINI.Initialize(DirExport & "Helmet.ini")
     
     NumCascos = CInt(LeerINI.GetValue("INIT", "NumCascos"))
@@ -334,7 +334,7 @@ Public Function IndexarFXs() As Boolean
     Dim i       As Long
     Dim NumFX   As Integer
     Dim MisFXs  As tIndiceFx
-    Dim Leer    As New clsIniReader
+    Dim Leer    As New clsIniManager
 
     handle = FreeFile()
     
@@ -386,7 +386,7 @@ Public Function IndexarArmas() As Boolean
     Dim i         As Long
     Dim nArmas    As Integer
     Dim Weapon    As tIndiceArmas
-    Dim Leer      As New clsIniReader
+    Dim Leer      As New clsIniManager
 
     handle = FreeFile()
     
@@ -441,7 +441,7 @@ Public Function IndexarEscudos() As Boolean
     Dim i         As Long
     Dim nEscudos  As Integer
     Dim Shield    As tIndiceEscudos
-    Dim Leer      As New clsIniReader
+    Dim Leer      As New clsIniManager
 
     handle = FreeFile()
     
@@ -500,7 +500,7 @@ Public Function IndexarParticulas() As Boolean
     Dim ColorSet As Long
     Dim ParticulasStream As Stream
     Dim TotalParticulas As Integer
-    Dim Leer As New clsIniReader
+    Dim Leer As New clsIniManager
 
     Call Leer.Initialize(DirExport & "\particulas.ini")
 
@@ -699,7 +699,7 @@ Public Function IndexarGUI() As Boolean
     On Error GoTo ErrorHandler:
 
     Dim n               As Integer
-    Dim Leer            As New clsIniReader
+    Dim Leer            As New clsIniManager
     Dim i               As Integer
     Dim NumButtons      As Integer
     Dim NumConnectMap   As Byte

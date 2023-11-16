@@ -718,8 +718,10 @@ Private Sub LvBIndexar_Click()
     Dim alto       As Integer
     
     Dim sinCalculo As Boolean
-
-    Dim count      As Integer
+    
+    Dim Count      As Integer
+    
+    Dim refCount   As Byte
     
     Dim resultado  As String
     
@@ -768,10 +770,12 @@ Private Sub LvBIndexar_Click()
         For tX = 1 To nSupAncho
             For tY = 1 To nSupAlto
             
-                count = count + 1
-                resultado = resultado & "Grh" & grhCount + count & "=" & txtNgrafico.Text & "-" & XX & "-" & YY & "-32-32" & vbCrLf
+                Count = Count + 1
+            
+                grhCount = grhCount + 1
+                resultado = resultado & "Grh" & grhCount & "=" & txtNgrafico.Text & "-" & XX & "-" & YY & "-32-32" & vbCrLf
         
-                With GrhData(count)
+                With GrhData(grhCount)
                         
                     .FileNum = Val(txtNgrafico.Text)
                     .NumFrames = 1
@@ -782,8 +786,49 @@ Private Sub LvBIndexar_Click()
                         
                 End With
                 
-                frmMain.LynxGrh.AddItem count
-                frmMain.LynxGrh.CellText(0, 1) = count
+                frmMain.LynxGrh.AddItem Count
+                frmMain.LynxGrh.CellText(0, 1) = Count
+                
+                If nSupAlto <> 0 And nSupAncho <> 0 Then
+                    If Count Mod (nSupAncho * nSupAlto) = 0 Then
+        
+                        MaxSup = MaxSup + 1
+                    
+                        ReDim Preserve SupData(MaxSup) As SupData
+                
+                        With SupData(MaxSup)
+                    
+                            .name = txtReferencia(refCount).Text
+                            .Grh = grhCount
+                            .Height = nSupAlto
+                            .Width = nSupAncho
+                            .Capa = 1
+                            .Block = False
+                    
+                        End With
+                    
+                        refCount = refCount + 1
+                
+                    End If
+                    
+                Else
+                
+                    MaxSup = MaxSup + 1
+                    
+                    ReDim Preserve SupData(MaxSup) As SupData
+                
+                    With SupData(MaxSup)
+                    
+                        .name = txtReferencia(0).Text
+                        .Grh = grhCount
+                        .Height = nSupAlto
+                        .Width = nSupAncho
+                        .Capa = 1
+                        .Block = False
+                    
+                    End With
+
+                End If
                 
                 XX = XX + 32
             Next tY
@@ -822,11 +867,10 @@ Private Sub LvBIndexar_Click()
         
         frmMain.LynxGrh.AddItem grhCount + nLineas
         frmMain.LynxGrh.CellText(0, 1) = grhCount + nLineas
+
     End If
     
     grhCount = nLineas
-    
-    Call GuardarIndices
     
     'Resultado
     Call AddtoRichTextBox(frmMain.RichConsola, "Se añadieron las siguientes " & nLineas & " Grh:", 0, 255, 0)
