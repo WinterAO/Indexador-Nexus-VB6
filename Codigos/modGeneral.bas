@@ -460,3 +460,59 @@ Sub AddtoRichTextBox(ByRef RichTextBox As RichTextBox, _
     End With
 End Sub
 
+Public Sub recargarLynxGrh()
+
+    On Error GoTo ErrorHandler
+    
+    Dim K   As Long
+
+    Dim Grh As Long
+
+    With frmMain
+        
+        .LynxGrh.Clear
+        .LynxGrh.Redraw = False
+        .LynxGrh.Visible = False
+        .LynxGrh.AddColumn "Grh", 0
+        .LynxGrh.AddColumn "Tipo", 0
+        
+    End With
+
+    For Grh = 1 To grhCount
+        
+        frmMain.LynxGrh.AddItem Grh
+        K = frmMain.LynxGrh.Rows - 1
+        frmMain.LynxGrh.CellText(K, 0) = Grh
+    
+        With GrhData(Grh)
+               
+            If .NumFrames > 1 Then
+
+                frmMain.LynxGrh.CellText(K, 1) = "ANIMACION"
+
+            Else
+                
+                frmMain.LynxGrh.CellText(K, 1) = ""
+                    
+            End If
+
+        End With
+        
+    Next Grh
+    
+    frmMain.LynxGrh.Visible = True
+    frmMain.LynxGrh.Redraw = True
+    frmMain.LynxGrh.ColForceFit
+    
+    DoEvents
+    
+    Exit Sub
+
+ErrorHandler:
+    MsgBox "Error " & Err.Number & " durante la recargaLynxGrh."
+    
+    frmMain.LynxGrh.Visible = True
+    frmMain.LynxGrh.Redraw = True
+    frmMain.LynxGrh.ColForceFit
+
+End Sub

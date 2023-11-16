@@ -783,11 +783,9 @@ Private Sub LvBIndexar_Click()
                     .pixelHeight = alto
                     .sX = 32
                     .sY = 32
-                        
+                    .active = True
+                    
                 End With
-                
-                frmMain.LynxGrh.AddItem Count
-                frmMain.LynxGrh.CellText(0, 1) = Count
                 
                 If nSupAlto <> 0 And nSupAncho <> 0 Then
                     If Count Mod (nSupAncho * nSupAlto) = 0 Then
@@ -839,7 +837,9 @@ Private Sub LvBIndexar_Click()
 
     Else
     
-        With GrhData(grhCount + nLineas)
+        grhCount = grhCount + 1
+    
+        With GrhData(grhCount)
                         
             .FileNum = Val(txtNgrafico.Text)
             .NumFrames = 1
@@ -847,7 +847,8 @@ Private Sub LvBIndexar_Click()
             .pixelHeight = 0
             .sX = Ancho
             .sY = alto
-                        
+            .active = True
+            
         End With
         
         MaxSup = MaxSup + 1
@@ -864,13 +865,10 @@ Private Sub LvBIndexar_Click()
             .Block = False
         
         End With
-        
-        frmMain.LynxGrh.AddItem grhCount + nLineas
-        frmMain.LynxGrh.CellText(0, 1) = grhCount + nLineas
 
     End If
     
-    grhCount = nLineas
+    Call recargarLynxGrh
     
     'Resultado
     Call AddtoRichTextBox(frmMain.RichConsola, "Se añadieron las siguientes " & nLineas & " Grh:", 0, 255, 0)

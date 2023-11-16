@@ -127,7 +127,7 @@ Public Function IndexarfromMemory() As Boolean
     If LenB(Dir(DirIndex & "\graficos.ind")) <> 0 Then Call Kill(DirIndex & "\graficos.ind")
     DoEvents
 
-    Call AddtoRichTextBox(frmMain.RichConsola, "Indexando " & grhCount & "Grhs", 0, 162, 232)
+    Call AddtoRichTextBox(frmMain.RichConsola, "Indexando " & grhCount & " Grhs", 0, 162, 232)
     
     Open DirIndex & "\graficos.ind" For Binary Access Write As handle
     
@@ -154,6 +154,7 @@ Public Function IndexarfromMemory() As Boolean
                 Put handle, , .speed
                 
             ElseIf .NumFrames = 1 Then
+            
                 Put handle, , Grh
                 Put handle, , .NumFrames
                 Put handle, , .FileNum

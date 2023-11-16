@@ -1,8 +1,8 @@
 frmMain = 52, 52, 1873, 910, , 26, 26, 1323, 662, C
-modCarga = 156, 156, 1977, 1014, Z
-modGeneral = 104, 104, 1925, 962, C
+modCarga = 156, 156, 1977, 1014, 
+modGeneral = 104, 104, 1925, 962, 
 modDeclaraciones = 104, 104, 1925, 962, C
-mod_TileEngine = 156, 156, 1977, 1014, C
+mod_TileEngine = 156, 156, 1977, 1014, 
 frmCargando = 0, 0, 0, 0, C, 208, 208, 2029, 1066, C
 modExportacion = 104, 104, 1925, 962, 
 modIndexacion = 234, 234, 2055, 1092, 
@@ -33,4 +33,4 @@ frmPerfil = 0, 0, 0, 0, C, 208, 208, 2030, 1066, C
 modLogs = 0, 0, 0, 0, C
 frmIndices = 182, 182, 2004, 1040, C, 208, 208, 2030, 1066, C
 modHerramientas = 156, 156, 1978, 1014, C
-frmSuperficies = 104, 104, 1926, 962, , 78, 78, 1900, 936, C
+frmSuperficies = 104, 104, 1926, 962, Z, 78, 78, 1900, 936, C
