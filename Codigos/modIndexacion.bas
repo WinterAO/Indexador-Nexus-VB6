@@ -3,7 +3,7 @@ Option Explicit
 
 Public Function IndexarGraficos() As Boolean
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim Grh        As Long
     Dim handle     As Integer
@@ -106,15 +106,20 @@ Public Function IndexarGraficos() As Boolean
 
     Exit Function
     
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarGraficos = False
 
 End Function
 
 Public Function IndexarfromMemory() As Boolean
-
-    On Error GoTo ErrorHandler:
+    '***************************************
+    'Autor: Lorwik
+    'Fecha: 15/11/2023
+    'Descripcion: Guarda el contenido de GrhData() en archivo binario.
+    '***************************************
+    
+    On Error GoTo errorhandler:
 
     Dim Grh    As Long
 
@@ -175,15 +180,80 @@ Public Function IndexarfromMemory() As Boolean
 
     Exit Function
     
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarfromMemory = False
 
 End Function
 
+Public Function IndexHeadfromMemory() As Boolean
+    '***************************************
+    'Autor: Lorwik
+    'Fecha: 17/11/2023
+    'Descripcion: Guarda el contenido de Heads() en archivo binario.
+    '***************************************
+    On Error GoTo errorhandler:
+    
+    Dim i As Integer
+    Dim nF As Integer
+        
+    nF = FreeFile
+    Open DirIndex & "Head.ind" For Binary Access Write As #nF
+    
+    Put #nF, , NumHeads
+    
+    For i = 1 To NumHeads
+        Put #nF, , heads(i)
+    Next
+    
+    DoEvents
+    Close #nF
+    
+    IndexHeadfromMemory = True
+
+    Exit Function
+    
+errorhandler:
+    IndexHeadfromMemory = False
+    
+End Function
+
+Public Function IndexHelmetfromMemory() As Boolean
+    '***************************************
+    'Autor: Lorwik
+    'Fecha: 17/11/2023
+    'Descripcion: Guarda el contenido de Cascos() en archivo binario.
+    '***************************************
+    
+    On Error GoTo errorhandler:
+    
+    Dim i As Integer
+    Dim nF As Integer
+        
+    nF = FreeFile
+    Open DirIndex & "Helmet.ind" For Binary Access Write As #nF
+    
+    Put #nF, , NumCascos
+    
+    For i = 1 To NumCascos
+        Put #nF, , Cascos(i)
+    Next
+
+    DoEvents
+    Close #nF
+    
+    IndexHelmetfromMemory = True
+
+    Exit Function
+    
+errorhandler:
+    IndexHelmetfromMemory = False
+    
+End Function
+
 Public Function IndexarCuerpos() As Boolean
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim handle     As Integer
     Dim handleW    As Integer
@@ -232,7 +302,7 @@ Public Function IndexarCuerpos() As Boolean
     IndexarCuerpos = True
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarCuerpos = False
     
@@ -329,7 +399,7 @@ End Function
 
 Public Function IndexarFXs() As Boolean
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim handle  As Integer
     Dim i       As Long
@@ -373,7 +443,7 @@ Public Function IndexarFXs() As Boolean
     IndexarFXs = True
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarFXs = False
     
@@ -381,7 +451,7 @@ End Function
 
 Public Function IndexarArmas() As Boolean
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim handle    As Integer
     Dim i         As Long
@@ -428,7 +498,7 @@ Public Function IndexarArmas() As Boolean
     IndexarArmas = True
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarArmas = False
     
@@ -436,7 +506,7 @@ End Function
 
 Public Function IndexarEscudos() As Boolean
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim handle    As Integer
     Dim i         As Long
@@ -483,7 +553,7 @@ Public Function IndexarEscudos() As Boolean
     IndexarEscudos = True
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarEscudos = False
     
@@ -491,7 +561,7 @@ End Function
 
 Public Function IndexarParticulas() As Boolean
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim LoopC As Long
     Dim i As Integer
@@ -645,7 +715,7 @@ Public Function IndexarParticulas() As Boolean
     
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Close handle
     IndexarParticulas = False
 End Function
@@ -685,7 +755,7 @@ Public Function IndexarColores() As Boolean
     
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Close #n
     IndexarColores = False
 End Function
@@ -697,7 +767,7 @@ Public Function IndexarGUI() As Boolean
 'Descripción: Guarda la GUI en un archivo binario
 '*************************************
 
-    On Error GoTo ErrorHandler:
+    On Error GoTo errorhandler:
 
     Dim n               As Integer
     Dim Leer            As New clsIniManager
@@ -757,7 +827,7 @@ Public Function IndexarGUI() As Boolean
      
     Exit Function
 
-ErrorHandler:
+errorhandler:
     Set Leer = Nothing
     Close #n
     IndexarGUI = False

@@ -37,6 +37,7 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
+      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
@@ -742,6 +743,12 @@ Begin VB.Form frmMain
             Begin VB.Menu mnuIndexMemory 
                Caption         =   "Graficos"
             End
+            Begin VB.Menu mnuIndexHeadpMem 
+               Caption         =   "Cabezas"
+            End
+            Begin VB.Menu mnuIndexHelmetMem 
+               Caption         =   "Cascos"
+            End
             Begin VB.Menu mnuIndexSupMem 
                Caption         =   "Indices"
             End
@@ -1187,6 +1194,25 @@ Private Sub mnuBuscarDuplicados_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuIndexHeadpMem_Click()
+    If IndexHeadfromMemory Then
+        Call AddtoRichTextBox(RichConsola, "Head.ind compilado...", 0, 255, 0)
+    Else
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Head.ind...", 255, 0, 0)
+
+    End If
+    
+End Sub
+
+Private Sub mnuIndexHelmetMem_Click()
+    If IndexHelmetfromMemory Then
+        Call AddtoRichTextBox(RichConsola, "Helmet.ind compilado...", 0, 255, 0)
+    Else
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Helmet.ind...", 255, 0, 0)
+
+    End If
 End Sub
 
 Private Sub mnuIndexMemory_Click()
