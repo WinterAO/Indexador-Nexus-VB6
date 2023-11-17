@@ -6,7 +6,7 @@ Begin VB.Form frmCuerpos
    ClientHeight    =   3015
    ClientLeft      =   6930
    ClientTop       =   14445
-   ClientWidth     =   4560
+   ClientWidth     =   3180
    ClipControls    =   0   'False
    ControlBox      =   0   'False
    BeginProperty Font 
@@ -22,7 +22,7 @@ Begin VB.Form frmCuerpos
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   3015
-   ScaleWidth      =   4560
+   ScaleWidth      =   3180
    ShowInTaskbar   =   0   'False
    Begin VB.ListBox ListaCuerpos 
       Appearance      =   0  'Flat
