@@ -37,7 +37,6 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
-      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
@@ -749,6 +748,9 @@ Begin VB.Form frmMain
             Begin VB.Menu mnuIndexHelmetMem 
                Caption         =   "Cascos"
             End
+            Begin VB.Menu mnuIndexBodytMem 
+               Caption         =   "Cuerpos"
+            End
             Begin VB.Menu mnuIndexSupMem 
                Caption         =   "Indices"
             End
@@ -1194,6 +1196,15 @@ Private Sub mnuBuscarDuplicados_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuIndexBodytMem_Click()
+    If IndexBodyfromMemory Then
+        Call AddtoRichTextBox(RichConsola, "Personajes.ind compilado...", 0, 255, 0)
+    Else
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Personajes.ind...", 255, 0, 0)
+
+    End If
 End Sub
 
 Private Sub mnuIndexHeadpMem_Click()
