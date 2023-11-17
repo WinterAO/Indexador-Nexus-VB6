@@ -21,8 +21,9 @@ Begin VB.Form frmCabezas
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   3015
-   ScaleWidth      =   5295
+   ScaleHeight     =   201
+   ScaleMode       =   3  'Pixel
+   ScaleWidth      =   353
    ShowInTaskbar   =   0   'False
    Begin VB.TextBox txtY 
       Appearance      =   0  'Flat
@@ -184,10 +185,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+
 Private Sub ListaHead_Click()
-    Dim nGrh As Long
-    
-    txtNGrafico.Text = heads(ListaHead.Text).Texture
+    txtNgrafico.Text = heads(ListaHead.Text).Texture
     txtX.Text = heads(ListaHead.Text).startX
     txtY.Text = heads(ListaHead.Text).startY
     
@@ -207,7 +207,7 @@ Private Sub LvBBorrar_Click()
         If Val(ListaHead.Text) >= NumHeads Then
             NumHeads = NumHeads - 1
             ReDim Preserve heads(0 To NumHeads) As tHead
-            frmCabezas.ListaHead.RemoveItem Val(ListaHead.Text) - 1
+            ListaHead.RemoveItem Val(ListaHead.Text) - 1
         End If
         
     End If
@@ -226,6 +226,6 @@ Private Sub LvBNuevo_Click()
     heads(NumHeads).startX = 0
     heads(NumHeads).startY = 0
             
-    frmCabezas.ListaHead.AddItem NumHeads
+    ListaHead.AddItem NumHeads
     
 End Sub
