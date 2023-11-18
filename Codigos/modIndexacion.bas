@@ -358,6 +358,39 @@ ErrorHandler:
     
 End Function
 
+Public Function IndexfxsfromMemory() As Boolean
+    '****************************************
+    'Autor: Lorwik
+    'Fecha: 18/11/2023
+    '****************************************
+
+    On Error GoTo ErrorHandler:
+    
+    Dim handle As Integer
+
+    Dim i      As Integer
+    
+    If LenB(Dir(DirIndex & "\fxs.ind")) <> 0 Then Call Kill(DirIndex & "\fxs.ind")
+    DoEvents
+
+    Open DirIndex & "\fxs.ind" For Binary Access Write As handle
+    Put handle, , NumFxs
+    
+    For i = 1 To NumFxs
+        Put handle, , FxData(i)
+    Next i
+
+    Close handle
+
+    IndexfxsfromMemory = True
+    Exit Function
+
+ErrorHandler:
+    Close handle
+    IndexfxsfromMemory = False
+
+End Function
+
 Public Function IndexarCuerpos() As Boolean
 '****************************************
 'Autor: Lorwik

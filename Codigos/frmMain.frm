@@ -758,6 +758,9 @@ Begin VB.Form frmMain
             Begin VB.Menu mnuIndexShieldtMem 
                Caption         =   "Escudos"
             End
+            Begin VB.Menu mnuIndexfxsMem 
+               Caption         =   "FX's"
+            End
             Begin VB.Menu mnuIndexSupMem 
                Caption         =   "Indices"
             End
@@ -1203,6 +1206,20 @@ Private Sub mnuBuscarDuplicados_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuIndexfxsMem_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 18/11/2023
+'****************************************
+
+    If IndexfxsfromMemory Then
+        Call AddtoRichTextBox(RichConsola, "FXs.ind compilado...", 0, 255, 0)
+    Else
+        Call AddtoRichTextBox(RichConsola, "Error al compilar FXs.ind...", 255, 0, 0)
+
+    End If
 End Sub
 
 Private Sub mnuIndexShieldtMem_Click()
