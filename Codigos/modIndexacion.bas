@@ -323,6 +323,41 @@ ErrorHandler:
     
 End Function
 
+Public Function IndexShieldfromMemory() As Boolean
+    '****************************************
+    'Autor: Lorwik
+    'Fecha: 18/11/2023
+    '****************************************
+
+    On Error GoTo ErrorHandler:
+    
+    Dim handle As Integer
+    Dim i As Integer
+    
+    If LenB(Dir(DirIndex & "\escudos.ind")) <> 0 Then Call Kill(DirIndex & "\escudos.ind")
+    DoEvents
+
+    Open DirIndex & "\escudos.ind" For Binary Access Write As handle
+
+    Put handle, , NumEscudosAnims
+    
+    For i = 1 To NumEscudosAnims
+        
+        Put handle, , ShieldAnimData(i)
+        
+    Next i
+    
+    Close handle
+    
+    IndexShieldfromMemory = True
+    Exit Function
+
+ErrorHandler:
+    Close handle
+    IndexShieldfromMemory = False
+    
+End Function
+
 Public Function IndexarCuerpos() As Boolean
 '****************************************
 'Autor: Lorwik

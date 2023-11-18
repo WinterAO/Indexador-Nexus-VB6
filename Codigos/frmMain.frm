@@ -755,6 +755,9 @@ Begin VB.Form frmMain
             Begin VB.Menu mnuIndexWeapontMem 
                Caption         =   "Armas"
             End
+            Begin VB.Menu mnuIndexShieldtMem 
+               Caption         =   "Escudos"
+            End
             Begin VB.Menu mnuIndexSupMem 
                Caption         =   "Indices"
             End
@@ -1200,6 +1203,20 @@ Private Sub mnuBuscarDuplicados_Click()
     frmCodigo.Codigo.Text = Datos
     frmCodigo.Show
 
+End Sub
+
+Private Sub mnuIndexShieldtMem_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 18/11/2023
+'****************************************
+
+    If IndexShieldfromMemory Then
+        Call AddtoRichTextBox(RichConsola, "Escudos.ind compilado...", 0, 255, 0)
+    Else
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Escudos.ind...", 255, 0, 0)
+
+    End If
 End Sub
 
 Private Sub mnuIndexWeapontMem_Click()
