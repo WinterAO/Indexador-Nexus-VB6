@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "Richtx32.ocx"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
@@ -37,6 +37,7 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
+      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
@@ -751,6 +752,9 @@ Begin VB.Form frmMain
             Begin VB.Menu mnuIndexBodytMem 
                Caption         =   "Cuerpos"
             End
+            Begin VB.Menu mnuIndexWeapontMem 
+               Caption         =   "Armas"
+            End
             Begin VB.Menu mnuIndexSupMem 
                Caption         =   "Indices"
             End
@@ -1198,16 +1202,41 @@ Private Sub mnuBuscarDuplicados_Click()
 
 End Sub
 
+Private Sub mnuIndexWeapontMem_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 18/11/2023
+'****************************************
+
+    If IndexWeaponfromMemory Then
+        Call AddtoRichTextBox(RichConsola, "Armas.ind compilado...", 0, 255, 0)
+    Else
+        Call AddtoRichTextBox(RichConsola, "Error al compilar Armas.ind...", 255, 0, 0)
+
+    End If
+End Sub
+
 Private Sub mnuIndexBodytMem_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 17/11/2023
+'****************************************
+
     If IndexBodyfromMemory Then
         Call AddtoRichTextBox(RichConsola, "Personajes.ind compilado...", 0, 255, 0)
     Else
         Call AddtoRichTextBox(RichConsola, "Error al compilar Personajes.ind...", 255, 0, 0)
 
     End If
+    
 End Sub
 
 Private Sub mnuIndexHeadpMem_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 17/11/2023
+'****************************************
+
     If IndexHeadfromMemory Then
         Call AddtoRichTextBox(RichConsola, "Head.ind compilado...", 0, 255, 0)
     Else
@@ -1218,15 +1247,26 @@ Private Sub mnuIndexHeadpMem_Click()
 End Sub
 
 Private Sub mnuIndexHelmetMem_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 17/11/2023
+'****************************************
+
     If IndexHelmetfromMemory Then
         Call AddtoRichTextBox(RichConsola, "Helmet.ind compilado...", 0, 255, 0)
     Else
         Call AddtoRichTextBox(RichConsola, "Error al compilar Helmet.ind...", 255, 0, 0)
 
     End If
+
 End Sub
 
 Private Sub mnuIndexMemory_Click()
+'****************************************
+'Autor: Lorwik
+'Fecha: 17/11/2023
+'****************************************
+
     If IndexarfromMemory Then
         Call AddtoRichTextBox(RichConsola, "Graficos.ind compilado...", 0, 255, 0)
     Else

@@ -288,7 +288,46 @@ ErrorHandler:
 
 End Function
 
+Public Function IndexWeaponfromMemory() As Boolean
+    '****************************************
+    'Autor: Lorwik
+    'Fecha: 18/11/2023
+    '****************************************
+
+    On Error GoTo ErrorHandler:
+    
+    Dim handle As Integer
+    Dim i As Integer
+    
+    If LenB(Dir(DirIndex & "\armas.ind")) <> 0 Then Call Kill(DirIndex & "\armas.ind")
+    DoEvents
+
+    Open DirIndex & "\armas.ind" For Binary Access Write As handle
+
+    Put handle, , NumWeaponAnims
+    
+    For i = 1 To NumWeaponAnims
+        
+        Put handle, , WeaponAnimData(i)
+        
+    Next i
+    
+    Close handle
+    
+    IndexWeaponfromMemory = True
+    Exit Function
+
+ErrorHandler:
+    Close handle
+    IndexWeaponfromMemory = False
+    
+End Function
+
 Public Function IndexarCuerpos() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
     On Error GoTo ErrorHandler:
 
@@ -346,6 +385,10 @@ ErrorHandler:
 End Function
 
 Public Function IndexarCabezas() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
 On Error GoTo fallo
 
@@ -391,6 +434,10 @@ fallo:
 End Function
 
 Public Function IndexarCascos() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
  On Error GoTo fallo
 
@@ -435,6 +482,10 @@ fallo:
 End Function
 
 Public Function IndexarFXs() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
     On Error GoTo ErrorHandler:
 
@@ -487,6 +538,10 @@ ErrorHandler:
 End Function
 
 Public Function IndexarArmas() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
     On Error GoTo ErrorHandler:
 
@@ -542,6 +597,10 @@ ErrorHandler:
 End Function
 
 Public Function IndexarEscudos() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
     On Error GoTo ErrorHandler:
 
@@ -597,6 +656,10 @@ ErrorHandler:
 End Function
 
 Public Function IndexarParticulas() As Boolean
+'****************************************
+'Autor: Lorwik
+'Fecha: ??
+'****************************************
 
     On Error GoTo ErrorHandler:
 
