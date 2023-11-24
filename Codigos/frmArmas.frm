@@ -270,3 +270,24 @@ Private Sub LvBBorrar_Click()
         
     End If
 End Sub
+
+Private Sub LvBNuevo_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: 24/11/2023
+'**********************************
+
+    Dim i As Byte
+    
+    NumWeaponAnims = NumWeaponAnims + 1
+
+    'Resize array
+    ReDim Preserve WeaponAnimData(0 To NumWeaponAnims) As WeaponAnimData
+            
+    For i = 1 To 4
+        WeaponAnimData(NumWeaponAnims).WeaponWalk(i).GrhIndex = 0
+    Next i
+            
+    ListaArmas.AddItem NumWeaponAnims
+    
+End Sub
