@@ -27,6 +27,134 @@ Begin VB.Form frmMain
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   876
    StartUpPosition =   1  'CenterOwner
+   Begin VB.Frame FraCrearAnimación 
+      BackColor       =   &H00404040&
+      Caption         =   "Crear Animación"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FF00&
+      Height          =   1695
+      Left            =   9600
+      TabIndex        =   38
+      Top             =   3840
+      Width           =   3465
+      Begin VB.TextBox txtHasta 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Left            =   2430
+         TabIndex        =   46
+         Top             =   810
+         Width           =   945
+      End
+      Begin VB.TextBox txtDesde 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Left            =   660
+         TabIndex        =   44
+         Top             =   810
+         Width           =   825
+      End
+      Begin VB.TextBox txtVelocidad 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Left            =   2430
+         TabIndex        =   42
+         Top             =   390
+         Width           =   945
+      End
+      Begin VB.TextBox txtGrhAnim 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00404040&
+         ForeColor       =   &H0000FF00&
+         Height          =   285
+         Left            =   660
+         TabIndex        =   40
+         Top             =   390
+         Width           =   825
+      End
+      Begin Indexador_Nexus.lvButtons_H LvBGuardar 
+         Height          =   315
+         Left            =   660
+         TabIndex        =   47
+         Top             =   1260
+         Width           =   2085
+         _ExtentX        =   3678
+         _ExtentY        =   556
+         Caption         =   "Guardar"
+         CapAlign        =   2
+         BackStyle       =   2
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         cGradient       =   0
+         Mode            =   0
+         Value           =   0   'False
+         cBack           =   -2147483633
+      End
+      Begin VB.Label lblHasta 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Hasta:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   1650
+         TabIndex        =   45
+         Top             =   840
+         Width           =   735
+      End
+      Begin VB.Label lblDesde 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Desde:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   120
+         TabIndex        =   43
+         Top             =   840
+         Width           =   525
+      End
+      Begin VB.Label lblVelocidad 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Velocidad:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   1650
+         TabIndex        =   41
+         Top             =   420
+         Width           =   735
+      End
+      Begin VB.Label lblGrh 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Grh:"
+         ForeColor       =   &H0000FF00&
+         Height          =   195
+         Left            =   120
+         TabIndex        =   39
+         Top             =   420
+         Width           =   315
+      End
+   End
    Begin RichTextLib.RichTextBox RichConsola 
       Height          =   1425
       Left            =   120
@@ -1030,6 +1158,71 @@ Private Sub LvBCambiar_Click()
         
         End With
     End If
+End Sub
+
+Private Sub LvBGuardar_Click()
+    '*************************************
+    'Autor: Lorwik
+    'Fecha: 24/11/2023
+    '*************************************
+
+    Dim nGrh As Integer
+    Dim GrhIndex As Long
+
+    Dim i    As Byte
+    
+    If Val(txtGrhAnim.Text) <= 0 Then
+        Call AddtoRichTextBox(RichConsola, "El valor minimo del Grh debe ser como minimo 1.", 255, 0, 0)
+        Exit Sub
+    End If
+    
+    If Val(txtVelocidad.Text) <= 0 Then
+        Call AddtoRichTextBox(RichConsola, "El valor minimo de la velocidad debe ser como minimo 1.", 255, 0, 0)
+        Exit Sub
+    End If
+    
+    GrhIndex = Val(txtGrhAnim.Text)
+    
+    If GrhIndex = 0 Then
+        Call AddtoRichTextBox(RichConsola, "El Grh es invalido.", 255, 0, 0)
+        Exit Sub
+    End If
+    
+    If Val(txtDesde.Text) > Val(txtHasta.Text) Then
+        Call AddtoRichTextBox(RichConsola, "El valor 'Desde' es inferior que el valor 'Hasta'.", 255, 0, 0)
+        Exit Sub
+    End If
+    
+        If Val(txtDesde.Text) = Val(txtHasta.Text) Then
+        Call AddtoRichTextBox(RichConsola, "El valor 'Desde' y el valor 'Hasta' son iguales.", 255, 0, 0)
+        Exit Sub
+    End If
+    
+    If GrhIndex > grhCount Then
+        grhCount = grhCount + 1
+        ReDim Preserve GrhData(1 To grhCount) As GrhData
+    End If
+    
+    nGrh = Abs(Val(txtDesde.Text) - Val(txtHasta.Text))
+    
+    With GrhData(GrhIndex)
+
+        .NumFrames = nGrh
+        .speed = txtVelocidad.Text
+        ReDim .Frames(1 To .NumFrames)
+        
+        For i = 1 To nGrh
+            
+            .Frames(i) = (Val(txtDesde.Text) - 1) + i
+        
+        Next i
+
+    End With
+
+    Call AddtoRichTextBox(RichConsola, "Se ha guardado una animacion con " & nGrh & " frames.", 0, 255, 0)
+    
+    Call recargarLynxGrh
+    
 End Sub
 
 Private Sub LvBSelector_Click(Index As Integer)

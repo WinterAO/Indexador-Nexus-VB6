@@ -19,12 +19,13 @@ Begin VB.Form frmEscudos
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   3015
-   ScaleWidth      =   4560
+   ScaleHeight     =   201
+   ScaleMode       =   3  'Pixel
+   ScaleWidth      =   304
    ShowInTaskbar   =   0   'False
    Begin VB.ListBox ListaEscudos 
       Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
+      BackColor       =   &H00535353&
       ForeColor       =   &H0000FF00&
       Height          =   2760
       Left            =   120

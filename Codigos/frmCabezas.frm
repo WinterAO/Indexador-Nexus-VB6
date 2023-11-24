@@ -185,7 +185,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-
 Private Sub ListaHead_Click()
     txtNgrafico.Text = heads(ListaHead.Text).Texture
     txtX.Text = heads(ListaHead.Text).startX
