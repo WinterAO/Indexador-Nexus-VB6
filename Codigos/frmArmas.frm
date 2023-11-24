@@ -233,14 +233,6 @@ Private Sub LvBGuardar_Click()
         .WeaponWalk(2).GrhIndex = Val(txtSur.Text)
         .WeaponWalk(3).GrhIndex = Val(txtOeste.Text)
         .WeaponWalk(4).GrhIndex = Val(txtEste.Text)
-        
-        If Val(ListaArmas.Text) = NumWeaponAnims Then
-        
-            NumWeaponAnims = NumWeaponAnims - 1
-            
-            ReDim Preserve WeaponAnimData(1 To NumWeaponAnims) As WeaponAnimData
-            
-        End If
     
     End With
     
