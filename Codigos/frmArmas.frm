@@ -224,16 +224,49 @@ Private Sub LvBGuardar_Click()
 '**********************************
 'Autor: Lorwik
 'Fecha: 24/11/2023
+'Descripción: Guardado del arma que se esta editando
 '**********************************
 
     With WeaponAnimData(Val(ListaArmas.Text))
     
-        .WeaponWalk(1) = Val(txtNorte.Text)
-        .WeaponWalk(2) = Val(txtSur.Text)
-        .WeaponWalk(3) = Val(txtOeste.Text)
-        .WeaponWalk(4) = Val(txtEste.Text)
+        .WeaponWalk(1).GrhIndex = Val(txtNorte.Text)
+        .WeaponWalk(2).GrhIndex = Val(txtSur.Text)
+        .WeaponWalk(3).GrhIndex = Val(txtOeste.Text)
+        .WeaponWalk(4).GrhIndex = Val(txtEste.Text)
+        
+        If Val(ListaArmas.Text) = NumWeaponAnims Then
+        
+            NumWeaponAnims = NumWeaponAnims - 1
+            
+            ReDim Preserve WeaponAnimData(1 To NumWeaponAnims) As WeaponAnimData
+            
+        End If
     
     End With
     
     Call AddtoRichTextBox(frmMain.RichConsola, "El arma " & Val(ListaArmas.Text) & " se ha guardado.", 0, 255, 0)
+End Sub
+
+Private Sub LvBBorrar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: 24/11/2023
+'**********************************
+
+    Dim i As Byte
+    
+    If MsgBox("¿Seguro que quieres borrar el arma seleccionado?" & vbCrLf & "Este cambio no tiene vuelta atrás.", vbOKCancel) = vbOK Then
+
+        For i = 1 To 4
+            WeaponAnimData(ListaArmas.Text).WeaponWalk(i).GrhIndex = 0
+            WeaponAnimData(ListaArmas.Text).WeaponWalk(i).Started = 0
+        Next i
+        
+        If Val(ListaArmas.Text) >= NumWeaponAnims Then
+            NumWeaponAnims = NumWeaponAnims - 1
+            ReDim Preserve WeaponAnimData(0 To NumWeaponAnims) As WeaponAnimData
+            ListaArmas.RemoveItem Val(ListaArmas.Text) - 1
+        End If
+        
+    End If
 End Sub

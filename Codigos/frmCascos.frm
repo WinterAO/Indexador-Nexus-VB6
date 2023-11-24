@@ -69,16 +69,24 @@ Begin VB.Form frmCascos
       TabIndex        =   4
       Top             =   1530
       Width           =   1335
-      _extentx        =   2355
-      _extenty        =   714
-      caption         =   "Guardar"
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmCascos.frx":0000
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   -2147483633
+      _ExtentX        =   2355
+      _ExtentY        =   714
+      Caption         =   "Guardar"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBNuevo 
       Height          =   405
@@ -86,19 +94,27 @@ Begin VB.Form frmCascos
       TabIndex        =   8
       Top             =   2550
       Width           =   1545
-      _extentx        =   2725
-      _extenty        =   714
-      caption         =   "Nuevo"
-      capalign        =   2
-      backstyle       =   2
-      shape           =   1
-      font            =   "frmCascos.frx":0028
-      cbhover         =   -2147483633
-      lockhover       =   1
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   8454016
+      _ExtentX        =   2725
+      _ExtentY        =   714
+      Caption         =   "Nuevo"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cBhover         =   -2147483633
+      LockHover       =   1
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8454016
    End
    Begin Indexador_Nexus.lvButtons_H LvBBorrar 
       Height          =   405
@@ -106,17 +122,25 @@ Begin VB.Form frmCascos
       TabIndex        =   9
       Top             =   2550
       Width           =   1485
-      _extentx        =   2619
-      _extenty        =   714
-      caption         =   "Borrar"
-      capalign        =   2
-      backstyle       =   2
-      shape           =   2
-      font            =   "frmCascos.frx":0050
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   8421631
+      _ExtentX        =   2619
+      _ExtentY        =   714
+      Caption         =   "Borrar"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8421631
    End
    Begin VB.Label lblNGrafico 
       AutoSize        =   -1  'True
@@ -197,20 +221,20 @@ Private Sub LvBBorrar_Click()
 End Sub
 
 Private Sub LvBGuardar_Click()
-'**********************************
-'Autor: Lorwik
-'Fecha: 24/11/2023
-'**********************************
+    '**********************************
+    'Autor: Lorwik
+    'Fecha: 24/11/2023
+    '**********************************
 
     With Cascos(Val(ListaCascos.Text))
         .Std = 2
         .Texture = Val(txtNgrafico.Text)
         .startX = Val(txtX.Text)
         .startY = Val(txtY.Text)
-    
+
     End With
     
-    Call AddtoRichTextBox(frmMain.RichConsola, "La cabeza " & Val(ListaCascos.Text) & " se ha guardado.", 0, 255, 0)
+    Call AddtoRichTextBox(frmMain.RichConsola, "El casco " & Val(ListaCascos.Text) & " se ha guardado.", 0, 255, 0)
     
 End Sub
 

@@ -298,10 +298,11 @@ Private Sub LvBBorrar_Click()
 End Sub
 
 Private Sub LvBGuardar_Click()
-'**********************************
-'Autor: Lorwik
-'Fecha: 24/11/2023
-'**********************************
+    '**********************************
+    'Autor: Lorwik
+    'Fecha: 24/11/2023
+    'Descripcion: Guarda el cuerpo que se esta editando
+    '**********************************
 
     With BodyData(ListaCuerpos.Text)
         .Walk(1).GrhIndex = Val(txtSur.Text)

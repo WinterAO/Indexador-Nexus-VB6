@@ -26,7 +26,7 @@ Begin VB.Form frmAcercade
    StartUpPosition =   1  'CenterOwner
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
-      Caption         =   "Indexador Nexus desarrollado por Lorwik para Winter AO Resurrection"
+      Caption         =   "Indexador Nexus v0.0.0 desarrollado por Lorwik para Winter AO Resurrection"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   12
@@ -37,11 +37,11 @@ Begin VB.Form frmAcercade
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00FFFFFF&
-      Height          =   1605
-      Left            =   180
+      Height          =   855
+      Left            =   450
       TabIndex        =   0
-      Top             =   210
-      Width           =   5655
+      Top             =   300
+      Width           =   4575
    End
 End
 Attribute VB_Name = "frmAcercade"
@@ -52,5 +52,5 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_Load()
-    Me.Picture = LoadPicture(IniPath & INITDIR & "WorldEditor.jpg")
+    Label1.Caption = "Indexador Nexus v." & App.Major & "." & App.Minor & "." & App.Revision & " desarrollado por Lorwik para Winter AO Resurrection."
 End Sub

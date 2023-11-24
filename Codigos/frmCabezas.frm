@@ -223,10 +223,11 @@ Private Sub LvBBorrar_Click()
 End Sub
 
 Private Sub LvBGuardar_Click()
-'**********************************
-'Autor: Lorwik
-'Fecha: 24/11/2023
-'**********************************
+    '**********************************
+    'Autor: Lorwik
+    'Fecha: 24/11/2023
+    'Descripcion: Guarda la cabeza que se esta editando
+    '**********************************
 
     With heads(Val(ListaHead.Text))
         .Std = 1
