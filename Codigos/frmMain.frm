@@ -91,24 +91,16 @@ Begin VB.Form frmMain
          TabIndex        =   47
          Top             =   1260
          Width           =   2085
-         _ExtentX        =   3678
-         _ExtentY        =   556
-         Caption         =   "Guardar"
-         CapAlign        =   2
-         BackStyle       =   2
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         cGradient       =   0
-         Mode            =   0
-         Value           =   0   'False
-         cBack           =   -2147483633
+         _extentx        =   3678
+         _extenty        =   556
+         caption         =   "Guardar"
+         capalign        =   2
+         backstyle       =   2
+         font            =   "frmMain.frx":10CA
+         cgradient       =   0
+         mode            =   0
+         value           =   0   'False
+         cback           =   -2147483633
       End
       Begin VB.Label lblHasta 
          AutoSize        =   -1  'True
@@ -165,10 +157,9 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
-      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
-      TextRTF         =   $"frmMain.frx":10CA
+      TextRTF         =   $"frmMain.frx":10F2
    End
    Begin Indexador_Nexus.lvButtons_H LvBAsistenteDe 
       Height          =   555
@@ -176,24 +167,16 @@ Begin VB.Form frmMain
       TabIndex        =   36
       Top             =   3000
       Width           =   2505
-      _ExtentX        =   4419
-      _ExtentY        =   979
-      Caption         =   "Asistente de indexación para superficies"
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   0
-      Value           =   0   'False
-      cBack           =   -2147483633
+      _extentx        =   4419
+      _extenty        =   979
+      caption         =   "Asistente de indexación para superficies"
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":1171
+      cgradient       =   0
+      mode            =   0
+      value           =   0   'False
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBNuevoGrh 
       Height          =   405
@@ -201,27 +184,19 @@ Begin VB.Form frmMain
       TabIndex        =   33
       Top             =   9990
       Width           =   1275
-      _ExtentX        =   2249
-      _ExtentY        =   714
-      Caption         =   "Nuevo"
-      CapAlign        =   2
-      BackStyle       =   2
-      Shape           =   1
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cBhover         =   -2147483633
-      LockHover       =   1
-      cGradient       =   0
-      Mode            =   0
-      Value           =   0   'False
-      cBack           =   8454016
+      _extentx        =   2249
+      _extenty        =   714
+      caption         =   "Nuevo"
+      capalign        =   2
+      backstyle       =   2
+      shape           =   1
+      font            =   "frmMain.frx":1199
+      cbhover         =   -2147483633
+      lockhover       =   1
+      cgradient       =   0
+      mode            =   0
+      value           =   0   'False
+      cback           =   8454016
    End
    Begin Indexador_Nexus.LynxGrid LynxGrh 
       Height          =   9075
@@ -229,47 +204,31 @@ Begin VB.Form frmMain
       TabIndex        =   1
       Top             =   810
       Width           =   2205
-      _ExtentX        =   3889
-      _ExtentY        =   15266
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      BeginProperty FontHeader {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      BackColor       =   5460819
-      BackColorBkg    =   5460819
-      BackColorEdit   =   14737632
-      BackColorSel    =   12937777
-      ForeColor       =   12632256
-      ForeColorSel    =   8438015
-      BackColorEvenRows=   3158064
-      CustomColorFrom =   4210752
-      CustomColorTo   =   8421504
-      GridColor       =   14737632
-      FocusRectColor  =   9895934
-      GridLines       =   2
-      ThemeColor      =   5
-      ScrollBars      =   1
-      Appearance      =   0
-      ColumnHeaderSmall=   0   'False
-      TotalsLineShow  =   0   'False
-      FocusRowHighlightKeepTextForecolor=   0   'False
-      ShowRowNumbers  =   0   'False
-      ShowRowNumbersVary=   0   'False
-      HotHeaderTracking=   0   'False
+      _extentx        =   3889
+      _extenty        =   15266
+      font            =   "frmMain.frx":11C1
+      fontheader      =   "frmMain.frx":11E9
+      backcolor       =   5460819
+      backcolorbkg    =   5460819
+      backcoloredit   =   14737632
+      backcolorsel    =   12937777
+      forecolor       =   12632256
+      forecolorsel    =   8438015
+      backcolorevenrows=   3158064
+      customcolorfrom =   4210752
+      customcolorto   =   8421504
+      gridcolor       =   14737632
+      focusrectcolor  =   9895934
+      gridlines       =   2
+      themecolor      =   5
+      scrollbars      =   1
+      appearance      =   0
+      columnheadersmall=   0   'False
+      totalslineshow  =   0   'False
+      focusrowhighlightkeeptextforecolor=   0   'False
+      showrownumbers  =   0   'False
+      showrownumbersvary=   0   'False
+      hotheadertracking=   0   'False
    End
    Begin VB.Frame FraAtributosDel 
       BackColor       =   &H00404040&
@@ -367,24 +326,16 @@ Begin VB.Form frmMain
          TabIndex        =   24
          Top             =   1560
          Width           =   1065
-         _ExtentX        =   1879
-         _ExtentY        =   556
-         Caption         =   "Cambiar"
-         CapAlign        =   2
-         BackStyle       =   2
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         cGradient       =   0
-         Mode            =   0
-         Value           =   0   'False
-         cBack           =   -2147483633
+         _extentx        =   1879
+         _extenty        =   556
+         caption         =   "Cambiar"
+         capalign        =   2
+         backstyle       =   2
+         font            =   "frmMain.frx":1211
+         cgradient       =   0
+         mode            =   0
+         value           =   0   'False
+         cback           =   -2147483633
       End
       Begin VB.TextBox txtFrame 
          Appearance      =   0  'Flat
@@ -550,26 +501,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Cuerpos"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":1149
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":1239
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":1261
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -579,26 +522,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Cabezas"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":138F
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":14A7
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":14CF
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -608,26 +543,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Cascos"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":172C
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":186D
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":1895
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -637,26 +564,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Armas"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":1A31
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":1B9B
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":1BC3
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -666,26 +585,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Escudos"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":1F20
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":20B5
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":20DD
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -695,26 +606,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Ataques"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":2563
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":2723
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":274B
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -724,26 +627,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      Caption         =   "A"
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   15.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      caption         =   "A"
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":2DDD
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -753,26 +648,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":2BF3
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":2E05
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":2E2D
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBBorrar 
       Height          =   405
@@ -780,25 +667,17 @@ Begin VB.Form frmMain
       TabIndex        =   34
       Top             =   9990
       Width           =   1275
-      _ExtentX        =   2249
-      _ExtentY        =   714
-      Caption         =   "Borrar"
-      CapAlign        =   2
-      BackStyle       =   2
-      Shape           =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   0
-      Value           =   0   'False
-      cBack           =   8421631
+      _extentx        =   2249
+      _extenty        =   714
+      caption         =   "Borrar"
+      capalign        =   2
+      backstyle       =   2
+      shape           =   2
+      font            =   "frmMain.frx":34AF
+      cgradient       =   0
+      mode            =   0
+      value           =   0   'False
+      cback           =   8421631
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
@@ -808,26 +687,18 @@ Begin VB.Form frmMain
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
-      _ExtentX        =   926
-      _ExtentY        =   873
-      CapAlign        =   2
-      BackStyle       =   2
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      cGradient       =   0
-      Mode            =   1
-      Value           =   0   'False
-      ImgAlign        =   4
-      Image           =   "frmMain.frx":3275
-      ImgSize         =   32
-      cBack           =   -2147483633
+      _extentx        =   926
+      _extenty        =   873
+      capalign        =   2
+      backstyle       =   2
+      font            =   "frmMain.frx":34D7
+      cgradient       =   0
+      mode            =   1
+      value           =   0   'False
+      imgalign        =   4
+      image           =   "frmMain.frx":34FF
+      imgsize         =   32
+      cback           =   -2147483633
    End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
@@ -997,6 +868,15 @@ Begin VB.Form frmMain
          Caption         =   "&Adaptador de Grh"
       End
    End
+   Begin VB.Menu mnuAyuda 
+      Caption         =   "Ayuda"
+      Begin VB.Menu mnuComoIndexar 
+         Caption         =   "Como Indexar"
+      End
+      Begin VB.Menu mnuAcercade 
+         Caption         =   "Acerca de..."
+      End
+   End
 End
 Attribute VB_Name = "frmMain"
 Attribute VB_GlobalNameSpace = False
@@ -1009,6 +889,11 @@ Private Const NO_GRH As Long = 0
 Private BuscarPNG As Integer
 
 Private Sub cmdAlto_Click(Index As Integer)
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Select Case Index
     
         Case 0
@@ -1024,6 +909,11 @@ Private Sub cmdAlto_Click(Index As Integer)
 End Sub
 
 Private Sub cmdAncho_Click(Index As Integer)
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Select Case Index
     
         Case 0
@@ -1039,6 +929,10 @@ Private Sub cmdAncho_Click(Index As Integer)
 End Sub
 
 Private Sub cmdSX_Click(Index As Integer)
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
     
     Select Case Index
     
@@ -1056,6 +950,11 @@ Private Sub cmdSX_Click(Index As Integer)
 End Sub
 
 Private Sub cmdsY_Click(Index As Integer)
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Select Case Index
     
         Case 0
@@ -1071,15 +970,26 @@ Private Sub cmdsY_Click(Index As Integer)
 End Sub
 
 Private Sub Form_Load()
+
     EngineRun = True
+    
 End Sub
 
 Private Sub LvBAsistenteDe_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     frmSuperficies.Show , frmMain
 End Sub
 
 Private Sub LvBBorrar_Click()
-    
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     If Not isList Then
         MsgBox "Selecciona un grh de la lista de Grh general que desees borrar."
         Exit Sub
@@ -1126,6 +1036,11 @@ Private Sub LvBBorrar_Click()
 End Sub
 
 Private Sub LvBCambiar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
 '    'Prevent non numeric characters
 '    If Not IsNumeric(txtFrame(Index).Text) Then
 '        txtFrame(Index).Text = Val(txtFrame(Index).Text)
@@ -1226,6 +1141,11 @@ Private Sub LvBGuardar_Click()
 End Sub
 
 Private Sub LvBSelector_Click(Index As Integer)
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Select Case Index
     
         Case 0 'Cuerpos
@@ -1301,6 +1221,11 @@ Private Sub LvBSelector_Click(Index As Integer)
 End Sub
 
 Private Sub LynxGrh_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Dim nGrh As Long
 
     nGrh = LynxGrh.CellText(, 0)
@@ -1322,14 +1247,38 @@ Private Sub LynxGrh_Click()
 End Sub
 
 Private Sub menuCerrar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call CloseClient
 End Sub
 
+Private Sub mnuAcercade_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
+    frmAcercade.Show , frmMain
+End Sub
+
 Private Sub mnuadaptador_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     frmAdaptador.Show , frmMain
 End Sub
 
 Private Sub mnuBuscarDuplicados_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Dim i     As Long
     Dim j     As Long
     Dim K     As Integer
@@ -1503,6 +1452,10 @@ Private Sub mnuIndexMemory_Click()
 End Sub
 
 Private Sub mnuIndexPNG_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     Dim Datos As String
     Dim i     As Long
@@ -1562,10 +1515,19 @@ Private Sub mnuIndexPNG_Click()
 End Sub
 
 Private Sub mnuIndexSupMem_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call GuardarIndices
 End Sub
 
 Private Sub mnuPNGinutiles_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     Dim i        As Long
     Dim j        As Long
@@ -1625,6 +1587,10 @@ Private Sub mnuPNGinutiles_Click()
 End Sub
 
 Private Sub mnuBuscarGrhLibresConsecutivos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     Dim grhMin As Long
     Dim grhMax As Long
@@ -1645,6 +1611,10 @@ Private Sub mnuBuscarGrhLibresConsecutivos_Click()
 End Sub
 
 Private Sub mnuBuscarErrDim_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     Dim i       As Long
     Dim j       As Long
@@ -1716,6 +1686,10 @@ Private Sub mnuBuscarErrDim_Click()
 End Sub
 
 Private Sub mnuBuscarGrh_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
 '    On Error Resume Next
 '
@@ -1756,6 +1730,10 @@ Private Sub mnuBuscarGrh_Click()
 End Sub
 
 Private Sub mnuBuscarGrhconPNG_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
 '    On Error Resume Next
 '
@@ -1801,6 +1779,10 @@ Private Sub mnuBuscarGrhconPNG_Click()
 End Sub
 
 Private Sub mnuIrABMP_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
 '    On Error Resume Next
 '
@@ -1843,6 +1825,11 @@ Private Sub mnuIrABMP_Click()
 End Sub
 
 Private Sub mnuCarpetaClienteIr_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     On Error Resume Next
 
     Call ShellExecute(Me.hwnd, "Open", DirCliente, &O0, &O0, SW_NORMAL)
@@ -1850,6 +1837,11 @@ Private Sub mnuCarpetaClienteIr_Click()
 End Sub
 
 Private Sub mnuCarpetaExportacionIr_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     On Error Resume Next
 
     Call ShellExecute(Me.hwnd, "Open", DirExport, &O0, &O0, SW_NORMAL)
@@ -1857,6 +1849,11 @@ Private Sub mnuCarpetaExportacionIr_Click()
 End Sub
 
 Private Sub mnuCarpetaIndexacionIr_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     On Error Resume Next
 
     Call ShellExecute(Me.hwnd, "Open", DirIndex, &O0, &O0, SW_NORMAL)
@@ -1864,34 +1861,74 @@ Private Sub mnuCarpetaIndexacionIr_Click()
 End Sub
 
 Private Sub mnuExportarCabezas_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarCabezas
 End Sub
 
 Private Sub mnuExportarCascos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarCascos
 End Sub
 
 Private Sub mnuExportarCuerpos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarCuerpos
 End Sub
 
 Private Sub mnuExportarFxs_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarFxs
 End Sub
 
 Private Sub mnuExportarGraficos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarGraficos
 End Sub
 
 Private Sub cmdExportarParticulas_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarParticulas
 End Sub
 
 Private Sub mnuExportarColores_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarColores
 End Sub
 
 Private Sub mnuExportarTodo_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     Call ExportarGraficos
     Call ExportarFxs
     Call ExportarCuerpos
@@ -1903,10 +1940,20 @@ Private Sub mnuExportarTodo_Click()
 End Sub
 
 Private Sub mnuGenerarMinimapa_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     frmMinimapa.Show , frmMain
 End Sub
 
 Private Sub mnuIndexarGraficos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
 
     If IndexarGraficos Then
@@ -1919,6 +1966,11 @@ Private Sub mnuIndexarGraficos_Click()
 End Sub
 
 Private Sub mnuIndexarCabezas_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     If IndexarCabezas Then
         Call AddtoRichTextBox(RichConsola, "Head.ind compilado...", 0, 255, 0)
     Else
@@ -1928,6 +1980,11 @@ Private Sub mnuIndexarCabezas_Click()
 End Sub
 
 Private Sub mnuIndexarPersonajes_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
     
     If IndexarCuerpos Then
@@ -1939,6 +1996,11 @@ Private Sub mnuIndexarPersonajes_Click()
 End Sub
 
 Private Sub mnuIndexarCascos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
     
     If IndexarCascos Then
@@ -1949,6 +2011,11 @@ Private Sub mnuIndexarCascos_Click()
 End Sub
 
 Private Sub mnuIndexarArmas_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
     
     If IndexarArmas Then
@@ -1959,6 +2026,11 @@ Private Sub mnuIndexarArmas_Click()
 End Sub
 
 Private Sub mnuIndexarEscudos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
     
     If IndexarEscudos Then
@@ -1969,6 +2041,11 @@ Private Sub mnuIndexarEscudos_Click()
 End Sub
 
 Private Sub mnuIndexarFXs_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
     
     If IndexarFXs Then
@@ -1979,6 +2056,11 @@ Private Sub mnuIndexarFXs_Click()
 End Sub
 
 Private Sub mnuIndexarParticulas_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     DoEvents
     
     If IndexarParticulas Then
@@ -1989,6 +2071,10 @@ Private Sub mnuIndexarParticulas_Click()
 End Sub
 
 Private Sub mnuIndexarColores_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     If IndexarColores Then
         Call AddtoRichTextBox(RichConsola, "Colores.ind compilado...", 0, 255, 0)
@@ -1998,6 +2084,11 @@ Private Sub mnuIndexarColores_Click()
 End Sub
 
 Private Sub mnuIndexarGUI_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     If IndexarGUI Then
         Call AddtoRichTextBox(RichConsola, "GUI.ind compilado...", 0, 255, 0)
     Else
@@ -2006,6 +2097,10 @@ Private Sub mnuIndexarGUI_Click()
 End Sub
 
 Private Sub mnuIndexarTodo_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     Call mnuIndexarGraficos_Click
     Call mnuIndexarPersonajes_Click

@@ -175,8 +175,9 @@ Private Function CrearGrafico(ByVal Archivo As Integer, _
                                                                      D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_FILTER_NONE, &HFF000000, texture_info, ByVal 0)
                 
                 Else
-                    Call MsgBox("No se ha podido cargar el grafico con indice: " & Graphic)
-                    Call CloseClient
+                    'Call MsgBox("No se ha podido cargar el grafico con indice: " & Graphic)
+                    'Call CloseClient
+                    Call AddtoRichTextBox(frmMain.RichConsola, "No se ha podido cargar el grafico con indice: " & Graphic, 255, 0, 0, True)
                 
                 End If
                 

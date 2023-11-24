@@ -101,19 +101,27 @@ Begin VB.Form frmCuerpos
       TabIndex        =   1
       Top             =   2580
       Width           =   1545
-      _extentx        =   2725
-      _extenty        =   714
-      caption         =   "Nuevo"
-      capalign        =   2
-      backstyle       =   2
-      shape           =   1
-      font            =   "frmCuerpos.frx":0000
-      cbhover         =   -2147483633
-      lockhover       =   1
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   8454016
+      _ExtentX        =   2725
+      _ExtentY        =   714
+      Caption         =   "Nuevo"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cBhover         =   -2147483633
+      LockHover       =   1
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8454016
    End
    Begin Indexador_Nexus.lvButtons_H LvBBorrar 
       Height          =   405
@@ -121,17 +129,25 @@ Begin VB.Form frmCuerpos
       TabIndex        =   2
       Top             =   2580
       Width           =   1485
-      _extentx        =   2619
-      _extenty        =   714
-      caption         =   "Borrar"
-      capalign        =   2
-      backstyle       =   2
-      shape           =   2
-      font            =   "frmCuerpos.frx":0028
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   8421631
+      _ExtentX        =   2619
+      _ExtentY        =   714
+      Caption         =   "Borrar"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8421631
    End
    Begin Indexador_Nexus.lvButtons_H LvBGuardar 
       Height          =   405
@@ -139,16 +155,24 @@ Begin VB.Form frmCuerpos
       TabIndex        =   11
       Top             =   2550
       Width           =   1335
-      _extentx        =   2355
-      _extenty        =   714
-      caption         =   "Guardar"
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmCuerpos.frx":0050
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   -2147483633
+      _ExtentX        =   2355
+      _ExtentY        =   714
+      Caption         =   "Guardar"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   -2147483633
    End
    Begin VB.Label lblOffsetY 
       AutoSize        =   -1  'True
@@ -225,6 +249,11 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub ListaCuerpos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ???
+'**********************************
+
     Dim nGrh As Long
 
     nGrh = BodyData(ListaCuerpos.Text).Walk(3).GrhIndex
@@ -232,16 +261,21 @@ Private Sub ListaCuerpos_Click()
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)
     
-    txtNorte.Text = BodyData(ListaCuerpos.Text).Walk(0).GrhIndex
-    txtEste.Text = BodyData(ListaCuerpos.Text).Walk(2).GrhIndex
-    txtSur.Text = BodyData(ListaCuerpos.Text).Walk(1).GrhIndex
-    txtOeste.Text = BodyData(ListaCuerpos.Text).Walk(3).GrhIndex
+    txtNorte.Text = BodyData(ListaCuerpos.Text).Walk(1).GrhIndex
+    txtEste.Text = BodyData(ListaCuerpos.Text).Walk(3).GrhIndex
+    txtSur.Text = BodyData(ListaCuerpos.Text).Walk(2).GrhIndex
+    txtOeste.Text = BodyData(ListaCuerpos.Text).Walk(4).GrhIndex
     
     isList = False
     Particle_Group_Remove_All
 End Sub
 
 Private Sub LvBBorrar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ???
+'**********************************
+
     Dim i As Byte
     
     If MsgBox("¿Seguro que quieres borrar el cuerpo seleccionado?" & vbCrLf & "Este cambio no tiene vuelta atrás.", vbOKCancel) = vbOK Then
@@ -263,8 +297,32 @@ Private Sub LvBBorrar_Click()
     End If
 End Sub
 
+Private Sub LvBGuardar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: 24/11/2023
+'**********************************
+
+    With BodyData(ListaCuerpos.Text)
+        .Walk(1).GrhIndex = Val(txtSur.Text)
+        .Walk(2).GrhIndex = Val(txtNorte.Text)
+        .Walk(3).GrhIndex = Val(txtOeste.Text)
+        .Walk(4).GrhIndex = Val(txtEste.Text)
+        .HeadOffset.x = Val(txtX.Text)
+        .HeadOffset.y = Val(txtY.Text)
+    
+    End With
+    
+    Call AddtoRichTextBox(frmMain.RichConsola, "El cuerpo " & Val(ListaCuerpos.Text) & " se ha guardado.", 0, 255, 0)
+    
+End Sub
 
 Private Sub LvBNuevo_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ???
+'**********************************
+
     Dim i As Byte
     
     NumCuerpos = NumCuerpos + 1

@@ -186,6 +186,11 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub ListaHead_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     txtNgrafico.Text = heads(ListaHead.Text).Texture
     txtX.Text = heads(ListaHead.Text).startX
     txtY.Text = heads(ListaHead.Text).startY
@@ -195,6 +200,10 @@ Private Sub ListaHead_Click()
 End Sub
 
 Private Sub LvBBorrar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     If MsgBox("¿Seguro que quieres borrar la cabeza seleccionada?" & vbCrLf & "Este cambio no tiene vuelta atrás.", vbOKCancel) = vbOK Then
 
@@ -213,8 +222,30 @@ Private Sub LvBBorrar_Click()
    
 End Sub
 
-Private Sub LvBNuevo_Click()
+Private Sub LvBGuardar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: 24/11/2023
+'**********************************
+
+    With heads(Val(ListaHead.Text))
+        .Std = 1
+        .Texture = Val(txtNgrafico.Text)
+        .startX = Val(txtX.Text)
+        .startY = Val(txtY.Text)
     
+    End With
+    
+    Call AddtoRichTextBox(frmMain.RichConsola, "La cabeza " & Val(ListaHead.Text) & " se ha guardado.", 0, 255, 0)
+    
+End Sub
+
+Private Sub LvBNuevo_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     NumHeads = NumHeads + 1
 
     'Resize array
