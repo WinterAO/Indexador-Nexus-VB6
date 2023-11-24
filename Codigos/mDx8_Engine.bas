@@ -214,10 +214,16 @@ Public Sub Engine_DirectX8_Aditional_Init()
         .Right = frmMain.MainViewPic.ScaleWidth
     End With
     
+    'Inicializamos y cargamos los graficos de las Fonts.
+    Call mDx8_Text.Engine_Init_FontTextures
+    
     If Not prgRun Then
         
         ' Seteamos algunos colores por adelantado y unica vez.
         Call Engine_Long_To_RGB_List(Normal_RGBList(), -1)
+        
+        ' Inicializamos otros sistemas.
+        Call mDx8_Text.Engine_Init_FontSettings
         
     End If
     

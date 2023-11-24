@@ -52,6 +52,8 @@ Public FPSLastCheck          As Long
 
 Public Normal_RGBList(3)     As Long
 
+Public temp_rgb(3)           As Long
+
 Public Const DegreeToRadian  As Single = 0.01745329251994 'Pi / 180
 
 'Tamano del la vista en Tiles
@@ -80,8 +82,8 @@ Public TilePixelWidth        As Integer
 'Posicion en un mapa
 Public Type Position
 
-    x As Long
-    y As Long
+    X As Long
+    Y As Long
 
 End Type
 
@@ -213,12 +215,12 @@ Private Declare Function QueryPerformanceFrequency _
 Private Declare Function QueryPerformanceCounter _
                 Lib "kernel32" (lpPerformanceCount As Currency) As Long
 
-Function InMapBounds(ByVal x As Integer, ByVal y As Integer) As Boolean
+Function InMapBounds(ByVal X As Integer, ByVal Y As Integer) As Boolean
 
     '*****************************************************************
     'Checks to see if a tile position is in the maps bounds
     '*****************************************************************
-    If x < XMinMapSize Or x > XMaxMapSize Or y < YMinMapSize Or y > YMaxMapSize Then
+    If X < XMinMapSize Or X > XMaxMapSize Or Y < YMinMapSize Or Y > YMaxMapSize Then
         Exit Function
 
     End If
@@ -343,9 +345,7 @@ Sub ShowNextFrame()
         
         Call Engine_BeginScene
 
-        Call Draw_Grh(CurrentGrh, 200, 250, 1, Normal_RGBList(), True)
-
-        If frmParticleEditor.Visible Then Call RenderParticulas(50, 50)
+        Call RenderScreen
 
         Call Engine_Update_FPS
         
@@ -367,11 +367,23 @@ ErrorHandler:
   
 End Sub
 
+Private Sub RenderScreen()
+
+        Movement_Speed = 0.5
+
+        Call Draw_Grh(CurrentGrh, 200, 250, 1, Normal_RGBList(), True)
+
+        If frmParticleEditor.Visible Then Call RenderParticulas(50, 50)
+        
+        Call DrawText(200, 200, "FPS: " & mod_TileEngine.FPS, -1, True)
+        
+End Sub
+
 Public Sub RenderParticulas(ByVal tilex As Integer, ByVal tiley As Integer)
 
-    Dim y                 As Integer     'Keeps track of where on map we are
+    Dim Y                 As Integer     'Keeps track of where on map we are
 
-    Dim x                 As Integer     'Keeps track of where on map we are
+    Dim X                 As Integer     'Keeps track of where on map we are
 
     Dim screenminY        As Integer  'Start Y pos on current screen
 
@@ -400,10 +412,10 @@ Public Sub RenderParticulas(ByVal tilex As Integer, ByVal tiley As Integer)
     PixelOffsetX = OffsetCounterX
     PixelOffsetY = OffsetCounterY
 
-    For y = screenminY To screenmaxY
-        For x = screenminX To screenmaxX
+    For Y = screenminY To screenmaxY
+        For X = screenminX To screenmaxX
 
-            With MapData(x, y)
+            With MapData(X, Y)
 
                 '***********************************************
                 If .Particle_Group_Index > 0 Then Particle_Group_Render .Particle_Group_Index, 200, 100
@@ -420,12 +432,12 @@ Public Sub RenderParticulas(ByVal tilex As Integer, ByVal tiley As Integer)
             End With
 
             ScreenX = ScreenX + 1
-        Next x
+        Next X
 
         'Reset ScreenX to original value and increment ScreenY
-        ScreenX = ScreenX - x + screenminX
+        ScreenX = ScreenX - X + screenminX
         ScreenY = ScreenY + 1
-    Next y
+    Next Y
 
 End Sub
 
@@ -482,8 +494,8 @@ Public Sub GrhUninitialize(Grh As Grh)
 End Sub
 
 Sub Draw_GrhIndex(ByVal GrhIndex As Long, _
-                  ByVal x As Integer, _
-                  ByVal y As Integer, _
+                  ByVal X As Integer, _
+                  ByVal Y As Integer, _
                   ByVal Center As Byte, _
                   ByRef Color_List() As Long, _
                   Optional ByVal angle As Single = 0, _
@@ -496,27 +508,27 @@ Sub Draw_GrhIndex(ByVal GrhIndex As Long, _
         'Center Grh over X,Y pos
         If Center Then
             If .TileWidth <> 1 Then
-                x = x - (.pixelWidth - TilePixelWidth) \ 2
+                X = X - (.pixelWidth - TilePixelWidth) \ 2
 
             End If
             
             If .TileHeight <> 1 Then
-                y = y - Int(.TileHeight * TilePixelHeight) + TilePixelHeight
+                Y = Y - Int(.TileHeight * TilePixelHeight) + TilePixelHeight
 
             End If
 
         End If
         
         'Draw
-        Call Device_Textured_Render(x, y, .pixelWidth, .pixelHeight, .sX, .sY, .FileNum, Color_List(), Alpha)
+        Call Device_Textured_Render(X, Y, .pixelWidth, .pixelHeight, .sX, .sY, .FileNum, Color_List(), Alpha)
 
     End With
     
 End Sub
 
 Sub Draw_Grh(ByRef Grh As Grh, _
-             ByVal x As Integer, _
-             ByVal y As Integer, _
+             ByVal X As Integer, _
+             ByVal Y As Integer, _
              ByVal Center As Byte, _
              ByRef Color_List() As Long, _
              ByVal Animate As Byte, _
@@ -565,18 +577,18 @@ Sub Draw_Grh(ByRef Grh As Grh, _
         'Center Grh over X,Y pos
         If Center Then
             If .TileWidth <> 1 Then
-                x = x - (.pixelWidth * ScaleX - TilePixelWidth) \ 2
+                X = X - (.pixelWidth * ScaleX - TilePixelWidth) \ 2
 
             End If
             
             If .TileHeight <> 1 Then
-                y = y - Int(.TileHeight * TilePixelHeight) + TilePixelHeight
+                Y = Y - Int(.TileHeight * TilePixelHeight) + TilePixelHeight
 
             End If
 
         End If
 
-        Call Device_Textured_Render(x, y, .pixelWidth, .pixelHeight, .sX, .sY, .FileNum, Color_List(), Alpha, angle, ScaleX, ScaleY)
+        Call Device_Textured_Render(X, Y, .pixelWidth, .pixelHeight, .sX, .sY, .FileNum, Color_List(), Alpha, angle, ScaleX, ScaleY)
         
     End With
     
@@ -601,8 +613,8 @@ Error:
 
 End Sub
 
-Public Sub Device_Textured_Render(ByVal x As Single, _
-                                  ByVal y As Single, _
+Public Sub Device_Textured_Render(ByVal X As Single, _
+                                  ByVal Y As Single, _
                                   ByVal Width As Integer, _
                                   ByVal Height As Integer, _
                                   ByVal sX As Integer, _
@@ -627,9 +639,9 @@ Public Sub Device_Textured_Render(ByVal x As Single, _
         Call .SetAlpha(Alpha)
                 
         If TextureWidth <> 0 And TextureHeight <> 0 Then
-            Call .Draw(x, y, Width * ScaleX, Height * ScaleY, Color, sX / TextureWidth, sY / TextureHeight, (sX + Width) / TextureWidth, (sY + Height) / TextureHeight, angle)
+            Call .Draw(X, Y, Width * ScaleX, Height * ScaleY, Color, sX / TextureWidth, sY / TextureHeight, (sX + Width) / TextureWidth, (sY + Height) / TextureHeight, angle)
         Else
-            Call .Draw(x, y, TextureWidth * ScaleX, TextureHeight * ScaleY, Color, , , , , angle)
+            Call .Draw(X, Y, TextureWidth * ScaleX, TextureHeight * ScaleY, Color, , , , , angle)
 
         End If
                 

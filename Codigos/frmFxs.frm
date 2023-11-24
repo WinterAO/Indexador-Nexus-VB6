@@ -222,10 +222,15 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private nGrh As Long
+
 Private Sub ListaFxs_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
 
     Dim i As Byte
-    Dim nGrh As Long
 
     nGrh = FxData(ListaFxs.Text).Animacion
     
@@ -243,12 +248,15 @@ Private Sub ListaFxs_Click()
 End Sub
 
 Private Sub LvBBorrar_Click()
-    
+'**********************************
+'Autor: Lorwik
+'Fecha: ??
+'**********************************
+
     If MsgBox("¿Seguro que quieres borrar el Fx seleccionado?" & vbCrLf & "Este cambio no tiene vuelta atrás.", vbOKCancel) = vbOK Then
 
         FxData(ListaFxs.Text).Animacion = 0
         FxData(ListaFxs.Text).OffsetX = 0
-        
         FxData(ListaFxs.Text).OffsetY = 0
         
         If Val(ListaFxs.Text) >= NumFxs Then
@@ -263,12 +271,25 @@ Private Sub LvBBorrar_Click()
 End Sub
 
 Private Sub LvBGuardar_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: 24/11/2023
+'**********************************
+
     Dim i As Byte
     
-'    For i = 1 To listAnimacion.ListCount
-'        GrhData(CurrentGrh).Frames(i) = listAnimacion.List(i)
-'    Next i
-'
-'    GrhData(CurrentGrh).speed = Val(txtSpeed.Text)
+    With GrhData(nGrh)
+    
+        .NumFrames = listAnimacion.ListCount
+    
+        ReDim .Frames(1 To .NumFrames)
+    
+        For i = 1 To .NumFrames
+            .Frames(i) = listAnimacion.List(i)
+        Next i
+
+        .speed = Val(txtSpeed.Text)
+
+    End With
     
 End Sub

@@ -41,6 +41,7 @@ Module=modHerramientas; Codigos\modHerramientas.bas
 Form=Codigos\frmSuperficies.frm
 Object={3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0; richtx32.ocx
 Form=Codigos\frmAcercade.frm
+Module=mDx8_Text; Codigos\mDx8_Text.bas
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""
@@ -52,7 +53,7 @@ HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
 MinorVer=9
-RevisionVer=26
+RevisionVer=32
 AutoIncrementVer=1
 ServerSupportFiles=0
 CondComp="Comprimido = 0"

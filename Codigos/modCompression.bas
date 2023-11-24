@@ -2,7 +2,7 @@ Attribute VB_Name = "modCompression"
 Option Explicit
 
 'Public Formato As String * 6
-Public Const Formato As String * 6 = ".NAO"
+Public Const Formato As String * 6 = ".WAO"
 
 Public PkContra() As Byte
 

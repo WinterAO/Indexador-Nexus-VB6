@@ -27,6 +27,29 @@ Begin VB.Form frmMain
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   876
    StartUpPosition =   1  'CenterOwner
+   Begin VB.PictureBox MainViewPic 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00000000&
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
+      Height          =   9585
+      Left            =   2340
+      ScaleHeight     =   637
+      ScaleMode       =   3  'Pixel
+      ScaleWidth      =   478
+      TabIndex        =   47
+      TabStop         =   0   'False
+      Top             =   840
+      Width           =   7200
+   End
    Begin VB.Frame FraCrearAnimación 
       BackColor       =   &H00404040&
       Caption         =   "Crear Animación"
@@ -42,7 +65,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   1695
       Left            =   9600
-      TabIndex        =   38
+      TabIndex        =   37
       Top             =   3840
       Width           =   3465
       Begin VB.TextBox txtHasta 
@@ -51,7 +74,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Left            =   2430
-         TabIndex        =   46
+         TabIndex        =   45
          Top             =   810
          Width           =   945
       End
@@ -61,7 +84,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Left            =   660
-         TabIndex        =   44
+         TabIndex        =   43
          Top             =   810
          Width           =   825
       End
@@ -71,7 +94,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Left            =   2430
-         TabIndex        =   42
+         TabIndex        =   41
          Top             =   390
          Width           =   945
       End
@@ -81,26 +104,34 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   285
          Left            =   660
-         TabIndex        =   40
+         TabIndex        =   39
          Top             =   390
          Width           =   825
       End
       Begin Indexador_Nexus.lvButtons_H LvBGuardar 
          Height          =   315
          Left            =   660
-         TabIndex        =   47
+         TabIndex        =   46
          Top             =   1260
          Width           =   2085
-         _extentx        =   3678
-         _extenty        =   556
-         caption         =   "Guardar"
-         capalign        =   2
-         backstyle       =   2
-         font            =   "frmMain.frx":10CA
-         cgradient       =   0
-         mode            =   0
-         value           =   0   'False
-         cback           =   -2147483633
+         _ExtentX        =   3678
+         _ExtentY        =   556
+         Caption         =   "Guardar"
+         CapAlign        =   2
+         BackStyle       =   2
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         cGradient       =   0
+         Mode            =   0
+         Value           =   0   'False
+         cBack           =   -2147483633
       End
       Begin VB.Label lblHasta 
          AutoSize        =   -1  'True
@@ -109,7 +140,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   1650
-         TabIndex        =   45
+         TabIndex        =   44
          Top             =   840
          Width           =   735
       End
@@ -120,7 +151,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   120
-         TabIndex        =   43
+         TabIndex        =   42
          Top             =   840
          Width           =   525
       End
@@ -131,7 +162,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   1650
-         TabIndex        =   41
+         TabIndex        =   40
          Top             =   420
          Width           =   735
       End
@@ -142,7 +173,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   420
          Width           =   315
       End
@@ -150,53 +181,70 @@ Begin VB.Form frmMain
    Begin RichTextLib.RichTextBox RichConsola 
       Height          =   1425
       Left            =   120
-      TabIndex        =   37
+      TabIndex        =   36
       Top             =   10470
       Width           =   9405
       _ExtentX        =   16589
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
+      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
-      TextRTF         =   $"frmMain.frx":10F2
+      TextRTF         =   $"frmMain.frx":10CA
    End
    Begin Indexador_Nexus.lvButtons_H LvBAsistenteDe 
       Height          =   555
       Left            =   10020
-      TabIndex        =   36
+      TabIndex        =   35
       Top             =   3000
       Width           =   2505
-      _extentx        =   4419
-      _extenty        =   979
-      caption         =   "Asistente de indexación para superficies"
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":1171
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   -2147483633
+      _ExtentX        =   4419
+      _ExtentY        =   979
+      Caption         =   "Asistente de indexación para superficies"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBNuevoGrh 
       Height          =   405
       Left            =   1020
-      TabIndex        =   33
+      TabIndex        =   32
       Top             =   9990
       Width           =   1275
-      _extentx        =   2249
-      _extenty        =   714
-      caption         =   "Nuevo"
-      capalign        =   2
-      backstyle       =   2
-      shape           =   1
-      font            =   "frmMain.frx":1199
-      cbhover         =   -2147483633
-      lockhover       =   1
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   8454016
+      _ExtentX        =   2249
+      _ExtentY        =   714
+      Caption         =   "Nuevo"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cBhover         =   -2147483633
+      LockHover       =   1
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8454016
    End
    Begin Indexador_Nexus.LynxGrid LynxGrh 
       Height          =   9075
@@ -204,31 +252,47 @@ Begin VB.Form frmMain
       TabIndex        =   1
       Top             =   810
       Width           =   2205
-      _extentx        =   3889
-      _extenty        =   15266
-      font            =   "frmMain.frx":11C1
-      fontheader      =   "frmMain.frx":11E9
-      backcolor       =   5460819
-      backcolorbkg    =   5460819
-      backcoloredit   =   14737632
-      backcolorsel    =   12937777
-      forecolor       =   12632256
-      forecolorsel    =   8438015
-      backcolorevenrows=   3158064
-      customcolorfrom =   4210752
-      customcolorto   =   8421504
-      gridcolor       =   14737632
-      focusrectcolor  =   9895934
-      gridlines       =   2
-      themecolor      =   5
-      scrollbars      =   1
-      appearance      =   0
-      columnheadersmall=   0   'False
-      totalslineshow  =   0   'False
-      focusrowhighlightkeeptextforecolor=   0   'False
-      showrownumbers  =   0   'False
-      showrownumbersvary=   0   'False
-      hotheadertracking=   0   'False
+      _ExtentX        =   3889
+      _ExtentY        =   15266
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      BeginProperty FontHeader {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      BackColor       =   5460819
+      BackColorBkg    =   5460819
+      BackColorEdit   =   14737632
+      BackColorSel    =   12937777
+      ForeColor       =   12632256
+      ForeColorSel    =   8438015
+      BackColorEvenRows=   3158064
+      CustomColorFrom =   4210752
+      CustomColorTo   =   8421504
+      GridColor       =   14737632
+      FocusRectColor  =   9895934
+      GridLines       =   2
+      ThemeColor      =   5
+      ScrollBars      =   1
+      Appearance      =   0
+      ColumnHeaderSmall=   0   'False
+      TotalsLineShow  =   0   'False
+      FocusRowHighlightKeepTextForecolor=   0   'False
+      ShowRowNumbers  =   0   'False
+      ShowRowNumbersVary=   0   'False
+      HotHeaderTracking=   0   'False
    End
    Begin VB.Frame FraAtributosDel 
       BackColor       =   &H00404040&
@@ -245,7 +309,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FF00&
       Height          =   2025
       Left            =   9600
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   810
       Width           =   3465
       Begin VB.CommandButton cmdAlto 
@@ -253,7 +317,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   3150
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   1320
          Width           =   180
       End
@@ -262,7 +326,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   3150
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   1110
          Width           =   180
       End
@@ -271,7 +335,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   1650
-         TabIndex        =   30
+         TabIndex        =   29
          Top             =   1320
          Width           =   180
       End
@@ -280,7 +344,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   1650
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   1110
          Width           =   180
       End
@@ -289,7 +353,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   3150
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   850
          Width           =   180
       End
@@ -298,7 +362,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   3150
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   650
          Width           =   180
       End
@@ -307,7 +371,7 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   1
          Left            =   1650
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   850
          Width           =   180
       End
@@ -316,26 +380,34 @@ Begin VB.Form frmMain
          Height          =   195
          Index           =   0
          Left            =   1650
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   650
          Width           =   180
       End
       Begin Indexador_Nexus.lvButtons_H LvBCambiar 
          Height          =   315
          Left            =   90
-         TabIndex        =   24
+         TabIndex        =   23
          Top             =   1560
          Width           =   1065
-         _extentx        =   1879
-         _extenty        =   556
-         caption         =   "Cambiar"
-         capalign        =   2
-         backstyle       =   2
-         font            =   "frmMain.frx":1211
-         cgradient       =   0
-         mode            =   0
-         value           =   0   'False
-         cback           =   -2147483633
+         _ExtentX        =   1879
+         _ExtentY        =   556
+         Caption         =   "Cambiar"
+         CapAlign        =   2
+         BackStyle       =   2
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         cGradient       =   0
+         Mode            =   0
+         Value           =   0   'False
+         cBack           =   -2147483633
       End
       Begin VB.TextBox txtFrame 
          Appearance      =   0  'Flat
@@ -344,7 +416,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   5
          Left            =   2460
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   1150
          Width           =   645
       End
@@ -355,7 +427,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   4
          Left            =   960
-         TabIndex        =   14
+         TabIndex        =   13
          Top             =   1150
          Width           =   645
       End
@@ -366,7 +438,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   3
          Left            =   2460
-         TabIndex        =   9
+         TabIndex        =   8
          Top             =   720
          Width           =   645
       End
@@ -377,7 +449,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   2
          Left            =   960
-         TabIndex        =   7
+         TabIndex        =   6
          Top             =   735
          Width           =   645
       End
@@ -388,7 +460,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   1
          Left            =   2460
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   300
          Width           =   645
       End
@@ -399,7 +471,7 @@ Begin VB.Form frmMain
          Height          =   285
          Index           =   0
          Left            =   960
-         TabIndex        =   5
+         TabIndex        =   4
          Top             =   300
          Width           =   645
       End
@@ -410,7 +482,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   1920
-         TabIndex        =   15
+         TabIndex        =   14
          Top             =   1110
          Width           =   645
       End
@@ -421,7 +493,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   330
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   1140
          Width           =   645
       End
@@ -431,7 +503,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   2130
-         TabIndex        =   10
+         TabIndex        =   9
          Top             =   780
          Width           =   645
       End
@@ -442,7 +514,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   750
-         TabIndex        =   8
+         TabIndex        =   7
          Top             =   780
          Width           =   645
       End
@@ -453,7 +525,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   120
-         TabIndex        =   4
+         TabIndex        =   3
          Top             =   360
          Width           =   795
       End
@@ -464,7 +536,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H0000FF00&
          Height          =   195
          Left            =   1740
-         TabIndex        =   6
+         TabIndex        =   5
          Top             =   390
          Width           =   570
       End
@@ -479,226 +551,292 @@ Begin VB.Form frmMain
       Visible         =   0   'False
       Width           =   1575
    End
-   Begin VB.PictureBox MainViewPic 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000007&
-      ForeColor       =   &H80000008&
-      Height          =   9585
-      Left            =   2340
-      ScaleHeight     =   637
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   478
-      TabIndex        =   2
-      TabStop         =   0   'False
-      Top             =   810
-      Width           =   7200
-   End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   0
       Left            =   150
-      TabIndex        =   16
+      TabIndex        =   15
       ToolTipText     =   "Cuerpos"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":1239
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":1261
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":1149
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   1
       Left            =   720
-      TabIndex        =   17
+      TabIndex        =   16
       ToolTipText     =   "Cabezas"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":14A7
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":14CF
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":138F
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   2
       Left            =   1290
-      TabIndex        =   18
+      TabIndex        =   17
       ToolTipText     =   "Cascos"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":186D
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":1895
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":172C
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   3
       Left            =   1860
-      TabIndex        =   19
+      TabIndex        =   18
       ToolTipText     =   "Armas"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":1B9B
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":1BC3
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":1A31
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   4
       Left            =   2430
-      TabIndex        =   20
+      TabIndex        =   19
       ToolTipText     =   "Escudos"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":20B5
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":20DD
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":1F20
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   5
       Left            =   3000
-      TabIndex        =   21
+      TabIndex        =   20
       ToolTipText     =   "Ataques"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":2723
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":274B
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":2563
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   6
       Left            =   3570
-      TabIndex        =   22
+      TabIndex        =   21
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      caption         =   "A"
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":2DDD
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      Caption         =   "A"
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   15.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   7
       Left            =   4140
-      TabIndex        =   23
+      TabIndex        =   22
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":2E05
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":2E2D
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":2BF3
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin Indexador_Nexus.lvButtons_H LvBBorrar 
       Height          =   405
       Left            =   120
-      TabIndex        =   34
+      TabIndex        =   33
       Top             =   9990
       Width           =   1275
-      _extentx        =   2249
-      _extenty        =   714
-      caption         =   "Borrar"
-      capalign        =   2
-      backstyle       =   2
-      shape           =   2
-      font            =   "frmMain.frx":34AF
-      cgradient       =   0
-      mode            =   0
-      value           =   0   'False
-      cback           =   8421631
+      _ExtentX        =   2249
+      _ExtentY        =   714
+      Caption         =   "Borrar"
+      CapAlign        =   2
+      BackStyle       =   2
+      Shape           =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   0
+      Value           =   0   'False
+      cBack           =   8421631
    End
    Begin Indexador_Nexus.lvButtons_H LvBSelector 
       Height          =   495
       Index           =   8
       Left            =   4710
-      TabIndex        =   35
+      TabIndex        =   34
       ToolTipText     =   "Fx's"
       Top             =   150
       Width           =   525
-      _extentx        =   926
-      _extenty        =   873
-      capalign        =   2
-      backstyle       =   2
-      font            =   "frmMain.frx":34D7
-      cgradient       =   0
-      mode            =   1
-      value           =   0   'False
-      imgalign        =   4
-      image           =   "frmMain.frx":34FF
-      imgsize         =   32
-      cback           =   -2147483633
+      _ExtentX        =   926
+      _ExtentY        =   873
+      CapAlign        =   2
+      BackStyle       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      cGradient       =   0
+      Mode            =   1
+      Value           =   0   'False
+      ImgAlign        =   4
+      Image           =   "frmMain.frx":3275
+      ImgSize         =   32
+      cBack           =   -2147483633
    End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
