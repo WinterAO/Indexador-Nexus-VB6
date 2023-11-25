@@ -266,7 +266,7 @@ Private Sub ListaCuerpos_Click()
     txtSur.Text = BodyData(ListaCuerpos.Text).Walk(2).GrhIndex
     txtOeste.Text = BodyData(ListaCuerpos.Text).Walk(4).GrhIndex
     
-    isList = False
+    Renderizando = eRender.eCuerpos
     Particle_Group_Remove_All
 End Sub
 
@@ -285,8 +285,8 @@ Private Sub LvBBorrar_Click()
             BodyData(ListaCuerpos.Text).Walk(i).Started = 0
         Next i
         
-        BodyData(ListaCuerpos.Text).HeadOffset.x = 0
-        BodyData(ListaCuerpos.Text).HeadOffset.y = 0
+        BodyData(ListaCuerpos.Text).HeadOffset.X = 0
+        BodyData(ListaCuerpos.Text).HeadOffset.Y = 0
         
         If Val(ListaCuerpos.Text) >= NumCuerpos Then
             NumCuerpos = NumCuerpos - 1
@@ -309,8 +309,8 @@ Private Sub LvBGuardar_Click()
         .Walk(2).GrhIndex = Val(txtNorte.Text)
         .Walk(3).GrhIndex = Val(txtOeste.Text)
         .Walk(4).GrhIndex = Val(txtEste.Text)
-        .HeadOffset.x = Val(txtX.Text)
-        .HeadOffset.y = Val(txtY.Text)
+        .HeadOffset.X = Val(txtX.Text)
+        .HeadOffset.Y = Val(txtY.Text)
     
     End With
     
@@ -335,8 +335,8 @@ Private Sub LvBNuevo_Click()
         BodyData(NumCuerpos).Walk(i).GrhIndex = 0
     Next i
     
-    BodyData(NumCuerpos).HeadOffset.x = 0
-    BodyData(NumCuerpos).HeadOffset.y = 0
+    BodyData(NumCuerpos).HeadOffset.X = 0
+    BodyData(NumCuerpos).HeadOffset.Y = 0
             
     ListaCuerpos.AddItem NumCuerpos
     

@@ -216,7 +216,7 @@ Private Sub ListaArmas_Click()
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)
     
-    isList = False
+    Renderizando = eRender.eArmas
     Particle_Group_Remove_All
 End Sub
 

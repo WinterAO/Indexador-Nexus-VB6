@@ -1231,7 +1231,7 @@ Private Sub ListParticulas_Click()
 
     CurrentGrh.GrhIndex = 0
     CurrentGrh.Started = 0
-    isList = False
+    Renderizando = eRender.eParticulas
 End Sub
 
 Private Sub cmdDelete_Click()
@@ -1320,9 +1320,9 @@ Private Sub LoadStreamFile(StreamFile As String)
         
         For ColorSet = 1 To 4
             TempSet = GetVar(StreamFile, Val(LoopC), "ColorSet" & ColorSet)
-            StreamData(LoopC).colortint(ColorSet - 1).R = GetVar(1, TempSet, 44)
-            StreamData(LoopC).colortint(ColorSet - 1).G = GetVar(2, TempSet, 44)
-            StreamData(LoopC).colortint(ColorSet - 1).B = GetVar(3, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).r = GetVar(1, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).g = GetVar(2, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).b = GetVar(3, TempSet, 44)
         Next ColorSet
         
         'fill stream type combo box
@@ -1854,7 +1854,7 @@ Private Sub BScroll_Change()
 
     DataChanged = True
     
-    StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).B = BScroll.value
+    StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).b = BScroll.value
     txtB.Text = BScroll.value
     
     picColor.BackColor = RGB(txtB.Text, txtG.Text, txtR.Text)
@@ -1899,7 +1899,7 @@ Private Sub GScroll_Change()
 
     DataChanged = True
     
-    StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).G = GScroll.value
+    StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).g = GScroll.value
     txtG.Text = GScroll.value
     
     picColor.BackColor = RGB(txtB.Text, txtG.Text, txtR.Text)
@@ -1929,9 +1929,9 @@ Private Sub lstColorSets_Click()
 
     DataTemp = DataChanged
     
-    RScroll.value = StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).R
-    GScroll.value = StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).G
-    BScroll.value = StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).B
+    RScroll.value = StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).r
+    GScroll.value = StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).g
+    BScroll.value = StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).b
     
     DataChanged = DataTemp
 
@@ -1943,7 +1943,7 @@ Private Sub RScroll_Change()
 
     DataChanged = True
     
-    StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).R = RScroll.value
+    StreamData(frmParticleEditor.ListParticulas.ListIndex + 1).colortint(lstColorSets.ListIndex).r = RScroll.value
     txtR.Text = RScroll.value
     
     picColor.BackColor = RGB(txtB.Text, txtG.Text, txtR.Text)

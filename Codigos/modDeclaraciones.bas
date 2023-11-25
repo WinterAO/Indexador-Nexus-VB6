@@ -7,6 +7,22 @@ Public ProfileTag As String ' Perfil seleccionado
 
 Public isList As Boolean
 
+Public Enum eRender
+
+    eGeneral = 0
+    eCuerpos
+    eCabezas
+    eCascos
+    eArmas
+    eEscudos
+    eFXs
+    eParticulas
+    eAtaques
+        
+End Enum
+
+Public Renderizando As Byte
+
 Public ParticleIndex As Integer
 
 Public DataChanged As Boolean
@@ -36,9 +52,9 @@ End Enum
 
 Public Type tColor
 
-    R As Byte
-    G As Byte
-    B As Byte
+    r As Byte
+    g As Byte
+    b As Byte
 
 End Type
 

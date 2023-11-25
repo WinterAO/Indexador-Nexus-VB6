@@ -212,7 +212,7 @@ Private Sub ListaEscudos_Click()
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)
     
-    isList = False
+    Renderizando = eRender.eEscudos
     Particle_Group_Remove_All
 End Sub
 

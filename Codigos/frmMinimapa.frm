@@ -154,6 +154,9 @@ Private Sub cmdCerrar_Click()
 End Sub
 
 Private Sub cmdComenzar_Click()
+
+    On Error GoTo MinimapaHandler:
+    
     Dim i As Long
     
     cmdComenzar.Enabled = False
@@ -168,7 +171,7 @@ Private Sub cmdComenzar_Click()
         Seek #1, 1
         
         For i = 1 To grhCount
-            If GrhData(i).Active = True Then
+            If GrhData(i).active = True Then
                 Picture1.Cls
                 Picture2.Cls
                 lblstatus.Caption = "Cargando grafico " & i & "/" & grhCount
@@ -188,5 +191,9 @@ Private Sub cmdComenzar_Click()
     
     cmdComenzar.Enabled = True
     cmdCerrar.Enabled = True
+    
+MinimapaHandler:
+    
+    Call LogError(Err.Number, Err.Description, "frmMinimapa.cmdComenzar_Click")
 End Sub
 

@@ -125,6 +125,8 @@ End Type
 
 Public CurrentGrh       As Grh
 
+Public CurrentHead      As Integer
+
 Public GrhSelect(3)     As Long
 
 '?????????Graficos???????????
@@ -369,13 +371,39 @@ End Sub
 
 Private Sub RenderScreen()
 
-        Movement_Speed = 0.5
+    Dim i As Byte
 
-        Call Draw_Grh(CurrentGrh, 200, 250, 1, Normal_RGBList(), True)
+    Movement_Speed = 0.5
+    
+    Select Case Renderizando
+    
+        Case eRender.eGeneral
+            Call Draw_Grh(CurrentGrh, 200, 250, 1, Normal_RGBList(), True)
+            
+        Case eRender.eCuerpos, eRender.eArmas, eRender.eEscudos, eRender.eFXs
+            Call Draw_Grh(CurrentGrh, 200, 250, 1, Normal_RGBList(), True)
+            
+        Case eRender.eCabezas
+            Call DrawHead(CurrentHead, 200, 250, Normal_RGBList(), 1, True)
+            Call DrawHead(CurrentHead, 200, 220, Normal_RGBList(), 2, True)
+            Call DrawHead(CurrentHead, 180, 250, Normal_RGBList(), 3, True)
+            Call DrawHead(CurrentHead, 220, 250, Normal_RGBList(), 4, True)
+            
+        Case eRender.eCascos
+            Call DrawHead(CurrentHead, 200, 250, Normal_RGBList(), 1, False)
+            Call DrawHead(CurrentHead, 200, 220, Normal_RGBList(), 2, False)
+            Call DrawHead(CurrentHead, 180, 250, Normal_RGBList(), 3, False)
+            Call DrawHead(CurrentHead, 220, 250, Normal_RGBList(), 4, False)
+            
+        Case eRender.eParticulas
+            If frmParticleEditor.Visible Then Call RenderParticulas(50, 50)
+            
+        Case eRender.eAtaques
+    
+    End Select
 
-        If frmParticleEditor.Visible Then Call RenderParticulas(50, 50)
-        
-        Call DrawText(200, 200, "FPS: " & mod_TileEngine.FPS, -1, True)
+       
+    Call DrawText(200, 200, "FPS: " & mod_TileEngine.FPS, -1, True)
         
 End Sub
 
@@ -612,6 +640,40 @@ Error:
     End If
 
 End Sub
+
+Public Sub DrawHead(ByVal Head As Integer, ByVal X As Integer, ByVal Y As Integer, Light() As Long, ByVal Heading As Byte, Optional ByVal EsCabeza As Boolean = True, Optional ByVal Alpha As Boolean = False, Optional ByVal angle As Single = 0, Optional ByVal ScaleX As Single = 1!, Optional ByVal ScaleY As Single = 1!)
+
+    Dim textureX1 As Integer
+    Dim textureX2 As Integer
+    Dim textureY1 As Integer
+    Dim textureY2 As Integer
+    Dim OffsetX As Integer
+    Dim OffsetY As Integer
+    Dim Texture As Long
+
+    If EsCabeza Then
+        If heads(Head).Texture <= 0 Then Exit Sub
+        Texture = heads(Head).Texture
+    Else
+        If Cascos(Head).Texture <= 0 Then Exit Sub
+        Texture = Cascos(Head).Texture
+    End If
+    
+    textureX2 = 27
+    textureY2 = 32
+ 
+    If EsCabeza Then
+        textureX1 = heads(Head).startX - textureX2
+        textureY1 = ((Heading - 2) * textureY2) + heads(Head).startY
+    Else
+        textureX1 = Cascos(Head).startX - textureX2 + 1
+        textureY1 = ((Heading - 2) * textureY2) + Cascos(Head).startY + 2
+    End If
+    
+    Device_Textured_Render X - OffsetX + 3, Y - OffsetY + 4, textureX2, textureY2, (textureX2 + textureX1), (textureY2 + textureY1), Texture, Light, Alpha, angle, ScaleX, ScaleY
+
+End Sub
+
 
 Public Sub Device_Textured_Render(ByVal X As Single, _
                                   ByVal Y As Single, _

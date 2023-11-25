@@ -243,7 +243,7 @@ Private Sub ListaFxs_Click()
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)
     
-    isList = False
+    Renderizando = eRender.eFXs
     Particle_Group_Remove_All
 End Sub
 

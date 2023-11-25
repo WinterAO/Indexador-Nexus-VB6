@@ -195,7 +195,9 @@ Private Sub ListaHead_Click()
     txtX.Text = heads(ListaHead.Text).startX
     txtY.Text = heads(ListaHead.Text).startY
     
-    isList = False
+    CurrentHead = ListaHead.Text
+    
+    Renderizando = eRender.eCabezas
     Particle_Group_Remove_All
 End Sub
 

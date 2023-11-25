@@ -42,6 +42,6 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub ListaAtaques_Click()
-    isList = False
+    Renderizando = eRender.eAtaques
     Particle_Group_Remove_All
 End Sub

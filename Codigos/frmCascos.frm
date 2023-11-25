@@ -193,7 +193,8 @@ Private Sub ListaCascos_Click()
     txtX.Text = Cascos(ListaCascos.Text).startX
     txtY.Text = Cascos(ListaCascos.Text).startY
     
-    isList = False
+    CurrentHead = ListaCascos.Text
+    Renderizando = eRender.eCascos
     Particle_Group_Remove_All
 End Sub
 
