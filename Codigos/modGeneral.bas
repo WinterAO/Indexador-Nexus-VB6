@@ -3,8 +3,8 @@ Option Explicit
 
 Private lFrameTimer As Long
 
-Private Declare Function GetPixel Lib "gdi32" (ByVal hDC As Long, ByVal x As Long, ByVal y As Long) As Long
-Private Declare Function BitBlt Lib "gdi32" (ByVal hDestDC As Long, ByVal x As Long, ByVal y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As Long, ByVal xSrc As Long, ByVal ySrc As Long, ByVal dwRop As Long) As Long
+Private Declare Function GetPixel Lib "gdi32" (ByVal hDC As Long, ByVal X As Long, ByVal Y As Long) As Long
+Private Declare Function BitBlt Lib "gdi32" (ByVal hDestDC As Long, ByVal X As Long, ByVal Y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As Long, ByVal xSrc As Long, ByVal ySrc As Long, ByVal dwRop As Long) As Long
 
 Private Declare Function SelectObject Lib "gdi32" (ByVal hDC As Long, ByVal hObject As Long) As Long
 Private Declare Function CreateCompatibleDC Lib "gdi32" (ByVal hDC As Long) As Long
@@ -242,13 +242,13 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
 
     On Error Resume Next
     
-    Dim x             As Long, y As Long
+    Dim X             As Long, Y As Long
 
     Dim file_path     As String
 
     Dim hdcsrc        As Long, OldObj As Long
 
-    Dim R             As Currency, B As Currency, G As Currency
+    Dim r             As Currency, b As Currency, g As Currency
 
     Dim InvalidPixels As Long, Size As Long
 
@@ -281,23 +281,23 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
         
         DoEvents
                
-        For x = 1 To GrhData(grh_index).pixelWidth
-            For y = 1 To GrhData(grh_index).pixelHeight
-                tempGetPixel = GetPixel(frmMinimapa.Picture1.hDC, x, y)
+        For X = 1 To GrhData(grh_index).pixelWidth
+            For Y = 1 To GrhData(grh_index).pixelHeight
+                tempGetPixel = GetPixel(frmMinimapa.Picture1.hDC, X, Y)
 
                 If tempGetPixel = vbBlack Then
                     InvalidPixels = InvalidPixels + 1
                 Else
                     TempColor = Long2RGB(tempGetPixel)
-                    R = R + TempColor.R
-                    G = G + TempColor.G
-                    B = B + TempColor.B
+                    r = r + TempColor.r
+                    g = g + TempColor.g
+                    b = b + TempColor.b
 
                 End If
 
                 DoEvents
-            Next y
-        Next x
+            Next Y
+        Next X
         
         If InvalidPixels > 0 Then
             Size = GrhData(grh_index).pixelWidth * GrhData(grh_index).pixelHeight - InvalidPixels
@@ -308,7 +308,7 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
         
         If Size = 0 Then Size = 1
         
-        Grh_GetColor = RGB(CByte(R / Size), CByte(G / Size), CByte(B / Size))
+        Grh_GetColor = RGB(CByte(r / Size), CByte(g / Size), CByte(b / Size))
         frmMinimapa.Picture2.BackColor = Grh_GetColor
 
         Dim bmpguardado As Integer
@@ -326,9 +326,9 @@ Function Grh_GetColor(ByVal grh_index As Long) As Long
 End Function
 
 Private Function Long2RGB(ByVal Color As Long) As tColor
-    Long2RGB.R = Color And &HFF
-    Long2RGB.G = (Color And &HFF00&) \ &H100&
-    Long2RGB.B = (Color And &HFF0000) \ &H10000
+    Long2RGB.r = Color And &HFF
+    Long2RGB.g = (Color And &HFF00&) \ &H100&
+    Long2RGB.b = (Color And &HFF0000) \ &H10000
 End Function
 
 Public Sub CloseClient()
@@ -417,7 +417,8 @@ Sub AddtoRichTextBox(ByRef RichTextBox As RichTextBox, _
                     Optional ByVal bold As Boolean = False, _
                     Optional ByVal italic As Boolean = False, _
                     Optional ByVal bCrLf As Boolean = True, _
-                    Optional ByVal Alignment As Byte = rtfLeft)
+                    Optional ByVal Alignment As Byte = rtfLeft, _
+                    Optional ByVal bFecha As Boolean = True)
     
 '****************************************************
 'Adds text to a Richtext box at the bottom.
@@ -429,7 +430,22 @@ Sub AddtoRichTextBox(ByRef RichTextBox As RichTextBox, _
 'Jopi 17/08/2019 : Consola transparente.
 'Jopi 17/08/2019 : Ahora podes especificar el alineamiento del texto.
 '****************************************************
+
+    Dim horaActual As String
+    Dim hora As Integer
+    Dim minutos As Integer
+    
+    ' Obtener la hora actual en formato de cadena de caracteres
+    horaActual = Time
+    
+    ' Extraer la hora y los minutos
+    hora = Hour(horaActual)
+    minutos = Minute(horaActual)
+
     With RichTextBox
+    
+        If bFecha Then _
+            Text = hora & ":" & minutos & "> " & Text
         
         If Len(.Text) > 1000 Then
             'Get rid of first line
