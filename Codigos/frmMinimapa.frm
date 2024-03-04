@@ -174,7 +174,7 @@ Private Sub cmdComenzar_Click()
             If GrhData(i).active = True Then
                 Picture1.Cls
                 Picture2.Cls
-                lblstatus.Caption = "Cargando grafico " & i & "/" & grhCount
+                lblStatus.Caption = "Cargando grafico " & i & "/" & grhCount
                 Shape1.Width = ((i / 100) / (grhCount / 100)) * 189
                 Put #1, , Grh_GetColor(i)
             End If
@@ -185,7 +185,7 @@ Private Sub cmdComenzar_Click()
     
     Kill App.Path & "\temp\*.*"
     
-    lblstatus = "Finalizado!"
+    lblStatus = "Finalizado!"
     
     MsgBox "Finalizado!"
     

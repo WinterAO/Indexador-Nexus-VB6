@@ -71,9 +71,9 @@ Public grhCount        As Long
 Public fileVersion     As Long
 
 Public Type RGB
-    R As Long
-    G As Long
-    B As Long
+    r As Long
+    g As Long
+    b As Long
 End Type
 
 'Constantes
@@ -242,6 +242,8 @@ Public Function LoadGrhData() As Boolean
         With GrhData(Grh)
 
             If Grh <> 0 Then
+            
+                .Grh = Grh
                
                 'Get number of frames
                 Get handle, , .NumFrames
@@ -369,8 +371,8 @@ Public Function CargarCuerpos() As Boolean
             Call InitGrh(BodyData(i).Walk(3), MisCuerpos(i).Body(3), 0)
             Call InitGrh(BodyData(i).Walk(4), MisCuerpos(i).Body(4), 0)
                 
-            BodyData(i).HeadOffset.x = MisCuerpos(i).HeadOffsetX
-            BodyData(i).HeadOffset.y = MisCuerpos(i).HeadOffsetY
+            BodyData(i).HeadOffset.X = MisCuerpos(i).HeadOffsetX
+            BodyData(i).HeadOffset.Y = MisCuerpos(i).HeadOffsetY
 
         End If
         
@@ -734,9 +736,9 @@ Sub CargarParticulas()
         
         For ColorSet = 1 To 4
             TempSet = GetVar(StreamFile, Val(LoopC), "ColorSet" & ColorSet)
-            StreamData(LoopC).colortint(ColorSet - 1).R = ReadField(1, TempSet, 44)
-            StreamData(LoopC).colortint(ColorSet - 1).G = ReadField(2, TempSet, 44)
-            StreamData(LoopC).colortint(ColorSet - 1).B = ReadField(3, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).r = ReadField(1, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).g = ReadField(2, TempSet, 44)
+            StreamData(LoopC).colortint(ColorSet - 1).b = ReadField(3, TempSet, 44)
         Next ColorSet
 
         frmParticleEditor.ListParticulas.AddItem LoopC & " - " & StreamData(LoopC).name
@@ -756,9 +758,9 @@ On Error GoTo errhandler:
     Dim i As Long
     
     For i = 0 To MAXCOLORES '48, 49 y 50 reservados para atacables, ciudadano y criminal
-        ColoresPJ(i).R = LeerINI.GetValue(CStr(i), "R")
-        ColoresPJ(i).G = LeerINI.GetValue(CStr(i), "G")
-        ColoresPJ(i).B = LeerINI.GetValue(CStr(i), "B")
+        ColoresPJ(i).r = LeerINI.GetValue(CStr(i), "R")
+        ColoresPJ(i).g = LeerINI.GetValue(CStr(i), "G")
+        ColoresPJ(i).b = LeerINI.GetValue(CStr(i), "B")
     Next i
     
     Set LeerINI = Nothing

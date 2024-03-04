@@ -85,7 +85,7 @@ End Type
 Private Type MainNode
     name As String
     values() As ChildNode
-    numValues As Integer
+    numValues As Long
 End Type
 
 ''
@@ -242,8 +242,8 @@ End Sub
 ' @param    last The last index to be considered when sorting.
 
 Private Sub SortChildNodes(ByRef Node As MainNode, _
-                           ByVal First As Integer, _
-                           ByVal Last As Integer)
+                           ByVal First As Long, _
+                           ByVal Last As Long)
 
     '**************************************************************
     'Author: Juan Martin Sotuyo Dodero
@@ -251,8 +251,8 @@ Private Sub SortChildNodes(ByRef Node As MainNode, _
     'Sorts the list of values in a given MainNode using quicksort,
     'this allows the use of Binary Search for faster searches
     '**************************************************************
-    Dim Min  As Integer      'First item in the list
-    Dim Max  As Integer      'Last item in the list
+    Dim Min  As Long      'First item in the list
+    Dim Max  As Long      'Last item in the list
     Dim comp As String      'Item used to compare
     Dim temp As ChildNode
     

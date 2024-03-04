@@ -90,6 +90,8 @@ End Type
 'Contiene info acerca de donde se puede encontrar un grh tamano y animacion
 Public Type GrhData
 
+    Grh As Long 'Utilizado para el filtrado
+
     sX As Integer
     sY As Integer
     
