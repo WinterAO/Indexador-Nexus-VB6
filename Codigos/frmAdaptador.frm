@@ -240,62 +240,62 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub cmdAdaptar_Click()
-'    Dim Lineas As String, i As Long, j As Long
-'    Dim resultado As String
-'    Dim Contador As Long
-'    Dim lineaGrh As String
-'    Dim Fr As Integer
-'    Dim tmp As String
-'
-'    'Debe ingresar almenos un numero
-'    If txtPos.Text = "" Then
-'        MsgBox ("El valor de la posición es nulo.")
-'        Exit Sub
-'    End If
-'
-'    'Debe ingresar almenos un numero
-'    If txtGrafico.Text = "" Then
-'        MsgBox ("El valor del grafico es nulo.")
-'        Exit Sub
-'    End If
-'
-'
-'    Contador = txtPos.Text
-'
-'    'Separamos todas las lineas
-'    Lineas = Split(txtOriginal.Text, vbCrLf)
-'
-'    For i = LBound(Lineas) To UBound(Lineas)
-'
-'        lineaGrh = ReadField(2, Lineas(i), 61) 'Linea apartir del GrhNº
-'        Fr = ReadField(1, lineaGrh, 45) 'Numero del frame
-'
-'        If Fr = 1 Then
-'            'Recortamos y reemplazamos
-'            resultado = resultado & "Grh" & Contador & "=" & Fr & "-" & txtGrafico.Text & "-" & ReadField(3, lineaGrh, 45) _
-'            & "-" & ReadField(4, lineaGrh, 45) & "-" & ReadField(5, lineaGrh, 45) & "-" & ReadField(6, lineaGrh, 45) & vbCrLf
-'
-'        Else '¿Es una animacion?
-'
-'            If TxtNumAnimaciones.Text = "" Then
-'                MsgBox ("Hay animaciones y no se especifico el numero de estas.")
-'                Exit Sub
-'            End If
-'
-'            tmp = "Grh" & Contador & "=" & Fr
-'
-'            For j = LBound(Lineas) To UBound(Lineas) - TxtNumAnimaciones.Text
-'                tmp = tmp + "-" & j
-'            Next j
-'
-'            resultado = resultado + tmp & "-" & ReadField(Fr + 2, lineaGrh, 45)
-'
-'        End If
-'
-'        'Aumentamos en 1 el contador
-'        Contador = Contador + 1
-'    Next i
-'
-'    txtAdaptado.Text = resultado
+    Dim Lineas() As String, i As Long, j As Long
+    Dim resultado As String
+    Dim Contador As Long
+    Dim lineaGrh As String
+    Dim Fr As Integer
+    Dim tmp As String
+
+    'Debe ingresar almenos un numero
+    If txtPos.Text = "" Then
+        MsgBox ("El valor de la posición es nulo.")
+        Exit Sub
+    End If
+
+    'Debe ingresar almenos un numero
+    If txtGrafico.Text = "" Then
+        MsgBox ("El valor del grafico es nulo.")
+        Exit Sub
+    End If
+
+
+    Contador = txtPos.Text
+
+    'Separamos todas las lineas
+    Lineas = Split(txtOriginal.Text, vbCrLf)
+
+    For i = LBound(Lineas) To UBound(Lineas)
+
+        lineaGrh = ReadField(2, Lineas(i), 61) 'Linea apartir del GrhNº
+        Fr = ReadField(1, lineaGrh, 45) 'Numero del frame
+
+        If Fr = 1 Then
+            'Recortamos y reemplazamos
+            resultado = resultado & "Grh" & Contador & "=" & Fr & "-" & txtGrafico.Text & "-" & ReadField(3, lineaGrh, 45) _
+            & "-" & ReadField(4, lineaGrh, 45) & "-" & ReadField(5, lineaGrh, 45) & "-" & ReadField(6, lineaGrh, 45) & vbCrLf
+
+        Else '¿Es una animacion?
+
+            If TxtNumAnimaciones.Text = "" Then
+                MsgBox ("Hay animaciones y no se especifico el numero de estas.")
+                Exit Sub
+            End If
+
+            tmp = "Grh" & Contador & "=" & Fr
+
+            For j = LBound(Lineas) To UBound(Lineas) - TxtNumAnimaciones.Text
+                tmp = tmp + "-" & j
+            Next j
+
+            resultado = resultado + tmp & "-" & ReadField(Fr + 2, lineaGrh, 45)
+
+        End If
+
+        'Aumentamos en 1 el contador
+        Contador = Contador + 1
+    Next i
+
+    txtAdaptado.Text = resultado
 End Sub
 
