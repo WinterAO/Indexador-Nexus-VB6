@@ -2288,6 +2288,24 @@ Private Sub mnuRecargar_Click(Index As Integer)
                 Call AddtoRichTextBox(RichConsola, "Error al recargar Helmet.ind", 255, 0, 0, , , , , True)
             End If
             
+        Case 3 'Cuerpos
+            Call AddtoRichTextBox(RichConsola, "Recargando Personajes.ind...", 0, 0, 255, , , , , True)
+            
+            If CargarCuerpos Then
+                Call AddtoRichTextBox(RichConsola, "Personajes.ind recargado!", 0, 255, 0, , , , , True)
+            Else
+                Call AddtoRichTextBox(RichConsola, "Error al recargar Personajes.ind", 255, 0, 0, , , , , True)
+            End If
+            
+        Case 4 'FX's
+            Call AddtoRichTextBox(RichConsola, "Recargando Fxs.ind...", 0, 0, 255, , , , , True)
+            
+            If CargarFxs Then
+                Call AddtoRichTextBox(RichConsola, "Fxs.ind recargado!", 0, 255, 0, , , , , True)
+            Else
+                Call AddtoRichTextBox(RichConsola, "Error al recargar Fxs.ind", 255, 0, 0, , , , , True)
+            End If
+            
     End Select
 
 End Sub
