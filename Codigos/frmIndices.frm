@@ -491,7 +491,7 @@ Private Sub LynxIndices_Click()
     txtAncho.Text = SupData(nSup).Height
     txtAlto.Text = SupData(nSup).Width
     txtCapa.Text = SupData(nSup).Capa
-    chkAutoColocar.value = IIf(SupData(nSup).Block, True, False)
+    chkAutoColocar.value = IIf(SupData(nSup).Block, vbChecked, vbUnchecked)
     
     Call InitGrh(CurrentGrh, SupData(nSup).Grh)
     isList = False

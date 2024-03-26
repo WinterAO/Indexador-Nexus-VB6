@@ -851,6 +851,16 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuArchivo 
       Caption         =   "&Archivo"
+      Begin VB.Menu mnuRecarga 
+         Caption         =   "Recargar"
+         Begin VB.Menu mnuRecargar 
+            Caption         =   "Graficos"
+            Index           =   0
+         End
+      End
+      Begin VB.Menu mnuLine0 
+         Caption         =   "-"
+      End
       Begin VB.Menu mnuExportar 
          Caption         =   "Exportar..."
          Begin VB.Menu mnuExportarGraficos 
@@ -2262,4 +2272,19 @@ Private Sub mnuIndexarTodo_Click()
     Call mnuIndexarColores_Click
     Call mnuIndexarGUI_Click
     
+End Sub
+
+Private Sub mnuRecargar_Click(Index As Integer)
+'**********************************
+'Autor: Lorwik
+'Fecha: 26/03/2024
+'**********************************
+
+    Select Case Index
+    
+        Case 0 'Graficos
+            Call LoadGrhData
+    
+    End Select
+
 End Sub
