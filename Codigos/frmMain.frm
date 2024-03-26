@@ -199,7 +199,6 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
-      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
@@ -996,7 +995,9 @@ Begin VB.Form frmMain
       End
       Begin VB.Menu mnuBuscarGrhconPNG 
          Caption         =   "&Buscar Grh con PNG"
-         Enabled         =   0   'False
+      End
+      Begin VB.Menu mnuGrhtoPNG 
+         Caption         =   "&Buscar PNG con Grh"
       End
       Begin VB.Menu mnuIrASBMP 
          Caption         =   "&Buscar Siguiente PNG"
@@ -1509,6 +1510,34 @@ Private Sub mnuBuscarDuplicados_Click()
 
 End Sub
 
+Private Sub mnuGrhtoPNG_Click()
+    '*************************************************
+    'Author: Lorwik
+    'Last modified: 26/03/2024
+    '*************************************************
+    
+    On Error GoTo mnuGrhtoPNG_Click_Err
+    
+    Dim GrhIndex As Long
+    
+    GrhIndex = InputBox("Numero de Grh")
+    
+    If IsNumeric(grhCount) = True Then
+        If GrhIndex > grhCount Then Exit Sub
+        If GrhIndex < 1 Then Exit Sub
+        
+        Call AddtoRichTextBox(RichConsola, "El grafico correspondiente al Grh" & GrhIndex & " es: " & GrhData(GrhIndex).FileNum, 0, 255, 0, , , , , True)
+
+    End If
+
+    Exit Sub
+
+mnuGrhtoPNG_Click_Err:
+    Call RegistrarError(Err.Number, Err.Description, "frmMain.mnuGrhtoPNG_Click", Erl)
+    Resume Next
+    
+End Sub
+
 Private Sub mnuIndexfxsMem_Click()
 '****************************************
 'Autor: Lorwik
@@ -1889,97 +1918,39 @@ Private Sub mnuBuscarGrh_Click()
 End Sub
 
 Private Sub mnuBuscarGrhconPNG_Click()
-'**********************************
-'Autor: Lorwik
-'Fecha: ??
-'**********************************
+    '*************************************************
+    'Author: Lorwik
+    'Last modified: 08/11/2023
+    '*************************************************
+    
+    On Error GoTo mnuBuscarGrhconPNG_Click_Err
+    
+    Dim PNGIndex As Long
+    Dim GrhIndex As Long
+    Dim Count As Long
+    
+    PNGIndex = InputBox("Numero de PNG")
+    Count = 1
+    
+    If IsNumeric(grhCount) = True Then
+    
+        Do While Count < grhCount
+        
+            If GrhData(Count).FileNum = PNGIndex Then Exit Do
+        
+            Count = Count + 1
+        
+        Loop
+    
+        Call AddtoRichTextBox(RichConsola, "El Grh correspondiente al Grafico " & PNGIndex & " es: " & Count, 0, 255, 0, , , , , True)
 
-'    On Error Resume Next
-'
-'    Dim i       As Long
-'
-'    Dim j       As Long
-'
-'    Dim Archivo As String
-'
-'    BuscarPNG = 0
-'    mnuIrASBMP.Enabled = False
-'    Archivo = InputBox("Ingrese el numero de grafico:")
-'
-'    If IsNumeric(Archivo) = False Then Exit Sub
-'    If LenB(Archivo) > 0 And (Archivo > 0) Then
-'
-'        For i = 1 To grhCount
-'
-'            If GrhData(i).FileNum = Archivo Then
-'
-'                For j = 0 To Listado.ListCount - 1
-'
-'                    If ReadField(1, Listado.List(j), Asc(" ")) = i Then
-'                        BuscarPNG = Archivo
-'                        mnuIrASBMP.Enabled = True
-'                        Listado.ListIndex = j
-'                        Exit Sub
-'
-'                    End If
-'
-'                Next j
-'
-'            End If
-'
-'        Next i
-'
-'        MsgBox "No se encontro el PNG."
-'    Else
-'        MsgBox "Nombre de PNG invalido."
-'
-'    End If
+    End If
 
-End Sub
+    Exit Sub
 
-Private Sub mnuIrABMP_Click()
-'**********************************
-'Autor: Lorwik
-'Fecha: ??
-'**********************************
-
-'    On Error Resume Next
-'
-'    Dim i       As Long
-'    Dim j       As Long
-'    Dim Archivo As String
-'
-'    BuscarPNG = 0
-'    mnuIrASBMP.Enabled = False
-'    Archivo = InputBox("Ingrese el numero de PNG:")
-'
-'    If IsNumeric(Archivo) = False Then Exit Sub
-'    If LenB(Archivo) > 0 And (Archivo > 0) Then
-'
-'        For i = 1 To grhCount
-'
-'            If GrhData(i).FileNum = Archivo Then
-'
-'                For j = 0 To Listado.ListCount - 1
-'
-'                    If ReadField(1, Listado.List(j), Asc(" ")) = i Then
-'                        BuscarPNG = Archivo
-'                        mnuIrASBMP.Enabled = True
-'                        Listado.ListIndex = j
-'                        Exit Sub
-'
-'                    End If
-'
-'                Next
-'
-'            End If
-'
-'        Next
-'        MsgBox "No se encontro el PNG."
-'    Else
-'        MsgBox "Nombre de PNG invalido."
-'
-'    End If
+mnuBuscarGrhconPNG_Click_Err:
+    Call RegistrarError(Err.Number, Err.Description, "frmMain.mnuBuscarGrhconPNG_Click", Erl)
+    Resume Next
 
 End Sub
 
@@ -2283,7 +2254,13 @@ Private Sub mnuRecargar_Click(Index As Integer)
     Select Case Index
     
         Case 0 'Graficos
-            Call LoadGrhData
+            Call AddtoRichTextBox(RichConsola, "Recargando Graficos.ind...", 0, 0, 255, , , , , True)
+            
+            If LoadGrhData Then
+                Call AddtoRichTextBox(RichConsola, "Graficos.ind recargado!", 0, 255, 0, , , , , True)
+            Else
+                Call AddtoRichTextBox(RichConsola, "Error al recargar Graficos.ind", 255, 0, 0, , , , , True)
+            End If
     
     End Select
 
