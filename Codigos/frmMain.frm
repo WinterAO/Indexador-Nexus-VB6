@@ -856,6 +856,14 @@ Begin VB.Form frmMain
             Caption         =   "Graficos"
             Index           =   0
          End
+         Begin VB.Menu mnuRecargar 
+            Caption         =   "Cabezas"
+            Index           =   1
+         End
+         Begin VB.Menu mnuRecargar 
+            Caption         =   "Cascos"
+            Index           =   2
+         End
       End
       Begin VB.Menu mnuLine0 
          Caption         =   "-"
@@ -2262,6 +2270,24 @@ Private Sub mnuRecargar_Click(Index As Integer)
                 Call AddtoRichTextBox(RichConsola, "Error al recargar Graficos.ind", 255, 0, 0, , , , , True)
             End If
     
+        Case 1 'Cabezas
+            Call AddtoRichTextBox(RichConsola, "Recargando Head.ind...", 0, 0, 255, , , , , True)
+            
+            If CargarCabezas Then
+                Call AddtoRichTextBox(RichConsola, "Head.ind recargado!", 0, 255, 0, , , , , True)
+            Else
+                Call AddtoRichTextBox(RichConsola, "Error al recargar Head.ind", 255, 0, 0, , , , , True)
+            End If
+            
+        Case 2 'Cascos
+            Call AddtoRichTextBox(RichConsola, "Recargando Helmet.ind...", 0, 0, 255, , , , , True)
+            
+            If CargarCascos Then
+                Call AddtoRichTextBox(RichConsola, "Helmet.ind recargado!", 0, 255, 0, , , , , True)
+            Else
+                Call AddtoRichTextBox(RichConsola, "Error al recargar Helmet.ind", 255, 0, 0, , , , , True)
+            End If
+            
     End Select
 
 End Sub
