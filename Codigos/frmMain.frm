@@ -864,6 +864,14 @@ Begin VB.Form frmMain
             Caption         =   "Cascos"
             Index           =   2
          End
+         Begin VB.Menu mnuRecargar 
+            Caption         =   "Cuerpos"
+            Index           =   3
+         End
+         Begin VB.Menu mnuRecargar 
+            Caption         =   "Fxs"
+            Index           =   4
+         End
       End
       Begin VB.Menu mnuLine0 
          Caption         =   "-"
