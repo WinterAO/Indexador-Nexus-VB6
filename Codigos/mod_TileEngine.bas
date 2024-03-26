@@ -632,8 +632,9 @@ Error:
     Else
         #If Desarrollo = 0 Then
             Call LogError(Err.Number, "Error in Draw_Grh, " & Err.Description, "Draw_Grh", Erl)
-            MsgBox "Error en el Engine Grafico, Por favor contacte a los adminsitradores enviandoles el archivo Errors.Log que se encuentra el la carpeta del cliente.", vbCritical
-            Call CloseClient
+            Call AddtoRichTextBox(frmMain.RichConsola, "Error en el Engine Grafico. Es posible que no se haya encontrado el grafico seleccionado.", 255, 0, 0, , , , , True)
+            'MsgBox "Error en el Engine Grafico, Por favor contacte a los adminsitradores enviandoles el archivo Errors.Log que se encuentra el la carpeta del cliente.", vbCritical
+            'Call CloseClient
         
         #Else
             Debug.Print "Error en Draw_Grh en el grh" & CurrentGrhIndex & ", " & Err.Description & ", (" & Err.Number & ")"

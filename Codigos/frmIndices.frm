@@ -46,7 +46,7 @@ Begin VB.Form frmIndices
    End
    Begin Indexador_Nexus.lvButtons_H LvBGuardar 
       Height          =   405
-      Left            =   4920
+      Left            =   4890
       TabIndex        =   13
       Top             =   2730
       Width           =   2115
@@ -410,6 +410,7 @@ Private Sub LvBGuardar_Click()
     SupData(nSup).Capa = Val(txtCapa.Text)
     SupData(nSup).Block = IIf(chkAutoColocar.value, "1", "0")
         
+    Call WriteVar(DirIndices & "Indices.ini", "INIT", "Referencias", MaxSup)
     Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Nombre", SupData(nSup).name)
     Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "GrhIndice", SupData(nSup).Grh)
     Call WriteVar(DirIndices & "Indices.ini", "REFERENCIA" & nSup, "Alto", SupData(nSup).Height)
@@ -438,11 +439,41 @@ End Sub
 Private Sub LvBNuevo_Click()
     '*************************************************
     'Author: Lorwik
-    'Last modified: 13/11/2023
+    'Last modified: 26/03/2024
     '*************************************************
+    
+    On Error GoTo ErrorHandler
+    
+    Dim K As Long
     
     MaxSup = MaxSup + 1
     ReDim Preserve SupData(MaxSup) As SupData
+    
+    'Asignamos valores por defecto
+    With SupData(MaxSup)
+        .name = "Nueva Superficie"
+        .Grh = 1
+        .Height = 0
+        .Width = 0
+        .Capa = 1
+        .Block = 0
+    End With
+        
+    With LynxIndices
+        .AddItem
+        K = .Rows - 1
+        .CellText(K, 0) = MaxSup
+        .CellText(K, 1) = SupData(MaxSup).Grh
+        .CellText(K, 2) = SupData(MaxSup).name
+        .Redraw = True
+        .ColForceFit
+
+    End With
+    
+    Exit Sub
+    
+ErrorHandler:
+    Call AddtoRichTextBox(frmMain.RichConsola, "Error al crear un nuevo indice.", 255, 0, 0)
     
 End Sub
 
