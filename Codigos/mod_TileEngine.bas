@@ -306,7 +306,7 @@ Public Sub InitTileEngine(ByVal setDisplayFormhWnd As Long, _
     
 ErrorHandler:
 
-    Call LogError(Err.Number, Err.Description, "Mod_TileEngine.InitTileEngine")
+    Call RegistrarError(Err.Number, Err.Description, "Mod_TileEngine.InitTileEngine")
     
     Call CloseClient
     
@@ -372,8 +372,16 @@ ErrorHandler:
 End Sub
 
 Private Sub RenderScreen()
+'****************************************************
+'Autor: Lorwik
+'Fecha: ???????????
+'****************************************************
 
-    Dim i As Byte
+    Dim hh As Integer
+    Dim ww As Integer
+    Dim j As Integer
+    Dim i As Integer
+    Dim Count As Integer
 
     Movement_Speed = 0.5
     
@@ -401,6 +409,30 @@ Private Sub RenderScreen()
             If frmParticleEditor.Visible Then Call RenderParticulas(50, 50)
             
         Case eRender.eAtaques
+        
+        Case eRender.eIndices
+        
+        ww = Val(frmIndices.txtAlto.Text)
+        hh = Val(frmIndices.txtAncho.Text)
+        
+        If hh = 0 And ww = 0 Then
+            
+            Call Draw_Grh(CurrentGrh, 200, 250, 1, Normal_RGBList(), True)
+            
+        Else
+        
+            For i = 1 To hh
+                For j = 1 To ww
+                
+                    Call Draw_GrhIndex(CurrentGrh.GrhIndex, j * 32, i * 32, 0, Normal_RGBList())
+    
+                    If Count < hh * ww Then Count = Count + 1
+                    CurrentGrh.GrhIndex = CurrentGrh.GrhIndex + 1
+                Next
+            Next
+            
+            CurrentGrh.GrhIndex = CurrentGrh.GrhIndex - Count
+        End If
     
     End Select
 
@@ -631,7 +663,7 @@ Error:
         Resume
     Else
         #If Desarrollo = 0 Then
-            Call LogError(Err.Number, "Error in Draw_Grh, " & Err.Description, "Draw_Grh", Erl)
+            Call RegistrarError(Err.Number, "Error in Draw_Grh, " & Err.Description, "Draw_Grh", Erl)
             Call AddtoRichTextBox(frmMain.RichConsola, "Error en el Engine Grafico. Es posible que no se haya encontrado el grafico seleccionado.", 255, 0, 0, , , , , True)
             'MsgBox "Error en el Engine Grafico, Por favor contacte a los adminsitradores enviandoles el archivo Errors.Log que se encuentra el la carpeta del cliente.", vbCritical
             'Call CloseClient

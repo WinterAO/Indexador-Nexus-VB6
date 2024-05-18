@@ -48,27 +48,27 @@ Public Sub Main()
     
     frmCargando.lblstatus.Caption = "Cargando Personajes"
     DoEvents
-    Call CargarCuerpos
+    If Not CargarCuerpos Then End
 
     frmCargando.lblstatus.Caption = "Cargando head"
     DoEvents
-    Call CargarCabezas
+    If Not CargarCabezas Then End
 
     frmCargando.lblstatus.Caption = "Cargando Helmet"
     DoEvents
-    Call CargarCascos
+    If Not CargarCascos Then End
 
     frmCargando.lblstatus.Caption = "Cargando Escudos"
     DoEvents
-    Call CargarEscudos
+    If Not CargarEscudos Then End
 
     frmCargando.lblstatus.Caption = "Cargando Armas"
     DoEvents
-    Call CargarAnimArmas
+    If Not CargarAnimArmas Then End
 
     frmCargando.lblstatus.Caption = "Cargando Fxs"
     DoEvents
-    Call CargarFxs
+    If Not CargarFxs Then End
     
     frmCargando.lblstatus.Caption = "Cargando Particulas"
     DoEvents
@@ -134,7 +134,7 @@ Public Function FileExist(ByVal File As String, ByVal FileType As VbFileAttribut
     Exit Function
 
 FileExist_Err:
-    Call LogError(Err.Number, Err.Description, "modMapIO.FileExist", Erl)
+    Call RegistrarError(Err.Number, Err.Description, "modMapIO.FileExist", Erl)
     Resume Next
     
 End Function
@@ -161,36 +161,6 @@ Function GetVar(ByVal File As String, ByVal Main As String, ByVal Var As String)
     GetVar = Left$(GetVar, Len(GetVar) - 1)
     
 End Function
-
-Public Sub LogError(ByVal Numero As Long, ByVal Descripcion As String, ByVal Componente As String, Optional ByVal Linea As Integer)
-'**********************************************************
-'Author: Jopi
-'Guarda una descripcion detallada del error en Errores.log
-'**********************************************************
-    Dim File As Integer
-        File = FreeFile
-        
-    Open App.Path & "\logs\Errores.log" For Append As #File
-    
-        Print #File, "Error: " & Numero
-        Print #File, "Descripcion: " & Descripcion
-        
-        If LenB(Linea) <> 0 Then
-            Print #File, "Linea: " & Linea
-        End If
-        
-        Print #File, "Componente: " & Componente
-        Print #File, "Fecha y Hora: " & Date$ & "-" & Time$
-        Print #File, vbNullString
-        
-    Close #File
-    
-    Debug.Print "Error: " & Numero & vbNewLine & _
-                "Descripcion: " & Descripcion & vbNewLine & _
-                "Componente: " & Componente & vbNewLine & _
-                "Fecha y Hora: " & Date$ & "-" & Time$ & vbNewLine
-                
-End Sub
 
 Public Function ReadField(Pos As Integer, Text As String, SepASCII As Integer) As String
     '*****************************************************************
@@ -429,6 +399,7 @@ Sub AddtoRichTextBox(ByRef RichTextBox As RichTextBox, _
 'Juan Martin Sotuyo Dodero (Maraxus) 03/29/2007 : Replaced ToxicWaste's code for extra performance.
 'Jopi 17/08/2019 : Consola transparente.
 'Jopi 17/08/2019 : Ahora podes especificar el alineamiento del texto.
+'Lorwik 20/03/2024: Ahora puedes mostrar la hora en la que se imprimio el mensaje
 '****************************************************
 
     Dim horaActual As String

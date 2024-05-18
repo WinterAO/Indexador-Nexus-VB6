@@ -204,7 +204,7 @@ Public Function LoadGrhData() As Boolean
     Dim frame As Long
     Dim handle As Integer
     
-    If Not FileExist(DirCliente & "\Init\graficos.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\graficos.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Graficos.ind."
         LoadGrhData = False
         Exit Function
@@ -212,7 +212,7 @@ Public Function LoadGrhData() As Boolean
     
     'Open files
     handle = FreeFile()
-    Open DirCliente & "\Init\Graficos.ind" For Binary Access Read As handle
+    Open DirCliente & "\Scripts\Graficos.ind" For Binary Access Read As handle
     
     With frmMain
         
@@ -345,14 +345,14 @@ Public Function CargarCuerpos() As Boolean
 
     frmCuerpos.ListaCuerpos.Clear
     
-    If Not FileExist(DirCliente & "\Init\personajes.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\personajes.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Personajes.ind."
         CargarCuerpos = False
         Exit Function
     End If
 
     n = FreeFile()
-    Open DirCliente & "\Init\Personajes.ind" For Binary Access Read As #n
+    Open DirCliente & "\Scripts\Personajes.ind" For Binary Access Read As #n
 
     'num de cabezas
     Get #n, , NumCuerpos
@@ -402,14 +402,14 @@ Public Function CargarCabezas() As Boolean
 
     frmCabezas.ListaHead.Clear
     
-    If Not FileExist(DirCliente & "\Init\head.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\head.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo head.ind."
         CargarCabezas = False
         Exit Function
     End If
 
     n = FreeFile
-    Open DirCliente & "\Init\head.ind" For Binary Access Read As #n
+    Open DirCliente & "\Scripts\head.ind" For Binary Access Read As #n
 
     'num de cabezas
     Get #n, , NumHeads
@@ -449,14 +449,14 @@ Public Function CargarCascos() As Boolean
 
     frmCascos.ListaCascos.Clear
 
-    If Not FileExist(DirCliente & "\Init\helmet.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\helmet.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo helmet.ind."
         CargarCascos = False
         Exit Function
     End If
 
     n = FreeFile
-    Open DirCliente & "\Init\helmet.ind" For Binary Access Read As #n
+    Open DirCliente & "\Scripts\helmet.ind" For Binary Access Read As #n
 
     'num de cascos
     Get #n, , NumCascos
@@ -502,14 +502,14 @@ Public Function CargarEscudos() As Boolean
     
     frmEscudos.ListaEscudos.Clear
 
-    If Not FileExist(DirCliente & "\Init\escudos.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\escudos.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Escudos.ind."
         CargarEscudos = False
         Exit Function
     End If
 
     n = FreeFile
-    Open DirCliente & "\Init\escudos.ind" For Binary Access Read As #n
+    Open DirCliente & "\Scripts\escudos.ind" For Binary Access Read As #n
 
     'num de escudos
     Get #n, , NumEscudosAnims
@@ -563,14 +563,14 @@ Public Function CargarAnimArmas() As Boolean
     
     frmArmas.ListaArmas.Clear
     
-    If Not FileExist(DirCliente & "\Init\armas.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\armas.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo Armas.ind."
         CargarAnimArmas = False
         Exit Function
     End If
     
     n = FreeFile
-    Open DirCliente & "\Init\Armas.ind" For Binary Access Read As #n
+    Open DirCliente & "\Scripts\Armas.ind" For Binary Access Read As #n
     
     'num de armas
     Get #n, , NumWeaponAnims
@@ -624,14 +624,14 @@ Public Function CargarFxs() As Boolean
     
     frmFxs.ListaFxs.Clear
     
-    If Not FileExist(DirCliente & "\Init\fxs.ind", vbArchive) Then
+    If Not FileExist(DirCliente & "\Scripts\fxs.ind", vbArchive) Then
         MsgBox "No se ha encontrado el archivo FXs.ind."
         CargarFxs = False
         Exit Function
     End If
     
     n = FreeFile
-    Open DirCliente & "\Init\FXs.ind" For Binary Access Read As #n
+    Open DirCliente & "\Scripts\FXs.ind" For Binary Access Read As #n
 
     'num de cabezas
     Get #n, , NumFxs

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
@@ -489,24 +489,24 @@ Begin VB.Form frmMain
       Begin VB.Label lblAlto 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Alto:"
+         Caption         =   "Ancho:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   1920
+         Left            =   1890
          TabIndex        =   14
-         Top             =   1110
-         Width           =   645
+         Top             =   1170
+         Width           =   510
       End
       Begin VB.Label lblAncho 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Ancho:"
+         Caption         =   "Alto:"
          ForeColor       =   &H0000FF00&
          Height          =   195
-         Left            =   330
+         Left            =   540
          TabIndex        =   10
-         Top             =   1140
-         Width           =   645
+         Top             =   1170
+         Width           =   345
       End
       Begin VB.Label lblY 
          BackStyle       =   0  'Transparent

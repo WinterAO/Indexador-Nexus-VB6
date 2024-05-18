@@ -267,7 +267,7 @@ Private Sub LvBBoton_Click(Index As Integer)
     Select Case Index
     
         Case 0 'Salir
-            Call SimpleLogError("Seleccion de modo cancelador, saliendo del Indexador Nexus.")
+            Call SimpleRegistrarError("Seleccion de modo cancelador, saliendo del Indexador Nexus.")
             End
         
         Case 1

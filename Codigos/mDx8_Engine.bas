@@ -86,7 +86,7 @@ Public Sub Engine_DirectX8_Init()
     Exit Sub
 EngineHandler:
     
-    Call LogError(Err.Number, Err.Description, "mDx8_Engine.Engine_DirectX8_Init")
+    Call RegistrarError(Err.Number, Err.Description, "mDx8_Engine.Engine_DirectX8_Init")
     
     Call CloseClient
 End Sub

@@ -138,10 +138,10 @@ Public Sub GuardarParticulas()
         
         WriteVar StreamFile, Val(LoopC), "Grh_List", GrhListing
         
-        WriteVar StreamFile, Val(LoopC), "ColorSet1", StreamData(LoopC).colortint(0).R & "," & StreamData(LoopC).colortint(0).G & "," & StreamData(LoopC).colortint(0).B
-        WriteVar StreamFile, Val(LoopC), "ColorSet2", StreamData(LoopC).colortint(1).R & "," & StreamData(LoopC).colortint(1).G & "," & StreamData(LoopC).colortint(1).B
-        WriteVar StreamFile, Val(LoopC), "ColorSet3", StreamData(LoopC).colortint(2).R & "," & StreamData(LoopC).colortint(2).G & "," & StreamData(LoopC).colortint(2).B
-        WriteVar StreamFile, Val(LoopC), "ColorSet4", StreamData(LoopC).colortint(3).R & "," & StreamData(LoopC).colortint(3).G & "," & StreamData(LoopC).colortint(3).B
+        WriteVar StreamFile, Val(LoopC), "ColorSet1", StreamData(LoopC).colortint(0).r & "," & StreamData(LoopC).colortint(0).g & "," & StreamData(LoopC).colortint(0).b
+        WriteVar StreamFile, Val(LoopC), "ColorSet2", StreamData(LoopC).colortint(1).r & "," & StreamData(LoopC).colortint(1).g & "," & StreamData(LoopC).colortint(1).b
+        WriteVar StreamFile, Val(LoopC), "ColorSet3", StreamData(LoopC).colortint(2).r & "," & StreamData(LoopC).colortint(2).g & "," & StreamData(LoopC).colortint(2).b
+        WriteVar StreamFile, Val(LoopC), "ColorSet4", StreamData(LoopC).colortint(3).r & "," & StreamData(LoopC).colortint(3).g & "," & StreamData(LoopC).colortint(3).b
         
     Next LoopC
     
@@ -227,7 +227,7 @@ Sub CargarParticulasLista()
     General_Particle_Create ParticleIndex, 50, 50
     
 CargarParticulasLista_Err:
-    Call LogError(Err.Number, Err.Description, "modParticulas.CargarParticulasLista", Erl)
+    Call RegistrarError(Err.Number, Err.Description, "modParticulas.CargarParticulasLista", Erl)
     Resume Next
 
 End Sub

@@ -18,6 +18,7 @@ Public Enum eRender
     eFXs
     eParticulas
     eAtaques
+    eIndices
         
 End Enum
 

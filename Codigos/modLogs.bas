@@ -63,7 +63,7 @@ Public Sub RegistrarError(ByVal Numero As Long, ByVal Descripcion As String, ByV
 
 End Sub
 
-Public Sub SimpleLogError(Desc As String)
+Public Sub SimpleRegistrarError(Desc As String)
 
     On Error GoTo errhandler
 

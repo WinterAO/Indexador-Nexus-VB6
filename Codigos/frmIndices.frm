@@ -306,6 +306,7 @@ Private Sub cFiltro_KeyPress(KeyAscii As Integer)
     If KeyAscii = 13 Then
         Call Filtrar
     End If
+    
 End Sub
 
 Private Sub Filtrar()
@@ -321,7 +322,7 @@ Private Sub Filtrar()
     Dim j      As Integer
 
     Dim K      As Long
-    
+
     If cFiltro.ListCount > 5 Then cFiltro.RemoveItem 0
     
     cFiltro.AddItem cFiltro.Text
@@ -493,7 +494,10 @@ Private Sub LynxIndices_Click()
     txtCapa.Text = SupData(nSup).Capa
     chkAutoColocar.value = IIf(SupData(nSup).Block, vbChecked, vbUnchecked)
     
+    Renderizando = eRender.eIndices
+    
     Call InitGrh(CurrentGrh, SupData(nSup).Grh)
+    
     isList = False
     
 End Sub
