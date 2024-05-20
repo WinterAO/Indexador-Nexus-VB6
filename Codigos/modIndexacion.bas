@@ -79,20 +79,27 @@ Public Function IndexarGraficos() As Boolean
                 
                 DatosGrh.speed = Val(DatoR(tF))
                 Put handle, , DatosGrh.speed
+                
             ElseIf DatoR(0) = 1 Then
                 Put handle, , Grh
+                
                 DatosGrh.NumFrames = Val(DatoR(0))
                 Put handle, , DatosGrh.NumFrames
+                
                 DatosGrh.FileNum = Val(DatoR(1))
                 Put handle, , DatosGrh.FileNum
-                DatosGrh.pixelWidth = Val(DatoR(4))
-                Put handle, , DatosGrh.pixelWidth
-                DatosGrh.pixelHeight = Val(DatoR(5))
-                Put handle, , DatosGrh.pixelHeight
+                
                 DatosGrh.sX = Val(DatoR(2))
                 Put handle, , DatosGrh.sX
+                
                 DatosGrh.sY = Val(DatoR(3))
                 Put handle, , DatosGrh.sY
+                
+                DatosGrh.pixelWidth = Val(DatoR(4))
+                Put handle, , DatosGrh.pixelWidth
+                
+                DatosGrh.pixelHeight = Val(DatoR(5))
+                Put handle, , DatosGrh.pixelHeight
 
             End If
 
@@ -163,10 +170,10 @@ Public Function IndexarfromMemory() As Boolean
                 Put handle, , Grh
                 Put handle, , .NumFrames
                 Put handle, , .FileNum
-                Put handle, , .pixelWidth
-                Put handle, , .pixelHeight
                 Put handle, , .sX
                 Put handle, , .sY
+                Put handle, , .pixelWidth
+                Put handle, , .pixelHeight
 
             End If
             
@@ -861,12 +868,12 @@ Public Function IndexarParticulas() As Boolean
             
             For ColorSet = 1 To 4
                 TempSet = Leer.GetValue(Val(LoopC), "ColorSet" & ColorSet)
-                .colortint(ColorSet - 1).R = ReadField(1, TempSet, Asc(","))
-                .colortint(ColorSet - 1).G = ReadField(2, TempSet, Asc(","))
-                .colortint(ColorSet - 1).B = ReadField(3, TempSet, Asc(","))
-                Put handle, , ParticulasStream.colortint(ColorSet - 1).R
-                Put handle, , ParticulasStream.colortint(ColorSet - 1).G
-                Put handle, , ParticulasStream.colortint(ColorSet - 1).B
+                .colortint(ColorSet - 1).r = ReadField(1, TempSet, Asc(","))
+                .colortint(ColorSet - 1).g = ReadField(2, TempSet, Asc(","))
+                .colortint(ColorSet - 1).b = ReadField(3, TempSet, Asc(","))
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).r
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).g
+                Put handle, , ParticulasStream.colortint(ColorSet - 1).b
             Next ColorSet
 
             'Put #handle, , ParticulasStream
@@ -904,9 +911,9 @@ Public Function IndexarColores() As Boolean
         Open DirIndex & "\Colores.ind" For Binary Access Write As #n
         
             For i = 0 To MAXCOLORES
-                Put #n, , ColoresPJ(i).R
-                Put #n, , ColoresPJ(i).G
-                Put #n, , ColoresPJ(i).B
+                Put #n, , ColoresPJ(i).r
+                Put #n, , ColoresPJ(i).g
+                Put #n, , ColoresPJ(i).b
             Next i
         
         Close #n

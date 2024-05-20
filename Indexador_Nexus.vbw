@@ -1,5 +1,5 @@
 frmMain = 78, 78, 1925, 928, , 26, 26, 1851, 876, C
-modCarga = 104, 104, 1951, 954, 
+modCarga = 104, 104, 1951, 954, Z
 modGeneral = 130, 130, 1977, 980, 
 modDeclaraciones = 312, 312, 2159, 1162, C
 mod_TileEngine = 156, 156, 2003, 1006, 
@@ -33,7 +33,7 @@ frmPerfil = 78, 78, 1851, 954, , 312, 312, 2159, 1162, C
 modLogs = 0, 0, 0, 0, C
 frmIndices = 260, 260, 2033, 1136, , 338, 338, 2185, 1188, C
 modHerramientas = 0, 0, 0, 0, C
-frmSuperficies = 208, 208, 2055, 1058, Z, 364, 364, 2211, 1214, C
+frmSuperficies = 208, 208, 2055, 1058, , 364, 364, 2211, 1214, C
 frmAcercade = 0, 0, 0, 0, C, 390, 390, 2237, 1240, C
 mDx8_Text = 0, 0, 0, 0, C
 frmObj = 0, 0, 0, 0, C, 0, 0, 1847, 850, C

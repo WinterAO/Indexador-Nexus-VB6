@@ -286,18 +286,18 @@ Public Function LoadGrhData() As Boolean
                     Get handle, , .FileNum
                     If .FileNum <= 0 Then GoTo ErrorHandler
                     
+                    Get handle, , GrhData(Grh).sX
+                    If .sX < 0 Then GoTo ErrorHandler
+                    
+                    Get handle, , .sY
+                    If .sY < 0 Then GoTo ErrorHandler
+                    
                     Get handle, , .pixelWidth
                     If .pixelWidth <= 0 Then GoTo ErrorHandler
                     
                     Get handle, , .pixelHeight
                     If .pixelHeight <= 0 Then GoTo ErrorHandler
                     
-                    Get handle, , GrhData(Grh).sX
-                    If .sX < 0 Then GoTo ErrorHandler
-                    
-                    Get handle, , .sY
-                    If .sY < 0 Then GoTo ErrorHandler
-                
                     'Compute width and height
                     .TileWidth = .pixelWidth / 32
                     .TileHeight = .pixelHeight / 32

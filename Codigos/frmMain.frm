@@ -199,7 +199,6 @@ Begin VB.Form frmMain
       _ExtentY        =   2514
       _Version        =   393217
       BackColor       =   -2147483647
-      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
@@ -746,12 +745,12 @@ Begin VB.Form frmMain
       Width           =   525
       _ExtentX        =   926
       _ExtentY        =   873
-      Caption         =   "A"
+      Caption         =   "FXs"
       CapAlign        =   2
       BackStyle       =   2
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
-         Size            =   15.75
+         Size            =   12
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
