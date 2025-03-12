@@ -1,10 +1,10 @@
 VERSION 5.00
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Indexador Nexus"
-   ClientHeight    =   11955
+   ClientHeight    =   12525
    ClientLeft      =   45
    ClientTop       =   690
    ClientWidth     =   13140
@@ -23,7 +23,7 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   797
+   ScaleHeight     =   835
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   876
    StartUpPosition =   1  'CenterOwner
@@ -190,18 +190,28 @@ Begin VB.Form frmMain
       End
    End
    Begin RichTextLib.RichTextBox RichConsola 
-      Height          =   1425
+      Height          =   1965
       Left            =   120
       TabIndex        =   36
       Top             =   10470
       Width           =   9405
       _ExtentX        =   16589
-      _ExtentY        =   2514
+      _ExtentY        =   3466
       _Version        =   393217
       BackColor       =   -2147483647
+      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmMain.frx":10CA
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Consolas"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin Indexador_Nexus.lvButtons_H LvBAsistenteDe 
       Height          =   555
@@ -586,7 +596,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":1149
+      Image           =   "frmMain.frx":114B
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -615,7 +625,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":138F
+      Image           =   "frmMain.frx":1391
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -644,7 +654,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":172C
+      Image           =   "frmMain.frx":172E
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -673,7 +683,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":1A31
+      Image           =   "frmMain.frx":1A33
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -702,7 +712,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":1F20
+      Image           =   "frmMain.frx":1F22
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -731,7 +741,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":2563
+      Image           =   "frmMain.frx":2565
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -789,7 +799,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":2BF3
+      Image           =   "frmMain.frx":2BF5
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -844,7 +854,7 @@ Begin VB.Form frmMain
       Mode            =   1
       Value           =   0   'False
       ImgAlign        =   4
-      Image           =   "frmMain.frx":3275
+      Image           =   "frmMain.frx":3277
       ImgSize         =   32
       cBack           =   -2147483633
    End
@@ -991,13 +1001,16 @@ Begin VB.Form frmMain
    Begin VB.Menu mnuira 
       Caption         =   "&Ir a..."
       Begin VB.Menu mnuCarpetaClienteIr 
-         Caption         =   "&Carpeta del cliente"
+         Caption         =   "Cliente"
       End
       Begin VB.Menu mnuCarpetaExportacionIr 
-         Caption         =   "&Carpeta de exportación"
+         Caption         =   "Exportados"
       End
       Begin VB.Menu mnuCarpetaIndexacionIr 
-         Caption         =   "&Carpeta de indexación"
+         Caption         =   "Indexados"
+      End
+      Begin VB.Menu mnuAbrirGraficos 
+         Caption         =   "Graficos"
       End
    End
    Begin VB.Menu mnuEdicion 
@@ -1429,6 +1442,16 @@ Private Sub menuCerrar_Click()
 '**********************************
 
     Call CloseClient
+End Sub
+
+Private Sub mnuAbrirGraficos_Click()
+'**********************************
+'Autor: Lorwik
+'Fecha: 03/07/2024
+'**********************************
+
+    ShellExecute 0, "open", DirCliente & "\Graficos\", vbNullString, vbNullString, 1
+
 End Sub
 
 Private Sub mnuAcercade_Click()

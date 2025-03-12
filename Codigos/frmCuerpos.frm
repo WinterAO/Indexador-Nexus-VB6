@@ -256,7 +256,7 @@ Private Sub ListaCuerpos_Click()
 
     Dim nGrh As Long
 
-    nGrh = BodyData(ListaCuerpos.Text).Walk(3).GrhIndex
+    nGrh = BodyData(ListaCuerpos.Text).Walk(1).GrhIndex
     
     DoEvents
     Call InitGrh(CurrentGrh, nGrh)

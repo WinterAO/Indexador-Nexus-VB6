@@ -1,52 +1,61 @@
 [INIT]
-NumButtons=29
+NumButtons=30
 NumMaps=4
 
 [PJPos1]
-X=468
-Y=462
+X=632
+Y=597
+
 [PJPos2]
-X=340
-Y=456
+X=568
+Y=597
+
 [PJPos3]
-X=570
-Y=453
+X=697
+Y=597
+
 [PJPos4]
-X=243
-Y=378
+X=455
+Y=601
+
 [PJPos5]
-X=664
-Y=408
+X=823
+Y=665
+
 [PJPos6]
-X=223
-Y=450
+X=409
+Y=475
+
 [PJPos7]
-X=300
-Y=286
+X=447
+Y=407
+
 [PJPos8]
-X=608
-Y=286
+X=885
+Y=449
+
 [PJPos9]
-X=747
-Y=550
+X=515
+Y=309
+
 [PJPos10]
-X=637
-Y=627
+X=791
+Y=309
 
 [MAPA1] 'Crear PJ
 Map=1
-X=267
-Y=918
+X=58
+Y=103
 
 [MAPA2] 'Cuentas
 Map=1
-X=130
-Y=533
+X=109
+Y=516
 
 [MAPA3]
 Map=1
-X=450
-Y=461
+X=175
+Y=598
 
 [MAPA4]
 Map=1
@@ -54,7 +63,7 @@ X=645
 Y=168
 
 [BUTTON1] 'Logo
-X=1
+X=110
 Y=-140
 PosX=0
 PosY=0
@@ -70,7 +79,7 @@ GrhNormal=31481
 GrhClarito=31481
 
 [BUTTON3] 'Login: Menu cabecera
-X=805
+X=1060
 Y=400
 PosX=0
 PosY=0
@@ -78,39 +87,39 @@ GrhNormal=31487
 GrhClarito=31487
 
 [BUTTON4] 'Login: Crear Cuenta
-X=805
+X=1060
 Y=458
-PosX=985
+PosX=1250
 PosY=509
 GrhNormal=31489
 GrhClarito=31511
 
 [BUTTON5] 'Login: Recuperar Cuenta
-X=805
+X=1060
 Y=523
-PosX=985
+PosX=1250
 PosY=583
 GrhNormal=31488
 GrhClarito=31510
 
 [BUTTON6] 'Login: Conectarse
-X=390
+X=500
 Y=435
-PosX=513
+PosX=630
 PosY=480
 GrhNormal=31490
 GrhClarito=31512
 
 [BUTTON7] 'Login: Teclado
-X=530
+X=640
 Y=435
-PosX=647
+PosX=770
 PosY=480
 GrhNormal=31491
 GrhClarito=31513
 
 [BUTTON8] 'Login: Recordar
-X=390
+X=515
 Y=490
 PosX=0
 PosY=0
@@ -118,23 +127,23 @@ GrhNormal=31484
 GrhClarito=0
 
 [BUTTON9] 'Login: Server <
-X=430
+X=550
 Y=330
-PosX=461
+PosX=585
 PosY=356
 GrhNormal=31485
 GrhClarito=0
 
 [BUTTON10] 'Login: Server >
-X=580
+X=680
 Y=330
-PosX=609
+PosX=708
 PosY=356
 GrhNormal=31486
 GrhClarito=0
 
 [BUTTON11] 'Login: Salir <
-X=20
+X=30
 Y=650
 PosX=218
 PosY=714
@@ -142,31 +151,31 @@ GrhNormal=31503
 GrhClarito=0
 
 [BUTTON12] 'Cuenta: Crear PJ
-X=785
+X=1050
 Y=510
-PosX=950
+PosX=1240
 PosY=550
 GrhNormal=31501
 GrhClarito=0
 
 [BUTTON13] 'Cuenta: Borrar PJ
-X=785
+X=1050
 Y=580
-PosX=950
+PosX=1240
 PosY=620
 GrhNormal=31495
 GrhClarito=0
 
 [BUTTON14] 'Cuenta: Gestion de Cuentas
-X=785
+X=1050
 Y=650
-PosX=987
+PosX=1240
 PosY=713
 GrhNormal=31497
 GrhClarito=0
 
 [BUTTON15] 'Cuenta: Desconectar
-X=20
+X=30
 Y=650
 PosX=218
 PosY=714
@@ -174,7 +183,7 @@ GrhNormal=31494
 GrhClarito=0
 
 [BUTTON16] 'CrearPJ: Nombre
-X=350
+X=460
 Y=650
 PosX=0
 PosY=0
@@ -182,7 +191,7 @@ GrhNormal=31482
 GrhClarito=0
 
 [BUTTON17] 'CrearPJ: Volver
-X=20
+X=30
 Y=650
 PosX=218
 PosY=714
@@ -190,7 +199,7 @@ GrhNormal=31500
 GrhClarito=0
 
 [BUTTON18] 'CrearPJ: Seleccion de Sexo (recuadro)
-X=350
+X=450
 Y=307
 PosX=0
 PosY=0
@@ -198,23 +207,23 @@ GrhNormal=31505
 GrhClarito=0
 
 [BUTTON19] 'CrearPJ: Seleccion de Sexo <
-X=377
+X=477
 Y=312
-PosX=404
+PosX=504
 PosY=342
 GrhNormal=31485
 GrhClarito=0
 
 [BUTTON20] 'CrearPJ: Seleccion de Sexo >
-X=600
+X=700
 Y=312
-PosX=638
+PosX=738
 PosY=342
 GrhNormal=31486
 GrhClarito=0
 
 [BUTTON21] 'CrearPJ: Seleccion de Raza (recuadro)
-X=350
+X=450
 Y=357
 PosX=0
 PosY=0
@@ -222,23 +231,23 @@ GrhNormal=31505
 GrhClarito=0
 
 [BUTTON22] 'CrearPJ: Seleccion de Raza <
-X=377
+X=477
 Y=365
-PosX=404
+PosX=504
 PosY=394
 GrhNormal=31485
 GrhClarito=0
 
 [BUTTON23] 'CrearPJ: Seleccion de Raza >
-X=600
+X=700
 Y=362
-PosX=637
+PosX=737
 PosY=394
 GrhNormal=31486
 GrhClarito=0
 
 [BUTTON24] 'CrearPJ: Seleccion de Clase (recuadro)
-X=350
+X=450
 Y=407
 PosX=0
 PosY=0
@@ -246,41 +255,49 @@ GrhNormal=31505
 GrhClarito=0
 
 [BUTTON25] 'CrearPJ: Seleccion de Clase <
-X=377
+X=477
 Y=412
-PosX=405
+PosX=505
 PosY=440
 GrhNormal=31485
 GrhClarito=0
 
 [BUTTON26] 'CrearPJ: Seleccion de Clase >
-X=600
+X=700
 Y=412
-PosX=630
+PosX=730
 PosY=440
 GrhNormal=31486
 GrhClarito=0
 
 [BUTTON27] 'CrearPJ: Seleccion de Cabeza <
-X=188
+X=558
 Y=600
-PosX=216
+PosX=590
 PosY=628
 GrhNormal=31485
 GrhClarito=0
 
 [BUTTON28] 'CrearPJ: Seleccion de Cabeza >
-X=258
+X=630
 Y=600
-PosX=290
+PosX=660
 PosY=628
 GrhNormal=31486
 GrhClarito=0
 
 [BUTTON29] 'CrearPJ: Crear PJ
-X=785
+X=1050
 Y=650
-PosX=989
+PosX=1240
 PosY=710
 GrhNormal=31501
+GrhClarito=0
+
+[BUTTON30]
+X=881
+Y=221
+PosX=0
+PosY=0
+GrhNormal=2860
 GrhClarito=0

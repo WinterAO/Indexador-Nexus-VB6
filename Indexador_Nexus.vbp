@@ -39,7 +39,7 @@ Module=modLogs; Codigos\modLogs.bas
 Form=Codigos\frmIndices.frm
 Module=modHerramientas; Codigos\modHerramientas.bas
 Form=Codigos\frmSuperficies.frm
-Object={3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0; richtx32.ocx
+Object={3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0; RICHTX32.ocx
 Form=Codigos\frmAcercade.frm
 Module=mDx8_Text; Codigos\mDx8_Text.bas
 Form=Codigos\frmObj.frm
@@ -54,7 +54,7 @@ HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
 MinorVer=9
-RevisionVer=50
+RevisionVer=55
 AutoIncrementVer=1
 ServerSupportFiles=0
 CondComp="Comprimido = 0"
